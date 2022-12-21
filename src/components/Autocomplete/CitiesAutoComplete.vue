@@ -2,7 +2,10 @@
   <div class="list-item">
     <div v-for="city in getCity" :key="city.code">
       <ul>
-        <li class="item" @click="choiceItem">
+        <li 
+        class="item" 
+        @click="choiceItem(city)"
+        >
           {{ city.name }}
         </li>
       </ul>
@@ -13,10 +16,16 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  name: "AutoList",
+  name: "CitiesAutoComplete",
+  data() {
+    return {
+     city: []
+    };
+  },
   methods: {
-    choiceItem() {
-      console.log("click me");
+    choiceItem(city) {
+      this.city.push(city.name);
+      console.log(this.city)
     },
   },
   created() {
@@ -47,7 +56,7 @@ export default {
 .list-item::-webkit-scrollbar-thumb {
   border-radius: 100rem;
   background-color: grey;
-  height: 50px;
+  height: 30px;
 }
 .list-item::-webkit-scrollbar-track {
   border-radius: 100rem;

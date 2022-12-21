@@ -2,26 +2,33 @@
   <div class="auto-layout">
     <Navbar />
     <div>
-      <Search />
-      <AutoList />
+      <Search @searchCity="searchCity"/>
+      <CitiesAutoComplete />
     </div>
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
-import AutoList from "@/components/Autocomplete/AutoList.vue";
+import CitiesAutoComplete from "@/components/Autocomplete/CitiesAutoComplete.vue";
 import Search from "@/components/Autocomplete/Search.vue";
 export default {
   name: "AutocompleteView",
   data() {
-    return {};
+    return {
+      ishiden: false
+    };
   },
   components: {
     Navbar,
-    AutoList,
+    CitiesAutoComplete,
     Search
   },
+  methods: {
+    searchCity(value) {
+      console.log(value);
+  }
+}
 };
 </script>
 

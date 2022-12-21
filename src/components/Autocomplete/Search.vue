@@ -2,7 +2,7 @@
   <div>
     <div class="input-layout">
         <img src="@/assets/search.png" alt="" />
-        <input type="text" placeholder="Nhập tên thành phố tìm kiếm..." v-model="keyword" @input="search"/>
+        <input type="text" placeholder="Nhập tên thành phố tìm kiếm..." v-model="keyword" @input="handleSearch"/>
       </div>
   </div>
 </template>
@@ -16,8 +16,8 @@ data() {
   }
 },
 methods: {
-  search() {
-    console.log(this.keyword)
+  handleSearch() {
+   this.$emit("searchCity", this.keyword)
   }
 }
 }
@@ -25,7 +25,7 @@ methods: {
 
 <style scoped lang="scss">
  .input-layout {
-    margin: 10px 0 1px 0;
+    margin: 10px 0 2px 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -58,4 +58,7 @@ methods: {
     order: 1;
     flex-grow: 1;
   }
+.input-layout:focus-within{
+  border: 1px solid skyblue;
+}
 </style>
