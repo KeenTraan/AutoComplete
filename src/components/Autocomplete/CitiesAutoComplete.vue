@@ -1,11 +1,8 @@
 <template>
   <div class="list-item">
-    <div v-for="city in getCity" :key="city.code">
+    <div v-for="city in city" :key="city.code">
       <ul>
-        <li 
-        class="item" 
-        @click="choiceItem(city)"
-        >
+        <li class="item" @click="choiceItem(city)">
           {{ city.name }}
         </li>
       </ul>
@@ -14,25 +11,21 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   name: "CitiesAutoComplete",
+  props: {
+    city: {
+      type: Array,
+      default: () => []
+    },
+  },
   data() {
-    return {
-     city: []
-    };
+    return {};
   },
   methods: {
     choiceItem(city) {
-      this.city.push(city.name);
-      console.log(this.city)
-    },
-  },
-  created() {
-    this.$store.dispatch("fetchCity");
-  },
-  computed: {
-    ...mapGetters(["getCity"]),
+      this.$emit("selectItem", city);
+    }
   },
 };
 </script>
@@ -72,9 +65,11 @@ export default {
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  color: #486581;
 }
 .item:hover {
-  background-color: #617D98;
-  transition: 1s;
+  background-color: #617d98;
+  transition: 0.8s;
+  color: #FFFFFF;
 }
 </style>
