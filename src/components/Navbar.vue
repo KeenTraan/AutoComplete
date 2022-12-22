@@ -17,6 +17,7 @@ export default {
       navlink: [
         { id: 1, name: "Home", path: "/" },
         { id: 2, name: "Auto Complete", path: "/autocomplete" },
+        { id: 3, name: "User", path: "/users" },
       ],
     };
   },

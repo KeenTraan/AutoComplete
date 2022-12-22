@@ -4,7 +4,11 @@
       <img src="@/assets/search.png" alt="#" />
       <div v-for="(item, index) in options" :key="index" class="option-items">
         <div class="item">{{ item }}</div>
-        <img src="@/assets/icons/X.png" @click="deleteItem(index)" class="icons" />
+        <img
+          src="@/assets/icons/X.png"
+          @click="deleteItem(index)"
+          class="icons"
+        />
       </div>
       <div>
         <input
@@ -23,8 +27,8 @@ export default {
   name: "SearchItem",
   data() {
     return {
-      keyword: "",
-    };
+      keyword: ""
+    }
   },
   props: {
     options: {
@@ -33,16 +37,15 @@ export default {
     },
     placeholder: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
   methods: {
     handleSearch() {
       this.$emit("searchItem", this.keyword);
     },
     deleteItem(index) {
-     this.$delete(this.options, index);
-      
+      this.$delete(this.options, index);
     },
   },
 };
@@ -82,6 +85,7 @@ input {
   flex: none;
   order: 1;
   flex-grow: 1;
+  // border: 1px solid red;
 }
 .option-items {
   display: flex;
