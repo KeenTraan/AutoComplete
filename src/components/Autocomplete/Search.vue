@@ -4,7 +4,7 @@
       <img src="@/assets/search.png" alt="#" />
       <div v-for="(item, index) in options" :key="index" class="option-items">
         <div class="item">{{ item }}</div>
-        <img src="@/assets/icons/X.png" @click="deleteItem" class="icons" />
+        <img src="@/assets/icons/X.png" @click="deleteItem(index)" class="icons" />
       </div>
       <div>
         <input
@@ -40,8 +40,8 @@ export default {
     handleSearch() {
       this.$emit("searchItem", this.keyword);
     },
-    deleteItem() {
-      console.log("Deleted");
+    deleteItem(index) {
+     this.$delete(this.options, index);
       
     },
   },
