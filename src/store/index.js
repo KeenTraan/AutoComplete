@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import AutoComplete from '@/store/AutoComplete'
+import cities from '@/store/cities'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,6 +13,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    AutoComplete
+    cities
   }
 })
