@@ -1,71 +1,23 @@
 <template>
-  <div class="auto-layout">
+  <div class="city-layout">
     <Navbar />
-    <div>
-      <Search
-        @searchItem="searchItem"
-        :options="options"
-        @select="selectItem"
-        :placeholder="PLACEHOLDER" 
-        :keyword="keyword"
-      />
-      <DropdownOption
-        @selectItem="selectItem"
-        :options="filtersItem"
-        v-if="ishiden"
-      />
-    </div>
+    <CityAutoComplete />
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import DropdownOption from "@/components/Autocomplete/DropdownOption.vue";
-import Search from "@/components/Autocomplete/Search.vue";
-import { mapGetters } from "vuex";
-import { PLACEHOLDER } from "@/constant";
+import CityAutoComplete from '@/components/Autocomplete/CityAutoComplete.vue';
+import Navbar from '@/components/Navbar.vue';
 export default {
-  name: "AutocompleteView",
-  data() {
-    return {
-      ishiden: false,
-      keyword: "",
-      options: [],
-      PLACEHOLDER: PLACEHOLDER.CITY,
-    };
-  },
-  components: {
-    Navbar,
-    DropdownOption,
-    Search,
-  },
-  methods: {
-    searchItem(keyword) {
-      this.ishiden = true;
-      this.keyword = keyword;
-    },
-    selectItem(options) {
-      this.options.push(options.name);
-      this.ishiden = false;
-      this.keyword = ""
-    },
-  },
-  computed: {
-    ...mapGetters(["getOptions"]),
-    filtersItem() {
-      return this.getOptions.filter((item) => {
-        return item.name.toLowerCase().includes(this.keyword.toLowerCase()) && this.keyword.length;
-      });
-    },
-  },
-  created() {
-    this.$store.dispatch("fetchOptions");
-  },
-};
+components: {
+  CityAutoComplete,
+  Navbar
+}
+}
 </script>
 
 <style lang="scss" scoped>
-.auto-layout {
+.city-layout {
   display: flex;
 }
 </style>
