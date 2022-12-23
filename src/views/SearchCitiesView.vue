@@ -1,16 +1,16 @@
 <template>
   <div class="city-layout">
     <Navbar />
-    <CityAutoComplete />
+    <AutoComplete />
   </div>
 </template>
 
 <script>
-import CityAutoComplete from '@/components/Autocomplete/CityAutoComplete.vue';
+import AutoComplete from '@/components/Autocomplete/AutoComplete.vue';
 import Navbar from '@/components/Navbar.vue';
 export default {
 components: {
-  CityAutoComplete,
+  AutoComplete,
   Navbar
 }
 }
