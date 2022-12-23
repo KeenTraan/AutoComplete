@@ -7,6 +7,7 @@
         :options="options"
         @select="selectItem"
         :placeholder="PLACEHOLDER" 
+        :keyword="keyword"
       />
       <DropdownOption
         @selectItem="selectItem"
@@ -46,13 +47,14 @@ export default {
     selectItem(options) {
       this.options.push(options.name);
       this.ishiden = false;
+      this.keyword = ""
     },
   },
   computed: {
     ...mapGetters(["getOptions"]),
     filtersItem() {
       return this.getOptions.filter((item) => {
-        return item.name.toLowerCase().includes(this.keyword.toLowerCase());
+        return item.name.toLowerCase().includes(this.keyword.toLowerCase()) && this.keyword.length;
       });
     },
   },

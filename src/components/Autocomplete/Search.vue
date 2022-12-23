@@ -14,7 +14,7 @@
         <input
           type="text"
           :placeholder="placeholder"
-          v-model="keyword"
+          v-model="valueInput"
           @input="handleSearch"
         />
       </div>
@@ -23,11 +23,12 @@
 </template>
 
 <script>
+
 export default {
   name: "SearchItem",
   data() {
     return {
-      keyword: ""
+      valueInput: ""
     }
   },
   props: {
@@ -39,15 +40,20 @@ export default {
       type: String,
       default: "",
     },
-    // keyword: {
-    //   type: String,
-    //   default: "",
-    // }
+    keyword: {
+      type: String,
+    }
+  },
+  watch: {
+    keyword: {
+      handler(value) {
+        this.valueInput = value;
+      }
+    }
   },
   methods: {
     handleSearch() {
-      this.$emit("searchItem", this.keyword);
-      console.log(this.keyword)
+      this.$emit("searchItem", this.valueInput);
     },
     deleteItem(index) {
       this.$delete(this.options, index);
