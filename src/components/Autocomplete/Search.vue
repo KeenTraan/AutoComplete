@@ -2,11 +2,11 @@
   <div>
     <div class="input-layout">
       <img src="@/assets/search.png" alt="#" />
-      <div v-for="(item, index) in options" :key="index" class="option-items">
-        <div class="item">{{ item }}</div>
+      <div v-for="item in options" :key="item.code" class="option-items">
+        <div class="item">{{ item.name }}</div>
         <img
           src="@/assets/icons/X.png"
-          @click="deleteItem(index)"
+          @click="deleteItem(item)"
           class="icons"
         />
       </div>
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-
 export default {
   name: "SearchItem",
   data() {
@@ -55,8 +54,8 @@ export default {
     handleSearch() {
       this.$emit("searchItem", this.valueInput);
     },
-    deleteItem(index) {
-      this.$delete(this.options, index);
+    deleteItem(item) {
+      this.$store.dispatch('deleteCity', item)
     },
   },
 };
