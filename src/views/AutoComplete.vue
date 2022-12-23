@@ -42,12 +42,10 @@ export default {
     searchItem(keyword) {
       this.ishiden = true;
       this.keyword = keyword;
-      console.log(this.keyword)
     },
     selectItem(options) {
       this.options.push(options.name);
       this.ishiden = false;
-      this.keyword = ""
     },
   },
   computed: {

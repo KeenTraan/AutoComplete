@@ -39,10 +39,15 @@ export default {
       type: String,
       default: "",
     },
+    // keyword: {
+    //   type: String,
+    //   default: "",
+    // }
   },
   methods: {
     handleSearch() {
       this.$emit("searchItem", this.keyword);
+      console.log(this.keyword)
     },
     deleteItem(index) {
       this.$delete(this.options, index);
