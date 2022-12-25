@@ -40,7 +40,8 @@ export default {
   methods: {
     searchItem(keyword) {
       this.ishiden = true;
-      this.keyword = keyword;
+      this.keyword = keyword.trim();
+      
     },
     selectItem(item) {
       this.$store.dispatch("selectCity", item);
