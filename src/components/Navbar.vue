@@ -16,8 +16,8 @@ export default {
     return {
       navlink: [
         { id: 1, name: "Home", path: "/" },
-        { id: 2, name: "Search City", path: "/city" },
-        { id: 3, name: "Search User", path: "/users" },
+        { id: 2, name: "City", path: "/city" },
+        { id: 3, name: "User", path: "/users" },
       ],
     };
   },

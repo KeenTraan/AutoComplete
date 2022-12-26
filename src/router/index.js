@@ -12,12 +12,12 @@ const routes = [
   {
     path: '/city',
     name: 'city',
-    component: () => import('@/views/SearchCitiesView.vue')
+    component: () => import('@/views/CityView.vue')
   },
   {
     path: '/users',
     name: 'autocomplete',
-    component: () => import('@/views/Users.vue')
+    component: () => import('@/views/UsersView.vue')
   }
 ]
 

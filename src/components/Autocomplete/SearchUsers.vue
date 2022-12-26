@@ -1,6 +1,5 @@
 <template>
   <div class="auto-layout">
-    <Navbar />
     <div>
       <Search
         @searchItem="searchItem"
@@ -19,7 +18,6 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
 import DropdownOption from "@/components/Autocomplete/DropdownOption.vue";
 import Search from "@/components/Autocomplete/Search.vue";
 import { mapGetters } from "vuex";
@@ -35,7 +33,6 @@ export default {
     };
   },
   components: {
-    Navbar,
     DropdownOption,
     Search,
   },
