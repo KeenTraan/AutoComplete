@@ -28,7 +28,7 @@ export default {
     return {
       ishiden: false,
       keyword: "",
-      options: [],
+      // options: [],
       PLACEHOLDER: PLACEHOLDER.CITY,
       disabled: true,
     };

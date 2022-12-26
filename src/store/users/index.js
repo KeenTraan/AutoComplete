@@ -2,6 +2,7 @@ import axios from "axios";
 const AutoComplete = {
   state: {
     Users: [],
+    selectUsers: []
   },
   getters: {
     getUsers: (state) => state.Users,
