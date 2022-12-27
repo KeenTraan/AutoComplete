@@ -2,16 +2,16 @@
   <div class="auto-layout">
     <div>
       <Search
-        @searchItem="searchItem"
         :getSelect="getSelect"
         :placeholder="placeholder"
         :keyword="keyword"
+        @searchItem="searchItem"
         @deleteOptions="deleteOptions"
       />
       <DropdownOption
-        @selectItem="selectItem"
-        :options="filtersItem"
         v-if="ishiden"
+        :options="filtersItem"
+        @selectItem="selectItem"
       />
     </div>
   </div>
@@ -33,14 +33,15 @@ export default {
     Search,
   },
   methods: {
-    searchItem(keyword) {
-      this.ishiden = true;
-      this.keyword = keyword;
+    searchItem(valueInput) {
+      this.keyword = valueInput;
       this.$emit("searchOptions", this.keyword);
+      this.ishiden = true;
     },
     selectItem(item) {
-      this.$emit("addChosen", item)
       this.keyword = "";
+      this.ishiden = false;
+      this.$emit("addChosen", item)
     },
     deleteOptions(item) {
       this.$emit("deleteItem", item)

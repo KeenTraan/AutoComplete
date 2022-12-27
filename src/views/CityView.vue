@@ -1,10 +1,10 @@
 <template>
   <div class="city-layout">
     <Navbar />
-    <AutoComplete 
-    :options="getCity"
+    <AutoComplete
+    :options="cities"
+    :getSelect="selectedCities"
     :placeholder="placeholder"
-    :getSelect="getSelect"
     :filtersItem="filtersItem"
     @searchOptions="searchOptions"
     @addChosen="addChosen"
@@ -17,7 +17,7 @@
 import AutoComplete from "@/components/Autocomplete/AutoComplete";
 import Navbar from "@/components/Navbar.vue";
 import { mapActions, mapGetters } from 'vuex';
-import { PLACEHOLDER } from "@/common";
+import { PLACEHOLDER } from "@/constant";
 export default {
   data(){
     return {
@@ -36,15 +36,19 @@ export default {
     },
     addChosen(item) {
      this.addChosenCity(item)
+     this.keyWord = ""
     },
     deleteItem(item) {
       this.deleteCity(item)
     }
   },
   computed: {
-    ...mapGetters(["getCity", "getSelect"]),
+    ...mapGetters({
+      cities: "getCity", 
+      selectedCities: "getSelect"
+    }),
     filtersItem() {
-      return this.getCity.filter((item) => {
+      return this.cities.filter((item) => {
         return (
           item.name.toLowerCase().includes(this.keyWord.toLowerCase())
           && this.keyWord.length

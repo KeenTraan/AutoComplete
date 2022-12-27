@@ -14,7 +14,7 @@
         <input
           type="text"
           :placeholder="placeholder"
-          v-model="valueInput"
+          :value="valueInput"
           @input="handleSearch"
         />
       </div>
@@ -39,19 +39,19 @@ export default {
       type: String,
       default: "",
     },
-    // keyword: {
-    //   type: String,
-    // }
+    keyword: {
+      type: String,
+      required: true
+    }
   },
-  // watch: {
-  //   keyword: {
-  //     handler(value) {
-  //       this.valueInput = value;
-  //     }
-  //   }
-  // },
+  watch: {
+    keyword(value) {
+      this.valueInput = value;
+    }
+  },
   methods: {
-    handleSearch() {
+    handleSearch(e) {
+      this.valueInput = e.target.value;
       this.$emit("searchItem", this.valueInput);
     },
     handleDelete(item) {

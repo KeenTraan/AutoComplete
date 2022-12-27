@@ -64,10 +64,10 @@ export default {
   align-items: center;
   gap: 10px;
   color: #486581;
+  transition: 0.5s;
 }
 .item:hover {
   background-color: #617d98;
-  transition: 0.5s;
   color: #ffffff;
 }
 .disable-item {

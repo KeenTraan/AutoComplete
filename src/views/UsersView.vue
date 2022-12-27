@@ -1,14 +1,14 @@
 <template>
   <div class="city-layout">
     <Navbar />
-    <AutoComplete 
-    :options="getUsers"
-    :placeholder="placeholder"
-    :filtersItem="filtersItem"
-    :getSelect="getSelectUser"
-    @searchOptions="searchOptions"
-    @addChosen ="addChosen"
-    @deleteItem="deleteItem"
+    <AutoComplete
+      :options="users"
+      :placeholder="placeholder"
+      :filtersItem="filtersItem"
+      :getSelect="selectUsers"
+      @searchOptions="searchOptions"
+      @addChosen="addChosen"
+      @deleteItem="deleteItem"
     />
   </div>
 </template>
@@ -18,7 +18,7 @@ import AutoComplete from "@/components/Autocomplete/AutoComplete";
 
 import Navbar from "@/components/Navbar.vue";
 import { mapActions, mapGetters } from "vuex";
-import { PLACEHOLDER } from "@/common";
+import { PLACEHOLDER } from "@/constant";
 export default {
   name: "UserView",
   components: {
@@ -28,35 +28,42 @@ export default {
   data() {
     return {
       placeholder: PLACEHOLDER.USERS,
-      keyword: ""
+      keyWord: "",
     };
   },
   methods: {
-    ...mapActions({fetchUsers: "fetchUsers", addChosenUser: "selectUsers", deleteUsers: "deleteUsers" }),
+    ...mapActions({
+      fetchUsers: "fetchUsers",
+      addChosenUser: "selectUsers",
+      deleteUsers: "deleteUsers",
+    }),
 
     searchOptions(keyword) {
-      this.keyword = keyword
+      this.keyWord = keyword;
     },
     addChosen(item) {
       this.addChosenUser(item);
     },
     deleteItem(item) {
-      this.deleteUsers(item)
-    }
+      this.deleteUsers(item);
+    },
   },
   computed: {
-    ...mapGetters(["getUsers", "getSelectUser"]),
+    ...mapGetters({
+      users: "getUsers",
+      selectUsers: "getSelectUser",
+    }),
     filtersItem() {
-      return this.getUsers.filter((item) => {
+      return this.users.filter((item) => {
         return (
-          item.name.toLowerCase().includes(this.keyword.toLowerCase()) &&
-          this.keyword.length
+          item.name.toLowerCase().includes(this.keyWord.toLowerCase()) &&
+          this.keyWord.length
         );
       });
     },
   },
   created() {
-    this.fetchUsers()
+    this.fetchUsers();
   },
 };
 </script>
