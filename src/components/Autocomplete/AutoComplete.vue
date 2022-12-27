@@ -3,10 +3,10 @@
     <div>
       <Search
         @searchItem="searchItem"
-        :options="getSelect"
-        @select="selectItem"
-        :placeholder="PLACEHOLDER"
+        :getSelect="getSelect"
+        :placeholder="placeholder"
         :keyword="keyword"
+        @deleteOptions="deleteOptions"
       />
       <DropdownOption
         @selectItem="selectItem"
@@ -20,17 +20,12 @@
 <script>
 import DropdownOption from "@/components/Autocomplete/DropdownOption.vue";
 import Search from "@/components/Autocomplete/Search.vue";
-import { mapGetters } from "vuex";
-import { PLACEHOLDER } from "@/common";
 export default {
-  name: "AutocompleteView",
+  name: "AutoComplete",
   data() {
     return {
       ishiden: false,
       keyword: "",
-      // options: [],
-      PLACEHOLDER: PLACEHOLDER.CITY,
-      disabled: true,
     };
   },
   components: {
@@ -40,27 +35,33 @@ export default {
   methods: {
     searchItem(keyword) {
       this.ishiden = true;
-      this.keyword = keyword.trim();
-      
+      this.keyword = keyword;
+      this.$emit("searchOptions", this.keyword);
     },
     selectItem(item) {
-      this.$store.dispatch("selectCity", item);
+      this.$emit("addChosen", item)
       this.keyword = "";
     },
+    deleteOptions(item) {
+      this.$emit("deleteItem", item)
+    }
   },
-  computed: {
-    ...mapGetters(["getCity", "getSelect"]),
-    filtersItem() {
-      return this.getCity.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(this.keyword.toLowerCase()) &&
-          this.keyword.length
-        );
-      });
+  props: {
+    options: {
+      type: Array,
+      default: () => [],
     },
-  },
-  created() {
-    this.$store.dispatch("fetchCity");
+    placeholder: {
+      type: String,
+    },
+    getSelect: {
+      type: Array,
+      default: () => [],
+    },
+    filtersItem: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>

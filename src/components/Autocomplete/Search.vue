@@ -2,11 +2,11 @@
   <div>
     <div class="input-layout">
       <img src="@/assets/search.png" alt="#" />
-      <div v-for="item in options" :key="item.code" class="option-items">
+      <div v-for="item in getSelect" :key="item.code" class="option-items">
         <div class="item">{{ item.name }}</div>
         <img
           src="@/assets/icons/X.png"
-          @click="deleteItem(item)"
+          @click="handleDelete(item)"
           class="icons"
         />
       </div>
@@ -31,31 +31,31 @@ export default {
     }
   },
   props: {
-    options: {
+    getSelect: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     placeholder: {
       type: String,
       default: "",
     },
-    keyword: {
-      type: String,
-    }
+    // keyword: {
+    //   type: String,
+    // }
   },
-  watch: {
-    keyword: {
-      handler(value) {
-        this.valueInput = value;
-      }
-    }
-  },
+  // watch: {
+  //   keyword: {
+  //     handler(value) {
+  //       this.valueInput = value;
+  //     }
+  //   }
+  // },
   methods: {
     handleSearch() {
       this.$emit("searchItem", this.valueInput);
     },
-    deleteItem(item) {
-      this.$store.dispatch('deleteCity', item)
+    handleDelete(item) {
+      this.$emit('deleteOptions', item)
     },
   },
 };

@@ -2,7 +2,7 @@
   <div class="list-item">
     <div v-for="item in options" :key="item.code">
       <ul>
-        <li class="item"  @click="choiceItem(item)">
+        <li class="item"  @click="selectItem(item)">
           {{ item.name }}
         </li>
       </ul>
@@ -22,7 +22,7 @@ export default {
     return {};
   },
   methods: {
-    choiceItem(item) {
+    selectItem(item) {
       this.$emit("selectItem", item);
     },
   },
