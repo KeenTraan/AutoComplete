@@ -2,8 +2,15 @@
   <div class="list-item">
     <div v-for="item in options" :key="item.code">
       <ul>
-        <li class="item"  @click="selectItem(item)">
+        <li class="item" @click="selectItem(item)">
           {{ item.name }}
+        </li>
+      </ul>
+    </div>
+    <div v-if="!options.length && keyword" class="item-massage">
+      <ul>
+        <li>
+          {{ message }}
         </li>
       </ul>
     </div>
@@ -17,9 +24,14 @@ export default {
       type: Array,
       default: () => [],
     },
-  },
-  data() {
-    return {};
+    message: {
+      type: String,
+      required: true,
+    },
+    keyword: {
+      type: String,
+      required: true,
+    }
   },
   methods: {
     selectItem(item) {
@@ -39,7 +51,6 @@ export default {
   align-items: flex-start;
   padding: 0px;
   border-radius: 4px;
-  cursor: grabbing;
 }
 .list-item::-webkit-scrollbar {
   width: 7px;
@@ -70,8 +81,16 @@ export default {
   background-color: #617d98;
   color: #ffffff;
 }
-.disable-item {
-  pointer-events: none;
-  cursor: not-allowed;
+.item-massage {
+  background-color: #f1f5f8;
+  padding: 10px;
+  width: 400px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  color: #486581;
+  transition: 0.5s;
 }
 </style>

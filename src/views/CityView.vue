@@ -53,10 +53,10 @@ export default {
     }),
     filtersItem() {
       return this.cities.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(this.keyWord.toLowerCase()) &&
-          this.keyWord.length
-        );
+          return (
+            this.keyWord.length &&
+            item.name.toLowerCase().includes(this.keyWord.toLowerCase())
+          );
       });
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="city-layout">
+  <div class="users-layout">
     <Navbar />
     <AutoComplete
       :options="users"
@@ -56,8 +56,8 @@ export default {
     filtersItem() {
       return this.users.filter((item) => {
         return (
-          item.name.toLowerCase().includes(this.keyWord.toLowerCase()) &&
-          this.keyWord.length
+          this.keyWord.length &&
+          item.name.toLowerCase().includes(this.keyWord.toLowerCase())
         );
       });
     },
@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.city-layout {
+.users-layout {
   display: flex;
 }
 </style>

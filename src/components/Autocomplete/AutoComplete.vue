@@ -9,8 +9,10 @@
         @deleteOptions="deleteOptions"
       />
       <DropdownOption
-        v-if="ishiden"
+        v-if="isHiden"
         :options="filtersItem"
+        :message="message"
+        :keyword="keyword"
         @selectItem="selectItem"
       />
     </div>
@@ -24,8 +26,9 @@ export default {
   name: "AutoComplete",
   data() {
     return {
-      ishiden: false,
+      isHiden: false,
       keyword: "",
+      message: "Not Found"
     };
   },
   components: {
@@ -35,12 +38,12 @@ export default {
   methods: {
     searchItem(valueInput) {
       this.keyword = valueInput;
+      this.isHiden = true;
       this.$emit("searchOptions", this.keyword);
-      this.ishiden = true;
     },
     selectItem(item) {
       this.keyword = "";
-      this.ishiden = false;
+      this.isHiden = false;
       this.$emit("addChosen", item)
     },
     deleteOptions(item) {
