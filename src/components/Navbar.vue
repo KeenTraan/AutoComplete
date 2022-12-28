@@ -44,7 +44,7 @@ export default {
       padding: 10px;
       font-size: large;
       &.router-link-exact-active {
-        color: rgb(72,61,139);
+        color: rgb(0, 17, 255);
       }
     }
     a:hover {

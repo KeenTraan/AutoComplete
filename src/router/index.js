@@ -16,7 +16,7 @@ const routes = [
   },
   {
     path: '/users',
-    name: 'autocomplete',
+    name: 'users',
     component: () => import('@/views/UsersView.vue')
   }
 ]
