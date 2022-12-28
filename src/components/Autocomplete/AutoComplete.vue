@@ -10,7 +10,7 @@
       />
       <DropdownOption
         v-if="isHiden"
-        :options="filtersItem"
+        :listOptions="filtersItem"
         :message="message"
         :keyword="keyword"
         @selectItem="selectItem"
@@ -51,10 +51,6 @@ export default {
     }
   },
   props: {
-    options: {
-      type: Array,
-      default: () => [],
-    },
     placeholder: {
       type: String,
     },

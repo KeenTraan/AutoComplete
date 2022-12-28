@@ -1,13 +1,13 @@
 <template>
   <div class="list-item">
-    <div v-for="item in options" :key="item.code">
+    <div v-for="item in listOptions" :key="item.code">
       <ul>
         <li class="item" @click="selectItem(item)">
           {{ item.name }}
         </li>
       </ul>
     </div>
-    <div v-if="!options.length && keyword" class="item-massage">
+    <div v-if="!listOptions.length && keyword" class="item-massage">
       <ul>
         <li>
           {{ message }}
@@ -20,7 +20,7 @@
 <script>
 export default {
   props: {
-    options: {
+    listOptions: {
       type: Array,
       default: () => [],
     },
@@ -75,7 +75,7 @@ export default {
   align-items: center;
   gap: 10px;
   color: #486581;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 .item:hover {
   background-color: #617d98;
@@ -91,6 +91,5 @@ export default {
   align-items: center;
   gap: 10px;
   color: #486581;
-  transition: 0.5s;
 }
 </style>

@@ -2,7 +2,6 @@
   <div class="city-layout">
     <Navbar />
     <AutoComplete
-      :options="cities"
       :getSelect="selectedCities"
       :placeholder="placeholder"
       :filtersItem="filtersItem"
