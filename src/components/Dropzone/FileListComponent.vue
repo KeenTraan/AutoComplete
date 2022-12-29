@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="file in fileList" :key="file">
+    <div v-for="file in fileList" :key="file.id">
         {{ file.name }}
     </div>
   </div>
@@ -9,7 +9,7 @@
 <script>
 export default {
     props: {
-        fileList: {
+      fileList: {
             type: Array,
             default: () => []
         }

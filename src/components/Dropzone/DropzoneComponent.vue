@@ -2,12 +2,13 @@
   <div>
     <div class="dropzone">
       <AddFile 
-        @addfile="addNewFile"
+        @addFile="addNewFile"
       />
     </div>
     <FileList 
       :fileList="fileList"
     />
+    <!-- {{ fileList }} -->
   </div>
 </template>
 
@@ -17,7 +18,11 @@ import FileList from "@/components/Dropzone/FileListComponent.vue"
 export default {
   data() {
     return {
-      fileList: [] 
+      fileList: [
+        // {id: 1, name: "fileOne", type: "img"},
+        // {id: 2, name: "fileTwo", type: "img"},
+        // {id: 3, name: "fileThree", type: "img"}
+      ] 
     }
   },
   components: {
@@ -25,9 +30,9 @@ export default {
     FileList
   },
   methods: {
-    addNewFile(file) {
-      console.log(file)
-      return this.fileList.push(file)
+    addNewFile(data) {
+      console.log(this.fileList)
+      return this.fileList.push(data)
     }
   }
 };

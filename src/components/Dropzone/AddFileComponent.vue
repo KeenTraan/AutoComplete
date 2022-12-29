@@ -9,23 +9,13 @@
 <script>
 export default {
   name: "add-file",
-  data() {
-    return {
-      files: ''
-    };
-  },
   methods: {
     handledata(e) {
-      const a = e.target.files;
-      this.files = a
-      // this.$emit("addFile", this.file)
-      console.log(this.files)
+      const data = e.target.files[0];
+      this.$emit("addFile", data)
+      console.log(data)
     }
   },
-  mounted() {
-  
-  },
-
 };
 </script>
 
