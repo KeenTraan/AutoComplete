@@ -1,18 +1,14 @@
 <template>
   <div class="list-item">
     <div v-for="item in listOptions" :key="item.code">
-      <ul>
-        <li class="item" @click="selectItem(item)">
+        <div class="item" @click="selectItem(item)">
           {{ item.name }}
-        </li>
-      </ul>
+        </div>
     </div>
     <div v-if="!listOptions.length && keyword" class="item-massage">
-      <ul>
-        <li>
+        <div>
           {{ message }}
-        </li>
-      </ul>
+        </div>
     </div>
   </div>
 </template>
