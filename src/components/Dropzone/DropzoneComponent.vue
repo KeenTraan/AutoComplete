@@ -15,10 +15,13 @@ export default {
 
 <style lang="scss" scoped>
 .dropzone {
+  margin-top: 10px;
   background: #f8f8f8;
   border: 1px solid #dcdcdc;
   border-radius: 7px;
-  border: 1px solid red;
+  font-family: "Noto Sans";
+  font-style: normal;
+  // border: 1px solid red;
   width: 842px;
   height: 232px;
   display: flex;

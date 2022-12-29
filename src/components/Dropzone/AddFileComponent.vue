@@ -1,7 +1,8 @@
 <template>
   <div class="add-file">
-    <strong>Drag and drop file</strong>
-    <input class="input-add-file" type="file">
+    <h3>Drag and drop file</h3>
+    <label for="input-file" class="input-add-file">Browser file</label>
+    <input type="file" id="input-file" />
   </div>
 </template>
 
@@ -12,17 +13,21 @@ export default {};
 <style scoped lang="scss">
 .add-file {
   display: flex;
-  // align-items: center;
+  align-items: center;
   text-align: center;
   flex-direction: column;
   font-family: "Noto Sans";
   font-style: normal;
-  font-weight: 700;
+  // font-weight: 700;
   font-size: 18px;
   line-height: 22px;
+
   .input-add-file {
-    border: none;
-    background-color: none;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  #input-file {
+    display: none;
   }
 }
 </style>
