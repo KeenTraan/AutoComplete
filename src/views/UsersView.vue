@@ -1,15 +1,18 @@
 <template>
   <div class="users-layout">
     <Navbar />
-    <AutoComplete
-      :options="users"
-      :placeholder="placeholder"
-      :filtersItem="filtersItem"
-      :getSelect="selectUsers"
-      @searchOptions="searchOptions"
-      @addChosen="addChosen"
-      @deleteItem="deleteItem"
-    />
+    <div class="body-layout">
+      <AutoComplete
+        :options="users"
+        :placeholder="placeholder"
+        :filtersItem="filtersItem"
+        :getSelect="selectUsers"
+        @searchOptions="searchOptions"
+        @addChosen="addChosen"
+        @deleteItem="deleteItem"
+      />
+      <dropzone-component />
+    </div>
   </div>
 </template>
 
@@ -19,11 +22,13 @@ import AutoComplete from "@/components/Autocomplete/AutoComplete";
 import Navbar from "@/components/Navbar.vue";
 import { mapActions, mapGetters } from "vuex";
 import { PLACEHOLDER } from "@/constant";
+import DropzoneComponent from '@/components/Dropzone/DropzoneComponent.vue';
 export default {
   name: "UserView",
   components: {
     AutoComplete,
     Navbar,
+    DropzoneComponent,
   },
   data() {
     return {
@@ -71,5 +76,9 @@ export default {
 <style lang="scss" scoped>
 .users-layout {
   display: flex;
+  .body-layout {
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>

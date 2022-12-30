@@ -95,7 +95,6 @@ input {
   flex: none;
   order: 1;
   flex-grow: 1;
-  // border: 1px solid red;
 }
 .option-items {
   display: flex;
@@ -112,7 +111,6 @@ input {
   flex: none;
   flex-grow: 0;
   margin-right: 3px;
-  // border: 1px solid red;
   .icons {
     cursor: pointer;
   }

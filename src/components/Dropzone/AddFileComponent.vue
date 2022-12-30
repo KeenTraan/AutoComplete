@@ -1,9 +1,10 @@
-<template>    
-     <div class="add-file">
-       <h3>Drag and drop file</h3>
-       <label for="input-file" class="input-add-file">Browser file</label>
-       <input type="file" id="input-file" @change="handledata" multiple/>
-    </div>
+<template>
+  <label for="input-file" class="add-file">
+    <img src="@/assets/icons/upload 2.png" alt="#" class="upload-icon" />
+    <h3>Drag and drop files</h3>
+    <p class="input-add-file">Browser files</p>
+    <input type="file" id="input-file" @change="handledata" multiple />
+  </label>
 </template>
 
 <script>
@@ -12,15 +13,15 @@ export default {
   methods: {
     handledata(e) {
       const data = e.target.files[0];
-      this.$emit("addFile", data)
-      console.log(data)
-    }
+      this.$emit("addFile", data);
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
 .add-file {
+  cursor: pointer;
   display: flex;
   align-items: center;
   text-align: center;
@@ -28,12 +29,17 @@ export default {
   font-style: normal;
   font-size: 18px;
   line-height: 22px;
+  .upload-icon {
+    margin-bottom: 13px;
+  }
   .input-add-file {
     text-decoration: underline gray;
-    cursor: pointer;
   }
   #input-file {
     display: none;
   }
+}
+.add-file:hover {
+  color: green;
 }
 </style>

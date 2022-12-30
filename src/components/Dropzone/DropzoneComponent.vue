@@ -1,40 +1,35 @@
 <template>
   <div>
     <div class="dropzone">
-      <AddFile 
-        @addFile="addNewFile"
-      />
+      <AddFile @addFile="addNewFile" />
     </div>
-    <FileList 
-      :fileList="fileList"
-    />
-    <!-- {{ fileList }} -->
+    <FileList :fileList="fileList" @handleDelete="deleteFile" />
   </div>
 </template>
 
 <script>
 import AddFile from "@/components/Dropzone/AddFileComponent.vue";
-import FileList from "@/components/Dropzone/FileListComponent.vue"
+import FileList from "@/components/Dropzone/FileListComponent.vue";
 export default {
   data() {
     return {
-      fileList: [
-        // {id: 1, name: "fileOne", type: "img"},
-        // {id: 2, name: "fileTwo", type: "img"},
-        // {id: 3, name: "fileThree", type: "img"}
-      ] 
-    }
+      fileList: [],
+    };
   },
   components: {
     AddFile,
-    FileList
+    FileList,
   },
   methods: {
     addNewFile(data) {
-      console.log(this.fileList)
-      return this.fileList.push(data)
-    }
-  }
+      return this.fileList.push(data);
+    },
+    deleteFile(lastModify) {
+      this.fileList = this.fileList.filter((file) => {
+        return file.lastModified !== lastModify;
+      });
+    },
+  },
 };
 </script>
 
