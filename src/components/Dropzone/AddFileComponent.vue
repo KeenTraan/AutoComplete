@@ -12,8 +12,10 @@ export default {
   name: "add-file",
   methods: {
     handledata(e) {
-      const data = e.target.files[0];
-      this.$emit("addFile", data);
+      const dataFile = e.target.files[0];
+      if(dataFile) {
+        this.$emit("addFile", dataFile);
+      }
     },
   },
 };

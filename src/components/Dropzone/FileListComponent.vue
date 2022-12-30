@@ -37,12 +37,12 @@ export default {
 
 <style lang="scss" scoped>
 .file-layout {
+  width: 244px;
+  height: 48px;
   display: flex;
   gap: 17px;
   margin-top: 33px;
   .file-list {
-    width: 244px;
-    height: 48px;
     background: #ffffff;
     border: 1px solid #dcdcdc;
     border-radius: 3px;
@@ -50,7 +50,7 @@ export default {
   .file {
     display: flex;
     align-items: center;
-    padding: 7px 17px 7px 11px;
+    padding: 8px 17px 7px 12px;
     .card-icon {
       width: 32px;
       height: 32px;
@@ -68,6 +68,9 @@ export default {
         font-weight: 700;
         font-size: 12px;
         line-height: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .file-size {
         font-family: "Noto Sans";
@@ -79,6 +82,8 @@ export default {
     }
     .delete-icon {
       cursor: pointer;
+      width: 16px;
+      height: 16px;
     }
   }
 }

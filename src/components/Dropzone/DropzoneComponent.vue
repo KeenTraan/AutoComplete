@@ -20,9 +20,21 @@ export default {
     AddFile,
     FileList,
   },
+  watch: {
+      fileList(val) {
+        this.fileList = val;
+        console.log(this.fileList)
+      },
+  },  
   methods: {
-    addNewFile(data) {
-      return this.fileList.push(data);
+    addNewFile(dataFile) {
+      console.log(dataFile);
+      this.fileList.map((item) => {
+        // if(!item.lastModified) {
+        //   // return item.push(dataFile);
+        // }
+        console.log(item)
+      })
     },
     deleteFile(lastModify) {
       this.fileList = this.fileList.filter((file) => {

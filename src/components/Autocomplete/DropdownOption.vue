@@ -43,7 +43,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 128px;
+  // height: 128px;
   align-items: flex-start;
   padding: 0px;
   border-radius: 4px;
