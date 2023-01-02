@@ -5,7 +5,7 @@
         <img src="@/assets/card/excel.png" alt="#" class="card-icon" />
         <div class="text-file">
           <p class="file-name">{{ file.name.toLowerCase() }}</p>
-          <p class="file-size">kb</p>
+          <p class="file-size">{{ file.size }}KB</p>
         </div>
         <img
           src="@/assets/icons/close-circle.png"
