@@ -49,9 +49,9 @@ export default {
       this.isValid = true;
       this.errorMessage = "";
       newFileList.forEach((item) => {
-        if (item.size > 1000000) {
+        if (item.size > 150000) {
           this.isValid = false;
-          this.errorMessage = "File size must be less than 100000";
+          this.errorMessage = "File size must be less than 150000";
         }
       });
       if (this.isValid) {

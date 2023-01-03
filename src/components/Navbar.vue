@@ -41,11 +41,11 @@ export default {
     margin-top: 20px;
     a {
       text-decoration: none;
-      color: black;
+      color: #666666;;
       padding: 10px;
       font-size: large;
       &.router-link-exact-active {
-        color: rgb(0, 81, 255);
+        color: black;
       }
     }
     a:hover {
