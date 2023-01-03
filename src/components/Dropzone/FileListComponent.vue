@@ -4,7 +4,7 @@
       <div class="file">
         <img src="@/assets/card/excel.png" alt="#" class="card-icon" />
         <div class="text-file">
-          <p class="file-name">{{ file.name.toLowerCase() }}</p>
+          <p class="file-name">{{ file.name }}</p>
           <p class="file-size">{{ file.size }}KB</p>
         </div>
         <img
@@ -37,27 +37,33 @@ export default {
 
 <style lang="scss" scoped>
 .file-layout {
-  width: 244px;
-  height: 48px;
+  width: 842px;
   display: flex;
   gap: 17px;
   margin-top: 33px;
+  // border: 1px solid green;
+  overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: scroll;
   .file-list {
     background: #ffffff;
+    width: 244px;
+    height: 48px;
     border: 1px solid #dcdcdc;
     border-radius: 3px;
+    display: flex;
   }
   .file {
     display: flex;
     align-items: center;
-    padding: 8px 17px 7px 12px;
+    padding: 8px 0 8px 5px;
     .card-icon {
       width: 32px;
       height: 32px;
-      margin-right: 12px;
+      margin-right: 10px;
     }
     .text-file {
-      width: 150px;
+      width: 125px;
       margin-right: 20px;
       display: flex;
       flex-direction: column;
@@ -84,7 +90,19 @@ export default {
       cursor: pointer;
       width: 16px;
       height: 16px;
+      margin-left: 25px;
     }
   }
+}
+.file-layout::-webkit-scrollbar {
+  height: 5px;
+}
+.file-layout::-webkit-scrollbar-thumb {
+  border-radius: 100rem;
+  background-color: rgb(141, 141, 141, 0.5);
+}
+.file-layout::-webkit-scrollbar-track {
+  border-radius: 100rem;
+  background-color: white;
 }
 </style>

@@ -43,7 +43,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 400px;
-  // height: 128px;
+  height: 128px;
   align-items: flex-start;
   padding: 0px;
   border-radius: 4px;
@@ -61,10 +61,6 @@ export default {
   color: #486581;
   transition: 0.3s;
 }
-.list-item::-webkit-scrollbar {
-  width: 7px;
-  height: 0;
-}
 .item-massage {
   background-color: #f1f5f8;
   padding: 10px;
@@ -78,6 +74,10 @@ export default {
   li {
     list-style: none;
   }
+}
+.list-item::-webkit-scrollbar {
+  width: 7px;
+  height: 0;
 }
 .list-item::-webkit-scrollbar-thumb {
   border-radius: 100rem;

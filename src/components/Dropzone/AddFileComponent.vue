@@ -1,10 +1,16 @@
 <template>
-    <div class="add-file" @dragover="dragFiles" @dragleave="dragLeave" @drop="dropFiles">
+  <div>
+    <div
+      class="add-file"
+      @dragover="dragFiles"
+      @dragleave="dragLeave"
+      @drop="dropFiles"
+    >
       <label for="input-file" class="label-input">
-      <img src="@/assets/icons/upload 2.png" alt="#" class="upload-icon" />
-      <h3 v-if="isDragging">Drop files here</h3>
-      <h3 v-else>Drag and drop files</h3>
-      <p class="input-add-file">Browser files</p>
+        <img src="@/assets/icons/upload 2.png" alt="#" class="upload-icon" />
+        <h3 v-if="isDragging">Drop files here</h3>
+        <h3 v-else>Drag and drop files</h3>
+        <p class="input-add-file">Browser files</p>
       </label>
       <input
         type="file"
@@ -14,6 +20,10 @@
         multiple
       />
     </div>
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -21,20 +31,31 @@ export default {
   name: "add-file",
   data() {
     return {
+      isValid: true,
       isDragging: false,
-    }
+      errorMessage: "",
+    };
   },
   props: {
-    files:{
+    files: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   methods: {
     onChange() {
-      const dataFile = this.$refs.file.files[0]
-      if (dataFile) {
-        this.$emit("addFile", dataFile);
+      const dataFile = this.$refs.file.files;
+      const newFileList = Array.from(dataFile);
+      this.isValid = true;
+      this.errorMessage = "";
+      newFileList.forEach((item) => {
+        if (item.size > 1000000) {
+          this.isValid = false;
+          this.errorMessage = "File size must be less than 100000";
+        }
+      });
+      if (this.isValid) {
+        this.$emit("addFile", newFileList);
       }
     },
     dragFiles(e) {
@@ -82,7 +103,15 @@ export default {
     display: none;
   }
 }
-.add-file:hover {
+.label-input:hover {
   color: green;
+}
+.error-message {
+  color: red;
+  margin-top: 17px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
 }
 </style>

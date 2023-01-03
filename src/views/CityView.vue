@@ -16,7 +16,7 @@
 import AutoComplete from "@/components/Autocomplete/AutoComplete";
 import Navbar from "@/components/Navbar.vue";
 import { mapActions, mapGetters } from "vuex";
-import { PLACEHOLDER } from "@/constant";
+import { PLACEHOLDER } from "@/constant/Placeholder";
 export default {
   data() {
     return {

@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar">
-    <h1 class="text">Tranning Intern</h1>
+    <h2 class="text">Tranning Intern</h2>
     <nav>
       <router-link v-for="link in navlink" :key="link.id" :to="link.path">
         <strong class="header"> {{ link.name }}</strong>
@@ -32,7 +32,7 @@ export default {
   margin-right: 20px;
   .text {
     padding: 0 10px;
-    margin-top: 20px
+    margin: 20px 0 0 20px;
   }
   nav {
     display: flex;
@@ -45,7 +45,7 @@ export default {
       padding: 10px;
       font-size: large;
       &.router-link-exact-active {
-        color: rgb(0, 17, 255);
+        color: rgb(0, 81, 255);
       }
     }
     a:hover {
