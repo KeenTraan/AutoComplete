@@ -2,10 +2,12 @@
   <div class="file-layout">
     <div v-for="file in fileList" :key="file.lastModified" class="file-list">
       <div class="file">
-        <img src="@/assets/card/excel.png" alt="#" class="card-icon" />
+        <img src="@/assets/card/empty.png" alt="#" class="card-icon"/>
+        <!-- <img v-if="file.name === TYPE_FILE.DOCX" src="@/assets/card//word.png" alt="#" class="card-icon"/> -->
+        <!-- <img  v-if="" src="@/assets/card/excel.png" alt="#" class="card-icon"/> -->
         <div class="text-file">
-          <p class="file-name">{{ file.name }}</p>
-          <p class="file-size">{{ file.size }}KB</p>
+          <p class="file-name">{{ file.name.toLowerCase() }}</p>
+          <p class="file-size">{{ formatBytes(file.size) }}</p>
         </div>
         <img
           src="@/assets/icons/close-circle.png"
@@ -19,7 +21,15 @@
 </template>
 
 <script>
+import formatBytes from "@/utils/FormatFileSize";
+import { TYPE_FILE } from "@/constant/Dopzone";
 export default {
+  data() {
+    return {
+      formatBytes,
+      TYPE_FILE: TYPE_FILE
+    };
+  },
   props: {
     fileList: {
       type: Array,
@@ -47,28 +57,30 @@ export default {
   overflow-x: scroll;
   .file-list {
     background: #ffffff;
-    width: 244px;
-    height: 48px;
+    // width: 244px;
+    // height: 48px;
     border: 1px solid #dcdcdc;
     border-radius: 3px;
     display: flex;
   }
   .file {
+    width: 244px;
+    height: 48px;
     display: flex;
     align-items: center;
-    padding: 8px 0 8px 5px;
+    padding-right: 8px;
+    // border: 1px solid blue;
     .card-icon {
       width: 32px;
       height: 32px;
-      margin-right: 10px;
+      margin: 8px;
     }
     .text-file {
       width: 125px;
-      margin-right: 20px;
       display: flex;
       flex-direction: column;
+      // border: 1px solid red;
       .file-name {
-        height: 16px;
         font-family: "Noto Sans";
         font-style: normal;
         font-weight: 700;
@@ -79,6 +91,10 @@ export default {
         text-overflow: ellipsis;
       }
       .file-size {
+        display: flex;
+        justify-items: center;
+        width: 85px;
+        height: 16px;
         font-family: "Noto Sans";
         font-style: normal;
         font-weight: 400;
@@ -90,7 +106,7 @@ export default {
       cursor: pointer;
       width: 16px;
       height: 16px;
-      margin-left: 25px;
+      margin-left: 40px;
     }
   }
 }

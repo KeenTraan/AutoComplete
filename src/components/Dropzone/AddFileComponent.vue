@@ -2,6 +2,7 @@
   <div>
     <div
       class="add-file"
+      :class="{ 'error-vali': valid }"
       @dragover="dragFiles"
       @dragleave="dragLeave"
       @drop="dropFiles"
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import { MAX_SIZE, NUMBER_BYTES } from "@/constant/Dopzone";
 export default {
   name: "add-file",
   data() {
@@ -42,6 +44,11 @@ export default {
       default: () => [],
     },
   },
+  computed: {
+    valid() {
+      return this.errorMessage.length > 0;
+    },
+  },
   methods: {
     onChange() {
       const dataFile = this.$refs.file.files;
@@ -49,9 +56,9 @@ export default {
       this.isValid = true;
       this.errorMessage = "";
       newFileList.forEach((item) => {
-        if (item.size > 150000) {
+        if (item.size / NUMBER_BYTES > MAX_SIZE) {
           this.isValid = false;
-          this.errorMessage = "File size must be less than 150000";
+          this.errorMessage = "File size must be less than 10MB";
         }
       });
       if (this.isValid) {
@@ -102,6 +109,9 @@ export default {
   #input-file {
     display: none;
   }
+}
+.error-vali {
+  border: 1px solid red;
 }
 .label-input:hover {
   color: green;

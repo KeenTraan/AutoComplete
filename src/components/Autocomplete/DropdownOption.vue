@@ -76,7 +76,7 @@ export default {
   }
 }
 .list-item::-webkit-scrollbar {
-  width: 7px;
+  width: 5px;
   height: 0;
 }
 .list-item::-webkit-scrollbar-thumb {
