@@ -36,7 +36,6 @@ export default {
       isValid: true,
       isDragging: false,
       errorMessage: "",
-      maxFile: 3,
     };
   },
   props: {
@@ -56,21 +55,19 @@ export default {
       const newFileList = Array.from(dataFile);
       this.isValid = true;
       this.errorMessage = "";
+
       newFileList.forEach((item) => {
         if (item.size / NUMBER_BYTES > MAX_SIZE) {
           this.isValid = false;
           this.errorMessage = "File size must be less than 10MB";
         }
-        if(item.lastModified === newFileList.lastModified) {
-          this.isValid = false;
-        }
+        // if (item.lastModified) {
+        //   this.isValid = false;
+        //   this.errorMessage = "This file exist";
+        // }
       });
-      if (newFileList.length > this.maxFile) {
-        this.isValid = false;
-        this.errorMessage = "File maximum 3";
-      }
       if (this.isValid) {
-        this.$emit("addFile", newFileList);
+        this.$emit("addFile", newFileList, this.errorMessage);
       }
     },
     dragFiles(e) {

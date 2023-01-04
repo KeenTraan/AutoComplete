@@ -14,6 +14,7 @@ export default {
   data() {
     return {
       fileList: [],
+      maximumFile: 3,
     };
   },
   components: {
@@ -22,10 +23,12 @@ export default {
   },
   methods: {
     addNewFile(dataFile) {
-      let newDataFile = this.fileList;
-      newDataFile = [...newDataFile, ...dataFile];
-      console.log(this.fileList);
-      this.fileList = newDataFile;
+      let newDataFile = [...this.fileList, ...dataFile];
+      if (newDataFile.length > this.maximumFile) {
+        console.log('hehe');
+      } else {
+        this.fileList = newDataFile;
+      }
     },
     deleteFile(lastModify) {
       this.fileList = this.fileList.filter((file) => {
