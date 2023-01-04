@@ -36,10 +36,11 @@ export default {
       isValid: true,
       isDragging: false,
       errorMessage: "",
+      maxFile: 3,
     };
   },
   props: {
-    files: {
+    fileList: {
       type: Array,
       default: () => [],
     },
@@ -60,7 +61,14 @@ export default {
           this.isValid = false;
           this.errorMessage = "File size must be less than 10MB";
         }
+        if(item.lastModified === newFileList.lastModified) {
+          this.isValid = false;
+        }
       });
+      if (newFileList.length > this.maxFile) {
+        this.isValid = false;
+        this.errorMessage = "File maximum 3";
+      }
       if (this.isValid) {
         this.$emit("addFile", newFileList);
       }
@@ -110,9 +118,6 @@ export default {
     display: none;
   }
 }
-.error-vali {
-  border: 1px solid red;
-}
 .label-input:hover {
   color: green;
 }
@@ -123,5 +128,8 @@ export default {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
+}
+.error-vali {
+  border: 1px solid red;
 }
 </style>

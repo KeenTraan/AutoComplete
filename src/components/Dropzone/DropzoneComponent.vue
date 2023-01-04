@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="dropzone">
-      <AddFile :files="fileList" @addFile="addNewFile" />
+      <AddFile :fileList="fileList" @addFile="addNewFile" />
     </div>
     <FileList :fileList="fileList" @handleDelete="deleteFile" />
   </div>
@@ -22,9 +22,10 @@ export default {
   },
   methods: {
     addNewFile(dataFile) {
-    let newDataFile = this.fileList;
-    newDataFile = [...newDataFile, ...dataFile]
-    this.fileList = newDataFile;
+      let newDataFile = this.fileList;
+      newDataFile = [...newDataFile, ...dataFile];
+      console.log(this.fileList);
+      this.fileList = newDataFile;
     },
     deleteFile(lastModify) {
       this.fileList = this.fileList.filter((file) => {

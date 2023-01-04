@@ -14,7 +14,7 @@ export default {
   name: "NavbarComponent",
   data() {
     return {
-      navlink: [
+       navlink: [
         { id: 1, name: "Home", path: "/" },
         { id: 2, name: "City", path: "/city" },
         { id: 3, name: "User", path: "/users" },

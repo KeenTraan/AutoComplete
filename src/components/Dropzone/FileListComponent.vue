@@ -3,8 +3,6 @@
     <div v-for="file in fileList" :key="file.lastModified" class="file-list">
       <div class="file">
         <img src="@/assets/card/empty.png" alt="#" class="card-icon"/>
-        <!-- <img v-if="file.name === TYPE_FILE.DOCX" src="@/assets/card//word.png" alt="#" class="card-icon"/> -->
-        <!-- <img  v-if="" src="@/assets/card/excel.png" alt="#" class="card-icon"/> -->
         <div class="text-file">
           <p class="file-name">{{ file.name.toLowerCase() }}</p>
           <p class="file-size">{{ formatBytes(file.size) }}</p>
