@@ -5,9 +5,8 @@ export const ERROR_MESSAGE = {
   LIMITED_ERROR: "File Limited 4"
 }
 export const TYPE_FILE = {
-  PDF: '.pdf',
-  DOC: '.doc',
-  DOCX: '.docx',
-  XLSX: '.xlsx',
+  DOCX: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  JPEG: "image/jpeg",
+  XLS: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  PP: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
 }
-export const NUMBER_BYTES = 1024;

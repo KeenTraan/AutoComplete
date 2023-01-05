@@ -28,11 +28,12 @@
       :fileList="fileList"
       @deleteFile="deleteFile" 
      />
+     <button class="btn-upload">UpLoad</button>
   </div>
 </template>
 
 <script>
-import { ERROR_MESSAGE, LIMITED_FILE, MAX_SIZE, NUMBER_BYTES } from "@/constant/Dopzone";
+import { ERROR_MESSAGE, LIMITED_FILE, MAX_SIZE} from "@/constant/Dopzone";
 import FileList from "@/components/Dropzone/FileListComponent.vue";
 export default {
   data() {
@@ -56,14 +57,10 @@ export default {
       this.isValid = true;
       this.errorMessage = "";
       newDataFile.forEach((item) => {
-        if (item.size / NUMBER_BYTES > MAX_SIZE) {
+        if (item.size / 1024 > MAX_SIZE) {
           this.isValid = false;
           this.errorMessage = ERROR_MESSAGE.SIZE_ERROR;
         }
-        // if (item.lastModified) {
-        //   this.isValid = false;
-        //   this.errorMessage = "This file is existed";
-        // }
       });
 
       if (newDataFile.length > this.limitedFile) {
@@ -143,5 +140,8 @@ export default {
 }
 .error-vali {
   border: 1px solid red;
+}
+.btn-upload {
+  margin-top: 10px;
 }
 </style>

@@ -1,12 +1,12 @@
 <template>
-  <div class="files-layout">
-    <FileItemComponentVue
-      v-for="file in fileList"
-      :key="file.lastModified"
-      :fileItem="file"
-      @handleOnClick="handleDelete"
-    />
-  </div>
+    <div class="files-layout">
+      <FileItemComponentVue
+        v-for="file in fileList"
+        :key="file.lastModified"
+        :fileItem="file"
+        @handleOnClick="handleDelete"
+      />
+    </div>
 </template>
 
 <script>
