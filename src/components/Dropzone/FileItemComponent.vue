@@ -1,9 +1,9 @@
 <template>
   <div class="file-item">
-    <img class="card-icon" src="@/assets/card/pdf.png" alt="#" v-if="fileItem.type === TYPE_FILE.JPEG"/>
+    <img class="card-icon" src="@/assets/card/empty.png" alt="#" v-if="fileItem.type === TYPE_FILE.JPEG"/>
     <img class="card-icon" src="@/assets/card/word.png" alt="#" v-if="fileItem.type === TYPE_FILE.DOCX"/>
     <img class="card-icon" src="@/assets/card/excel.png" alt="#" v-if="fileItem.type === TYPE_FILE.XLS"/>
-    <img class="card-icon" src="@/assets/card/empty.png" alt="#" v-if="fileItem.type === TYPE_FILE.PP"/>
+    <img class="card-icon" src="@/assets/card/pdf.png" alt="#" v-if="fileItem.type === TYPE_FILE.PP"/>
     <div class="file-content">
       <p class="file-name">{{ fileItem.name.toLowerCase() }}</p>
       <p class="file-size">{{ formatBytes(fileItem.size) }}</p>

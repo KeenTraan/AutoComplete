@@ -42,7 +42,6 @@ export default {
       limitedFile: LIMITED_FILE,
       isValid: true,
       isDragging: false,
-      isDuplicate: true,
       errorMessage: "",
     };
   },
@@ -62,7 +61,6 @@ export default {
           this.errorMessage = ERROR_MESSAGE.SIZE_ERROR;
         }
       });
-
       if (newDataFile.length > this.limitedFile) {
         this.isValid = false;
         this.errorMessage = ERROR_MESSAGE.LIMITED_ERROR;
