@@ -21,7 +21,7 @@ import AutoComplete from "@/components/Autocomplete/AutoComplete";
 
 import Navbar from "@/components/Navbar.vue";
 import { mapActions, mapGetters } from "vuex";
-import { PLACEHOLDER } from "@/constant/Placeholder";
+import { PLACEHOLDER } from "@/constant/Autocomplete";
 import DropzoneComponent from '@/components/Dropzone/DropzoneComponent.vue';
 export default {
   name: "UserView",
