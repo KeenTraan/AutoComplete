@@ -28,7 +28,7 @@
       :fileList="fileList"
       @deleteFile="deleteFile" 
      />
-     <button class="btn-upload">UpLoad</button>
+     <button class="btn-upload" @click="uploadFile">Upload</button>
   </div>
 </template>
 
@@ -89,6 +89,9 @@ export default {
         return file.lastModified !== lastModified;
       });
     },
+    uploadFile() {
+      console.log("let do dit");
+    }
   },
   computed: {
     valid() {
@@ -143,5 +146,14 @@ export default {
 }
 .btn-upload {
   margin-top: 10px;
+  border: 1px solid;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-upload:hover {
+  color: green;
 }
 </style>
