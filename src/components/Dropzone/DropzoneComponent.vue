@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div
-      class="dropzone"
-      :class="{ 'error-vali': valid, 'success-vali': success }"
-      @dragover="dragFiles"
-      @dragleave="dragLeave"
-      @drop="dropFiles"
-    >
-      <label for="input-file" class="label-input">
+      <label
+        for="input-file"
+        class="dropzone"
+        :class="{ 'error-vali': valid, 'success-vali': success }"
+        @dragover="dragFiles"
+        @dragleave="dragLeave"
+        @drop="dropFiles"
+      >
         <img src="@/assets/icons/upload 2.png" alt="#" class="upload-icon" />
         <h3>Drag and drop files</h3>
         <p class="input-add-file">Browser files</p>
@@ -19,7 +19,6 @@
         ref="file"
         multiple
       />
-    </div>
     <div class="error-message">
       {{ errorMessage }}
     </div>
@@ -73,8 +72,10 @@ export default {
         this.fileList = newDataFile;
       }
       this.$refs.file.value = [];
-      this.successMessage = ""
-      setTimeout(() => {this.errorMessage = ""}, 700)
+      this.successMessage = "";
+      setTimeout(() => {
+        this.errorMessage = "";
+      }, 1000);
     },
     dragFiles(e) {
       e.preventDefault();
@@ -89,10 +90,11 @@ export default {
       this.addNewFile();
       this.isDragging = false;
     },
-    deleteFile(lastModified) {
-      this.fileList = this.fileList.filter((file) => {
-        return file.lastModified !== lastModified;
-      });
+    deleteFile(index) {
+      // this.fileList = this.fileList.filter((file) => {
+      //   return file.lastModified !== lastModified;
+      // });
+      this.fileList.splice(this.fileList.indexOf(index), 1);
     },
     uploadFile() {
       let files = this.fileList;
@@ -125,9 +127,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dropzone {
-  margin-top: 10px;
-  .label-input {
+  .dropzone {
+    margin-top: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -152,8 +153,8 @@ export default {
   #input-file {
     display: none;
   }
-}
-.label-input:hover {
+
+.dropzone:hover {
   color: green;
 }
 .error-message {
