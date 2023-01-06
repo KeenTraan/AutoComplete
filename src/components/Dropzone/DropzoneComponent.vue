@@ -181,7 +181,10 @@ export default {
 }
 .btn-upload {
   margin-top: 10px;
-  border: 1px solid;
+  border: none;
+  width: 80px;
+  height: 40px;
+  font-size: 14px;
   border-radius: 3px;
   font-size: 14px;
   line-height: 20px;
