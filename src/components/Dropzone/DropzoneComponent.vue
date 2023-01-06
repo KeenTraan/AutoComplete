@@ -2,15 +2,14 @@
   <div>
     <div
       class="dropzone"
-      :class="{ 'error-vali': valid, 'success-vali': success}"
+      :class="{ 'error-vali': valid, 'success-vali': success }"
       @dragover="dragFiles"
       @dragleave="dragLeave"
       @drop="dropFiles"
     >
       <label for="input-file" class="label-input">
         <img src="@/assets/icons/upload 2.png" alt="#" class="upload-icon" />
-        <h3 v-if="isDragging">Drop files here</h3>
-        <h3 v-else>Drag and drop files</h3>
+        <h3>Drag and drop files</h3>
         <p class="input-add-file">Browser files</p>
       </label>
       <input
@@ -28,7 +27,9 @@
       {{ successMessage }}
     </div>
     <FileList :fileList="fileList" @deleteFile="deleteFile" />
-    <button v-if="!isHiden" class="btn-upload" @click="uploadFile">Upload</button>
+    <button v-if="!isHiden" class="btn-upload" @click="uploadFile">
+      Upload
+    </button>
   </div>
 </template>
 
@@ -72,6 +73,8 @@ export default {
         this.fileList = newDataFile;
       }
       this.$refs.file.value = [];
+      this.successMessage = ""
+      setTimeout(() => {this.errorMessage = ""}, 700)
     },
     dragFiles(e) {
       e.preventDefault();
@@ -98,12 +101,12 @@ export default {
         let storageRef = ref(storage, "Files/" + file.name);
         uploadBytes(storageRef, file)
           .then(() => {
-            this.successMessage = MESSAGE.SUCCESSFULLY
+            this.successMessage = MESSAGE.SUCCESSFULLY;
           })
           .catch((error) => {
             console.log(error);
           });
-          this.fileList = [];
+        this.fileList = [];
       }
     },
   },
@@ -115,8 +118,8 @@ export default {
       return this.successMessage.length > 0;
     },
     isHiden() {
-      return this.fileList.length === 0 
-    } 
+      return this.fileList.length === 0;
+    },
   },
 };
 </script>
@@ -124,21 +127,21 @@ export default {
 <style lang="scss" scoped>
 .dropzone {
   margin-top: 10px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 22px;
-  width: 842px;
-  height: 232px;
-  background: #f8f8f8;
-  border: 1px solid #dcdcdc;
-  border-radius: 7px;
-  justify-content: center;
   .label-input {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;
+    width: 842px;
+    height: 232px;
+    background: #f8f8f8;
+    border: 1px solid #dcdcdc;
+    border-radius: 7px;
+    justify-content: center;
   }
   .upload-icon {
     margin-bottom: 13px;
