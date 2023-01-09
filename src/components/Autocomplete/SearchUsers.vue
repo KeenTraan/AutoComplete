@@ -1,12 +1,12 @@
 <template>
   <div class="auto-layout">
-    <Navbar />
     <div>
       <Search
         @searchItem="searchItem"
         :options="options"
         @select="selectItem"
         :placeholder="PLACEHOLDER"
+        :keyword="keyword"
       />
       <DropdownOption
         @selectItem="selectItem"
@@ -18,11 +18,10 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
 import DropdownOption from "@/components/Autocomplete/DropdownOption.vue";
 import Search from "@/components/Autocomplete/Search.vue";
 import { mapGetters } from "vuex";
-import { PLACEHOLDER } from "@/constant";
+import { PLACEHOLDER } from "@/common";
 export default {
   name: "AutocompleteView",
   data() {
@@ -34,7 +33,6 @@ export default {
     };
   },
   components: {
-    Navbar,
     DropdownOption,
     Search,
   },
@@ -46,13 +44,14 @@ export default {
     selectItem(options) {
       this.options.push(options.name);
       this.ishiden = false;
+      this.keyword = ""
     },
   },
   computed: {
     ...mapGetters(["getUsers"]),
     filtersItem() {
       return this.getUsers.filter((item) => {
-        return item.name.toLowerCase().includes(this.keyword.toLowerCase());
+        return item.name.toLowerCase().includes(this.keyword.toLowerCase()) && this.keyword.length;
       });
     },
   },

@@ -1,12 +1,12 @@
 <template>
   <div class="auto-layout">
-    <Navbar />
     <div>
       <Search
         @searchItem="searchItem"
-        :options="options"
+        :options="getSelect"
         @select="selectItem"
-        :placeholder="PLACEHOLDER" 
+        :placeholder="PLACEHOLDER"
+        :keyword="keyword"
       />
       <DropdownOption
         @selectItem="selectItem"
@@ -18,11 +18,10 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
 import DropdownOption from "@/components/Autocomplete/DropdownOption.vue";
 import Search from "@/components/Autocomplete/Search.vue";
 import { mapGetters } from "vuex";
-import { PLACEHOLDER } from "@/constant";
+import { PLACEHOLDER } from "@/common";
 export default {
   name: "AutocompleteView",
   data() {
@@ -31,35 +30,37 @@ export default {
       keyword: "",
       options: [],
       PLACEHOLDER: PLACEHOLDER.CITY,
+      disabled: true,
     };
   },
   components: {
-    Navbar,
     DropdownOption,
     Search,
   },
   methods: {
     searchItem(keyword) {
       this.ishiden = true;
-      this.keyword = keyword;
-      console.log(this.keyword)
+      this.keyword = keyword.trim();
+      
     },
-    selectItem(options) {
-      this.options.push(options.name);
-      this.ishiden = false;
-      this.keyword = ""
+    selectItem(item) {
+      this.$store.dispatch("selectCity", item);
+      this.keyword = "";
     },
   },
   computed: {
-    ...mapGetters(["getOptions"]),
+    ...mapGetters(["getCity", "getSelect"]),
     filtersItem() {
-      return this.getOptions.filter((item) => {
-        return item.name.toLowerCase().includes(this.keyword.toLowerCase());
+      return this.getCity.filter((item) => {
+        return (
+          item.name.toLowerCase().includes(this.keyword.toLowerCase()) &&
+          this.keyword.length
+        );
       });
     },
   },
   created() {
-    this.$store.dispatch("fetchOptions");
+    this.$store.dispatch("fetchCity");
   },
 };
 </script>

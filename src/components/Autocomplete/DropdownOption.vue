@@ -2,7 +2,7 @@
   <div class="list-item">
     <div v-for="item in options" :key="item.code">
       <ul>
-        <li class="item" @click="choiceItem(item)">
+        <li class="item"  @click="choiceItem(item)">
           {{ item.name }}
         </li>
       </ul>
@@ -15,7 +15,7 @@ export default {
   props: {
     options: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
   },
   data() {
@@ -24,7 +24,7 @@ export default {
   methods: {
     choiceItem(item) {
       this.$emit("selectItem", item);
-    }
+    },
   },
 };
 </script>
@@ -68,6 +68,10 @@ export default {
 .item:hover {
   background-color: #617d98;
   transition: 0.5s;
-  color: #FFFFFF;
+  color: #ffffff;
+}
+.disable-item {
+  pointer-events: none;
+  cursor: not-allowed;
 }
 </style>

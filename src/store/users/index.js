@@ -18,7 +18,6 @@ const AutoComplete = {
         commit("SET_OPTIONS", data.data);
       } catch (error) {
         alert(error);
-        console.log(error);
       }
     },
   },
