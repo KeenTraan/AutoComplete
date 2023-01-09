@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       maxSize: 1024 * 1024 * 10,
-      limitedFile: 3,
+      limitedFile: 4,
     };
   },
   components: {

@@ -75,6 +75,7 @@ export default {
     submitFile(files) {
       this.fileList = files
       this.successMessage = MESSAGE.SUCCESSFULLY
+      this.errorMessage = "";
       this.fileList = []
     }
   },
