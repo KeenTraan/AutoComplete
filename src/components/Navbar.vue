@@ -1,7 +1,7 @@
 <template>
   <div class="nav-bar">
-    <h2 style="color:aliceblue">Tranning Intern</h2>
-    <nav >
+    <h1 class="text">Tranning Intern</h1>
+    <nav>
       <router-link v-for="link in navlink" :key="link.id" :to="link.path">
         <strong class="header"> {{ link.name }}</strong>
       </router-link>
@@ -15,32 +15,41 @@ export default {
   data() {
     return {
       navlink: [
-        {id: 1, name: "Home", path: "/" },
-        {id: 2, name: "Auto Complete", path: "/autocomplete" },
+        { id: 1, name: "Home", path: "/" },
+        { id: 2, name: "Auto Complete", path: "/autocomplete" },
       ],
     };
   },
 };
 </script>
 <style lang="scss" scoped>
-.nav-bar{
-  background-color: black;
-  width: 200px;
+.nav-bar {
+  background-color:  rgb(211,211,211);
+  width: calc(300px - 50px);
   height: 100vh;
-}
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-  a{
-    text-decoration: none;
-    color: white;
-    &.router-link-exact-active {
-        color: skyblue;;
+  margin-right: 20px;
+  .text {
+    padding: 0 10px;
+    margin-top: 20px
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    a {
+      text-decoration: none;
+      color: black;
+      padding: 10px;
+      font-size: large;
+      &.router-link-exact-active {
+        color: rgb(72,61,139);
       }
+    }
+    a:hover {
+      background-color: skyblue;
+      transition: 0.8s;
+    }
   }
 }
-
-
 </style>

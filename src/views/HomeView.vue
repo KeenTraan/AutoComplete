@@ -1,13 +1,12 @@
 <template>
   <div class="home">
     <NavbarComponent/>
+    <h1>Home page</h1>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import NavbarComponent from '@/components/Navbar.vue'
-
 export default {
   name: 'HomeView',
   components: {
@@ -15,3 +14,8 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.home {
+  display: flex;
+}
+</style>
