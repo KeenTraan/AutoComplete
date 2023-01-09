@@ -1,24 +1,9 @@
 <template>
-  <div>
-      <label
-        for="input-file"
-        class="dropzone"
-        :class="{ 'error-vali': valid, 'success-vali': success }"
-        @dragover="dragFiles"
-        @dragleave="dragLeave"
-        @drop="dropFiles"
-      >
-        <img src="@/assets/icons/upload 2.png" alt="#" class="upload-icon" />
-        <h3>Drag and drop files</h3>
-        <p class="input-add-file">Browser files</p>
-      </label>
-      <input
-        type="file"
-        id="input-file"
-        @change="addNewFile"
-        ref="file"
-        multiple
-      />
+  <div class="drop-zone">
+    <InputComponent
+      @addFile="addNewFile"
+      :class="{ 'error-vali': valid, 'success-vali': success }"
+    />
     <div class="error-message">
       {{ errorMessage }}
     </div>
@@ -37,25 +22,24 @@ import { MESSAGE, LIMITED_FILE, MAX_SIZE } from "@/constant/Dopzone";
 import { storage } from "@/configs/firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import FileList from "@/components/Dropzone/FileListComponent.vue";
+import InputComponent from "./InputComponent.vue";
 export default {
   data() {
     return {
       fileList: [],
       limitedFile: LIMITED_FILE,
       isValid: true,
-      isDragging: false,
       errorMessage: "",
       successMessage: "",
     };
   },
   components: {
     FileList,
+    InputComponent,
   },
   methods: {
-    addNewFile() {
-      const dataFile = this.$refs.file.files;
-      const newFileList = Array.from(dataFile);
-      const newDataFile = [...this.fileList, ...newFileList];
+    addNewFile(dataFile) {
+      const newDataFile = [...this.fileList, ...dataFile];
       this.isValid = true;
       this.errorMessage = "";
       newDataFile.forEach((item) => {
@@ -71,24 +55,7 @@ export default {
       if (this.isValid) {
         this.fileList = newDataFile;
       }
-      this.$refs.file.value = [];
-      this.successMessage = "";
-      setTimeout(() => {
-        this.errorMessage = "";
-      }, 1000);
-    },
-    dragFiles(e) {
-      e.preventDefault();
-      this.isDragging = true;
-    },
-    dragLeave() {
-      this.isDragging = false;
-    },
-    dropFiles(e) {
-      e.preventDefault();
-      this.$refs.file.files = e.dataTransfer.files;
-      this.addNewFile();
-      this.isDragging = false;
+      setTimeout(() => (this.errorMessage = ""), 2000);
     },
     deleteFile(index) {
       // this.fileList = this.fileList.filter((file) => {
@@ -109,6 +76,7 @@ export default {
             console.log(error);
           });
         this.fileList = [];
+        setTimeout(() => (this.successMessage = ""), 2000);
       }
     },
   },
@@ -127,35 +95,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .dropzone {
-    margin-top: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    font-style: normal;
-    font-size: 18px;
-    line-height: 22px;
-    width: 842px;
-    height: 232px;
-    background: #f8f8f8;
-    border: 1px solid #dcdcdc;
-    border-radius: 7px;
-    justify-content: center;
-  }
-  .upload-icon {
-    margin-bottom: 13px;
-  }
-  .input-add-file {
-    text-decoration: underline gray;
-  }
-  #input-file {
-    display: none;
-  }
-
-.dropzone:hover {
-  color: green;
+.drop-zone {
+  margin-top: 10px;
 }
 .error-message {
   color: red;
@@ -175,8 +116,10 @@ export default {
 }
 .error-vali {
   border: 1px solid red;
+  border-radius: 7px;
 }
 .success-vali {
+  border-radius: 7px;
   border: 1px solid green;
 }
 .btn-upload {
