@@ -2,7 +2,7 @@
     <div class="files-layout">
       <FileItemComponentVue
         v-for="file in fileList"
-        :key="file.lastModified"
+        :key="file.lastModified "
         :fileItem="file"
         @handleOnClick="onDelete"
       />

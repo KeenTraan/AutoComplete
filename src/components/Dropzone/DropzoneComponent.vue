@@ -11,7 +11,11 @@
       {{ successMessage }}
     </div>
     <FileList :fileList="fileList" @deleteFile="deleteFile" />
-    <UploadFileComponent v-if="!isHiden" :fileList="fileList" @uploadFile="submitFile"/>
+    <UploadFileComponent
+      v-if="!isHiden"
+      :fileList="fileList"
+      @uploadFile="submitFile"
+    />
   </div>
 </template>
 
@@ -19,7 +23,7 @@
 import { MESSAGE, LIMITED_FILE, MAX_SIZE } from "@/constant/Dropzone";
 import FileList from "@/components/Dropzone/FileListComponent.vue";
 import InputComponent from "./InputComponent.vue";
-import UploadFileComponent from "./UploadFileComponent.vue"
+import UploadFileComponent from "./UploadFileComponent.vue";
 import formatBytes from "@/utils/FormatFileSize";
 export default {
   data() {
@@ -33,8 +37,8 @@ export default {
   components: {
     FileList,
     InputComponent,
-    UploadFileComponent
-},
+    UploadFileComponent,
+  },
   props: {
     maxSize: {
       type: Number,
@@ -48,23 +52,29 @@ export default {
   methods: {
     addNewFile(dataFile) {
       const newDataFile = [...this.fileList, ...dataFile];
+      const isDuplicate = this.fileList.find((item) => item.lastModified === dataFile[0].lastModified);
       this.isValid = true;
       this.errorMessage = "";
-      this.successMessage = ""
+      this.successMessage = "";
       newDataFile.forEach((item) => {
         if (item.size > this.maxSize) {
           this.isValid = false;
           this.errorMessage = MESSAGE.SIZE_ERROR + formatBytes(this.maxSize);
         }
       });
+      if(isDuplicate && this.fileList.length !== 0) {
+        this.isValid = false;
+        this.errorMessage = MESSAGE.DUPLICATE_ERROR;
+      }
       if (newDataFile.length > this.limitedFile) {
         this.isValid = false;
         this.errorMessage = MESSAGE.LIMITED_ERROR + this.limitedFile;
       }
       if (this.isValid) {
-        this.fileList = newDataFile; 
+        this.fileList = newDataFile;
       }
     },
+
     deleteFile(lastModified) {
       this.fileList = this.fileList.filter((file) => {
         return file.lastModified !== lastModified;
@@ -73,11 +83,11 @@ export default {
       this.errorMessage = "";
     },
     submitFile(files) {
-      this.fileList = files
-      this.successMessage = MESSAGE.SUCCESSFULLY
+      this.fileList = files;
+      this.successMessage = MESSAGE.SUCCESSFULLY;
       this.errorMessage = "";
-      this.fileList = []
-    }
+      this.fileList = [];
+    },
   },
   computed: {
     valid() {
@@ -121,5 +131,4 @@ export default {
   border-radius: 7px;
   border: 1px solid green;
 }
-
 </style>
