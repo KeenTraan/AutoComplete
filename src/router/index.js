@@ -13,6 +13,11 @@ const routes = [
     path: '/autocomplete',
     name: 'autocomplete',
     component: () => import('@/views/AutoComplete.vue')
+  },
+  {
+    path: '/users',
+    name: 'autocomplete',
+    component: () => import('@/views/Users.vue')
   }
 ]
 

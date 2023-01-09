@@ -1,14 +1,19 @@
 <template>
   <div>
     <div class="input-layout">
-      <img src="@/assets/search.png" alt="" />
-      <div v-for="(city, index) in city" :key="index" class="city-item">
-        <div class="text">{{ city }}</div>
+      <img src="@/assets/search.png" alt="#" />
+      <div v-for="(item, index) in options" :key="index" class="option-items">
+        <div class="item">{{ item }}</div>
+        <img
+          src="@/assets/icons/X.png"
+          @click="deleteItem(index)"
+          class="icons"
+        />
       </div>
       <div>
         <input
           type="text"
-          placeholder="Nhập tên thành phố tìm kiếm..."
+          :placeholder="placeholder"
           v-model="keyword"
           @input="handleSearch"
         />
@@ -22,18 +27,25 @@ export default {
   name: "SearchItem",
   data() {
     return {
-      keyword: "",
-    };
+      keyword: ""
+    }
   },
   props: {
-    city: {
+    options: {
       type: Array,
       default: () => [],
+    },
+    placeholder: {
+      type: String,
+      default: "",
     },
   },
   methods: {
     handleSearch() {
-      this.$emit("searchCity", this.keyword);
+      this.$emit("searchItem", this.keyword);
+    },
+    deleteItem(index) {
+      this.$delete(this.options, index);
     },
   },
 };
@@ -43,10 +55,10 @@ export default {
 .input-layout {
   margin: 10px 0 2px 0;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   width: 400px;
-  height: 49px;
+  min-height: 49px;
   padding: 8px 10px;
   gap: 4px;
   background: rgba(230, 249, 255, 0.2);
@@ -58,7 +70,7 @@ export default {
   flex-grow: 0;
 }
 input {
-  width: 352px;
+  width: max-content;
   height: 20px;
   font-family: "Noto Sans";
   font-style: normal;
@@ -73,24 +85,28 @@ input {
   flex: none;
   order: 1;
   flex-grow: 1;
+  // border: 1px solid red;
 }
-.city-item {
+.option-items {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 4px 8px;
   gap: 8px;
-  width: 83px;
+  width: max-content;
   height: 32px;
   background: #f0f4f8;
   border: 1px solid #dcdcdc;
   border-radius: 4px;
   flex: none;
-  // order: 1;
   flex-grow: 0;
-  .text {
-    width: 45px;
+  margin-right: 3px;
+  // border: 1px solid red;
+  .icons {
+    cursor: pointer;
+  }
+  .item {
     height: 20px;
     font-family: "Noto Sans";
     font-style: normal;

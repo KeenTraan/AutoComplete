@@ -6,7 +6,7 @@
         @searchItem="searchItem"
         :options="options"
         @select="selectItem"
-        :placeholder="PLACEHOLDER" 
+        :placeholder="PLACEHOLDER"
       />
       <DropdownOption
         @selectItem="selectItem"
@@ -30,7 +30,7 @@ export default {
       ishiden: false,
       keyword: "",
       options: [],
-      PLACEHOLDER: PLACEHOLDER.CITY,
+      PLACEHOLDER: PLACEHOLDER.USERS,
     };
   },
   components: {
@@ -42,24 +42,22 @@ export default {
     searchItem(keyword) {
       this.ishiden = true;
       this.keyword = keyword;
-      console.log(this.keyword)
     },
     selectItem(options) {
       this.options.push(options.name);
       this.ishiden = false;
-      this.keyword = ""
     },
   },
   computed: {
-    ...mapGetters(["getOptions"]),
+    ...mapGetters(["getUsers"]),
     filtersItem() {
-      return this.getOptions.filter((item) => {
+      return this.getUsers.filter((item) => {
         return item.name.toLowerCase().includes(this.keyword.toLowerCase());
       });
     },
   },
   created() {
-    this.$store.dispatch("fetchOptions");
+    this.$store.dispatch("fetchUsers");
   },
 };
 </script>
