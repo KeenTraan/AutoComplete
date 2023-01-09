@@ -4,7 +4,7 @@
         v-for="file in fileList"
         :key="file.lastModified"
         :fileItem="file"
-        @handleOnClick="handleDelete"
+        @handleOnClick="onDelete"
       />
     </div>
 </template>
@@ -22,7 +22,7 @@ export default {
     FileItemComponentVue,
   },
   methods: {
-    handleDelete(lastModified) {
+    onDelete(lastModified) {
       this.$emit("deleteFile", lastModified);
     },
   },

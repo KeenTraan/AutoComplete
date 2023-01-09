@@ -12,7 +12,7 @@
       class="delete-icon"
       src="@/assets//icons/close-circle.png"
       alt="#"
-      @click="handleClick(fileItem.lastModified)"
+      @click="onClick(fileItem.lastModified)"
     />
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
     },
   },
   methods: {
-    handleClick(lastModified) {
+    onClick(lastModified) {
       this.$emit("handleOnClick", lastModified);
     },
   },

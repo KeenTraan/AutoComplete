@@ -47,7 +47,6 @@ export default {
       e.preventDefault();
       this.$refs.file.files = e.dataTransfer.files;
       this.onChange();
-      this.checkFileValue()
       this.isDragging = false;
     },
   },
