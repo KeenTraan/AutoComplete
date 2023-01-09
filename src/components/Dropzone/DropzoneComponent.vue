@@ -11,18 +11,15 @@
       {{ successMessage }}
     </div>
     <FileList :fileList="fileList" @deleteFile="deleteFile" />
-    <button v-if="!isHiden" class="btn-upload" @click="uploadFile">
-      Upload
-    </button>
+    <UploadFileComponent v-if="!isHiden" :fileList="fileList" @uploadFile="submitFile"/>
   </div>
 </template>
 
 <script>
 import { MESSAGE, LIMITED_FILE, MAX_SIZE } from "@/constant/Dropzone";
-import { storage } from "@/configs/firebase";
-import { ref, uploadBytes } from "firebase/storage";
 import FileList from "@/components/Dropzone/FileListComponent.vue";
 import InputComponent from "./InputComponent.vue";
+import UploadFileComponent from "./UploadFileComponent.vue"
 import formatBytes from "@/utils/FormatFileSize";
 export default {
   data() {
@@ -36,7 +33,8 @@ export default {
   components: {
     FileList,
     InputComponent,
-  },
+    UploadFileComponent
+},
   props: {
     maxSize: {
       type: Number,
@@ -52,6 +50,7 @@ export default {
       const newDataFile = [...this.fileList, ...dataFile];
       this.isValid = true;
       this.errorMessage = "";
+      this.successMessage = ""
       newDataFile.forEach((item) => {
         if (item.size > this.maxSize) {
           this.isValid = false;
@@ -63,7 +62,7 @@ export default {
         this.errorMessage = MESSAGE.LIMITED_ERROR + this.limitedFile;
       }
       if (this.isValid) {
-        this.fileList = newDataFile;
+        this.fileList = newDataFile; 
       }
     },
     deleteFile(lastModified) {
@@ -73,21 +72,11 @@ export default {
       // this.fileList.splice(this.fileList.indexOf(index), 1);
       this.errorMessage = "";
     },
-    uploadFile() {
-      let files = this.fileList;
-      for (let i = 0; i < files.length; i++) {
-        let file = files[i];
-        let storageRef = ref(storage, "Files/" + file.name);
-        uploadBytes(storageRef, file)
-          .then(() => {
-            this.successMessage = MESSAGE.SUCCESSFULLY;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        this.fileList = [];
-      }
-    },
+    submitFile(files) {
+      this.fileList = files
+      this.successMessage = MESSAGE.SUCCESSFULLY
+      this.fileList = []
+    }
   },
   computed: {
     valid() {
@@ -131,19 +120,5 @@ export default {
   border-radius: 7px;
   border: 1px solid green;
 }
-.btn-upload {
-  margin-top: 10px;
-  border: none;
-  width: 80px;
-  height: 40px;
-  font-size: 14px;
-  border-radius: 3px;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.btn-upload:hover {
-  color: green;
-}
+
 </style>
