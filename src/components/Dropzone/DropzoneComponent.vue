@@ -18,16 +18,16 @@
 </template>
 
 <script>
-import { MESSAGE, LIMITED_FILE, MAX_SIZE } from "@/constant/Dopzone";
+import { MESSAGE, LIMITED_FILE, MAX_SIZE } from "@/constant/Dropzone";
 import { storage } from "@/configs/firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import FileList from "@/components/Dropzone/FileListComponent.vue";
 import InputComponent from "./InputComponent.vue";
+import formatBytes from "@/utils/FormatFileSize";
 export default {
   data() {
     return {
       fileList: [],
-      limitedFile: LIMITED_FILE,
       isValid: true,
       errorMessage: "",
       successMessage: "",
@@ -37,31 +37,41 @@ export default {
     FileList,
     InputComponent,
   },
+  props: {
+    maxSize: {
+      type: Number,
+      default: MAX_SIZE,
+    },
+    limitedFile: {
+      type: Number,
+      default: LIMITED_FILE,
+    },
+  },
   methods: {
     addNewFile(dataFile) {
       const newDataFile = [...this.fileList, ...dataFile];
       this.isValid = true;
       this.errorMessage = "";
       newDataFile.forEach((item) => {
-        if (item.size / 1024 > MAX_SIZE) {
+        if (item.size > this.maxSize) {
           this.isValid = false;
-          this.errorMessage = MESSAGE.SIZE_ERROR;
+          this.errorMessage = MESSAGE.SIZE_ERROR + formatBytes(this.maxSize);
         }
       });
       if (newDataFile.length > this.limitedFile) {
         this.isValid = false;
-        this.errorMessage = MESSAGE.LIMITED_ERROR;
+        this.errorMessage = MESSAGE.LIMITED_ERROR + this.limitedFile;
       }
       if (this.isValid) {
         this.fileList = newDataFile;
       }
-      setTimeout(() => (this.errorMessage = ""), 3000);
     },
-    deleteFile(index) {
-      // this.fileList = this.fileList.filter((file) => {
-      //   return file.lastModified !== lastModified;
-      // });
-      this.fileList.splice(this.fileList.indexOf(index), 1);
+    deleteFile(lastModified) {
+      this.fileList = this.fileList.filter((file) => {
+        return file.lastModified !== lastModified;
+      });
+      // this.fileList.splice(this.fileList.indexOf(index), 1);
+      this.errorMessage = "";
     },
     uploadFile() {
       let files = this.fileList;
@@ -76,7 +86,6 @@ export default {
             console.log(error);
           });
         this.fileList = [];
-        setTimeout(() => (this.successMessage = ""), 3000);
       }
     },
   },

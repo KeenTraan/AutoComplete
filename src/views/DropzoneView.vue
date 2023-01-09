@@ -1,7 +1,7 @@
 <template>
   <div class="dropzone-layout">
     <Navbar />
-    <DropzoneComponent />
+    <DropzoneComponent :maxSize="maxSize" :limitedFile="limitedFile" />
   </div>
 </template>
 
@@ -9,6 +9,12 @@
 import Navbar from "@/components/Navbar.vue";
 import DropzoneComponent from "@/components/Dropzone/DropzoneComponent.vue";
 export default {
+  data() {
+    return {
+      maxSize: 1024 * 1024 * 10,
+      limitedFile: 3,
+    };
+  },
   components: {
     Navbar,
     DropzoneComponent,

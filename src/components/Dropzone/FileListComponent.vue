@@ -1,8 +1,8 @@
 <template>
     <div class="files-layout">
       <FileItemComponentVue
-        v-for="file, index in fileList"
-        :key="index"
+        v-for="file in fileList"
+        :key="file.lastModified"
         :fileItem="file"
         @handleOnClick="handleDelete"
       />

@@ -14,7 +14,7 @@
     <input
       type="file"
       id="input-file"
-      @change="handleFile"
+      @change="onChange"
       ref="file"
       multiple
     />
@@ -30,7 +30,7 @@ export default {
     };
   },
   methods: {
-    handleFile() {
+    onChange() {
       this.dataFile = this.$refs.file.files;
       const newFileList = Array.from(this.dataFile);
       this.$refs.file.value = [];
@@ -46,7 +46,8 @@ export default {
     dropFiles(e) {
       e.preventDefault();
       this.$refs.file.files = e.dataTransfer.files;
-      this.handleFile();
+      this.onChange();
+      this.checkFileValue()
       this.isDragging = false;
     },
   },

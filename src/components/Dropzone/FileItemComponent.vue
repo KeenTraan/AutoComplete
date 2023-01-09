@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { TYPE_FILE } from "@/constant/Dopzone";
+import { TYPE_FILE } from "@/constant/Dropzone";
 import formatBytes from "@/utils/FormatFileSize";
 export default {
   name: "FileItemComponentVue",
