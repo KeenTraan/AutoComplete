@@ -1,24 +1,75 @@
 <template>
-  <div class="city-layout">
+  <div class="users-layout">
     <Navbar />
-    <SearchUsers />
+    <AutoComplete
+      :options="users"
+      :placeholder="placeholder"
+      :filtersItem="filtersItem"
+      :getSelect="selectUsers"
+      @searchOptions="searchOptions"
+      @addChosen="addChosen"
+      @deleteItem="deleteItem"
+    />
   </div>
 </template>
 
 <script>
-import SearchUsers from "@/components/Autocomplete/SearchUsers.vue";
+import AutoComplete from "@/components/Autocomplete/AutoComplete";
+
 import Navbar from "@/components/Navbar.vue";
+import { mapActions, mapGetters } from "vuex";
+import { PLACEHOLDER } from "@/constant";
 export default {
-  name: "SearchUserAutocomplete",
+  name: "UserView",
   components: {
-    SearchUsers,
-    Navbar
+    AutoComplete,
+    Navbar,
+  },
+  data() {
+    return {
+      placeholder: PLACEHOLDER.USERS,
+      keyWord: "",
+    };
+  },
+  methods: {
+    ...mapActions({
+      fetchUsers: "fetchUsers",
+      addChosenUser: "selectUsers",
+      deleteUsers: "deleteUsers",
+    }),
+
+    searchOptions(keyword) {
+      this.keyWord = keyword;
+    },
+    addChosen(item) {
+      this.addChosenUser(item);
+    },
+    deleteItem(item) {
+      this.deleteUsers(item);
+    },
+  },
+  computed: {
+    ...mapGetters({
+      users: "getUsers",
+      selectUsers: "getSelectUser",
+    }),
+    filtersItem() {
+      return this.users.filter((item) => {
+        return (
+          this.keyWord.length &&
+          item.name.toLowerCase().includes(this.keyWord.toLowerCase())
+        );
+      });
+    },
+  },
+  created() {
+    this.fetchUsers();
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.city-layout {
+.users-layout {
   display: flex;
 }
 </style>

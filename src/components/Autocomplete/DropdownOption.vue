@@ -1,11 +1,14 @@
 <template>
   <div class="list-item">
-    <div v-for="item in options" :key="item.code">
-      <ul>
-        <li class="item"  @click="choiceItem(item)">
+    <div v-for="item in listOptions" :key="item.code">
+        <div class="item" @click="selectItem(item)">
           {{ item.name }}
-        </li>
-      </ul>
+        </div>
+    </div>
+    <div v-if="!listOptions.length && keyword" class="item-massage">
+        <div>
+          {{ message }}
+        </div>
     </div>
   </div>
 </template>
@@ -13,16 +16,21 @@
 <script>
 export default {
   props: {
-    options: {
+    listOptions: {
       type: Array,
       default: () => [],
     },
-  },
-  data() {
-    return {};
+    message: {
+      type: String,
+      required: true,
+    },
+    keyword: {
+      type: String,
+      required: true,
+    }
   },
   methods: {
-    choiceItem(item) {
+    selectItem(item) {
       this.$emit("selectItem", item);
     },
   },
@@ -39,7 +47,6 @@ export default {
   align-items: flex-start;
   padding: 0px;
   border-radius: 4px;
-  cursor: grabbing;
 }
 .list-item::-webkit-scrollbar {
   width: 7px;
@@ -64,14 +71,21 @@ export default {
   align-items: center;
   gap: 10px;
   color: #486581;
+  transition: 0.3s;
 }
 .item:hover {
   background-color: #617d98;
-  transition: 0.5s;
   color: #ffffff;
 }
-.disable-item {
-  pointer-events: none;
-  cursor: not-allowed;
+.item-massage {
+  background-color: #f1f5f8;
+  padding: 10px;
+  width: 400px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  color: #486581;
 }
 </style>

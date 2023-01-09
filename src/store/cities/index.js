@@ -2,7 +2,7 @@ import axios from "axios";
 const AutoComplete = {
   state: {
     city: [],
-    select: []
+    select: [],
   },
   getters: {
     getCity: (state) => state.city,
@@ -19,7 +19,7 @@ const AutoComplete = {
     DELETE_CITY(state, city) {
       state.city.push(city)
       state.select = state.select.filter((item) => item.code != city.code)
-    }
+    },
   },
   actions: {
     async fetchCity({ commit }) {

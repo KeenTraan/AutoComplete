@@ -2,16 +2,18 @@
   <div class="auto-layout">
     <div>
       <Search
-        @searchItem="searchItem"
-        :options="getSelect"
-        @select="selectItem"
-        :placeholder="PLACEHOLDER"
+        :getSelect="getSelect"
+        :placeholder="placeholder"
         :keyword="keyword"
+        @searchItem="searchItem"
+        @deleteOptions="deleteOptions"
       />
       <DropdownOption
+        v-if="isHiden"
+        :listOptions="filtersItem"
+        :message="message"
+        :keyword="keyword"
         @selectItem="selectItem"
-        :options="filtersItem"
-        v-if="ishiden"
       />
     </div>
   </div>
@@ -20,17 +22,13 @@
 <script>
 import DropdownOption from "@/components/Autocomplete/DropdownOption.vue";
 import Search from "@/components/Autocomplete/Search.vue";
-import { mapGetters } from "vuex";
-import { PLACEHOLDER } from "@/common";
 export default {
-  name: "AutocompleteView",
+  name: "AutoComplete",
   data() {
     return {
-      ishiden: false,
+      isHiden: false,
       keyword: "",
-      options: [],
-      PLACEHOLDER: PLACEHOLDER.CITY,
-      disabled: true,
+      message: "Not Found"
     };
   },
   components: {
@@ -38,29 +36,32 @@ export default {
     Search,
   },
   methods: {
-    searchItem(keyword) {
-      this.ishiden = true;
-      this.keyword = keyword.trim();
-      
+    searchItem(valueInput) {
+      this.keyword = valueInput;
+      this.isHiden = true;
+      this.$emit("searchOptions", this.keyword);
     },
     selectItem(item) {
-      this.$store.dispatch("selectCity", item);
       this.keyword = "";
+      this.isHiden = false;
+      this.$emit("addChosen", item)
     },
+    deleteOptions(item) {
+      this.$emit("deleteItem", item)
+    }
   },
-  computed: {
-    ...mapGetters(["getCity", "getSelect"]),
-    filtersItem() {
-      return this.getCity.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(this.keyword.toLowerCase()) &&
-          this.keyword.length
-        );
-      });
+  props: {
+    placeholder: {
+      type: String,
     },
-  },
-  created() {
-    this.$store.dispatch("fetchCity");
+    getSelect: {
+      type: Array,
+      default: () => [],
+    },
+    filtersItem: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>
