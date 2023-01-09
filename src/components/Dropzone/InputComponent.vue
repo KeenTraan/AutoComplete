@@ -22,25 +22,17 @@
 </template>
 
 <script>
-import { LIMITED_FILE } from "@/constant/Dopzone";
 export default {
   data() {
     return {
       dataFile: null,
-      isValid: true,
       isDragging: false,
-      errorMessage: "",
-      successMessage: "",
-      limitedFile: LIMITED_FILE,
     };
   },
   methods: {
     handleFile() {
       this.dataFile = this.$refs.file.files;
       const newFileList = Array.from(this.dataFile);
-      this.isValid = true;
-      this.errorMessage = "";
-      this.successMessage = "";
       this.$refs.file.value = [];
       this.$emit("addFile", newFileList);
     },

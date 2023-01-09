@@ -55,7 +55,7 @@ export default {
       if (this.isValid) {
         this.fileList = newDataFile;
       }
-      setTimeout(() => (this.errorMessage = ""), 2000);
+      setTimeout(() => (this.errorMessage = ""), 3000);
     },
     deleteFile(index) {
       // this.fileList = this.fileList.filter((file) => {
@@ -76,7 +76,7 @@ export default {
             console.log(error);
           });
         this.fileList = [];
-        setTimeout(() => (this.successMessage = ""), 2000);
+        setTimeout(() => (this.successMessage = ""), 3000);
       }
     },
   },
