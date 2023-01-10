@@ -23,6 +23,11 @@ const routes = [
     path: '/dropzone',
     name: 'dropzone',
     component: () => import('@/views/DropzoneView.vue')
+  },
+  {
+    path: '/mutiform',
+    name: 'mutiform',
+    component: () => import('@/views/MutiformView')
   }
 ]
 

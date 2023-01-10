@@ -19,6 +19,7 @@ export default {
         { id: 2, name: "City", path: "/city" },
         { id: 3, name: "User", path: "/users" },
         { id: 4, name: "Dropzone", path: "/dropzone" },
+        { id: 5, name: "Mutiform", path: "/mutiform" },
       ],
     };
   },
