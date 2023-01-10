@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       // maxSize: 1024 * 1024 * 10,
-      maxSize: 10485760,
+      maxSize: 10000000,
       limitedFile: 3,
     };
   },

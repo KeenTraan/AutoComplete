@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { MESSAGE, LIMITED_FILE, MAX_SIZE } from "@/constant/Dropzone";
+import { MESSAGE} from "@/constant/Dropzone";
 import FileList from "@/components/Dropzone/FileListComponent.vue";
 import InputComponent from "./InputComponent.vue";
 import formatBytes from "@/utils/FormatFileSize";
@@ -36,11 +36,11 @@ export default {
   props: {
     maxSize: {
       type: Number,
-      default: MAX_SIZE,
+      require: true
     },
     limitedFile: {
       type: Number,
-      default: LIMITED_FILE,
+      require: true
     },
   },
   methods: {
