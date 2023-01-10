@@ -11,11 +11,7 @@
       {{ successMessage }}
     </div>
     <FileList :fileList="fileList" @deleteFile="deleteFile" />
-    <UploadFileComponent
-      v-if="!isHiden"
-      :fileList="fileList"
-      @uploadFile="submitFile"
-    />
+    <button v-if="!isHiden" class="btn-upload" @click="onUpload">Up load</button>
   </div>
 </template>
 
@@ -23,7 +19,6 @@
 import { MESSAGE, LIMITED_FILE, MAX_SIZE } from "@/constant/Dropzone";
 import FileList from "@/components/Dropzone/FileListComponent.vue";
 import InputComponent from "./InputComponent.vue";
-import UploadFileComponent from "./UploadFileComponent.vue";
 import formatBytes from "@/utils/FormatFileSize";
 export default {
   data() {
@@ -37,7 +32,6 @@ export default {
   components: {
     FileList,
     InputComponent,
-    UploadFileComponent,
   },
   props: {
     maxSize: {
@@ -74,19 +68,17 @@ export default {
         this.fileList = newDataFile;
       }
     },
-
     deleteFile(lastModified) {
       this.fileList = this.fileList.filter((file) => {
         return file.lastModified !== lastModified;
       });
       this.errorMessage = "";
     },
-    submitFile(files) {
-      this.fileList = files;
-      this.successMessage = MESSAGE.SUCCESSFULLY;
-      this.errorMessage = "";
-      this.fileList = [];
-    },
+    onUpload() {
+      this.$emit('uploadFile', this.fileList);
+      this.successMessage = MESSAGE.SUCCESSFULLY
+      this.fileList = []
+    }
   },
   computed: {
     valid() {
@@ -129,5 +121,20 @@ export default {
 .success-vali {
   border-radius: 7px;
   border: 1px solid green;
+}
+.btn-upload {
+  margin-top: 10px;
+  border: none;
+  width: 80px;
+  height: 40px;
+  font-size: 14px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-upload:hover {
+  color: green;
 }
 </style>
