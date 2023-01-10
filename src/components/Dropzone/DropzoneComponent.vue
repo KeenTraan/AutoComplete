@@ -79,7 +79,6 @@ export default {
       this.fileList = this.fileList.filter((file) => {
         return file.lastModified !== lastModified;
       });
-      // this.fileList.splice(this.fileList.indexOf(index), 1);
       this.errorMessage = "";
     },
     submitFile(files) {
