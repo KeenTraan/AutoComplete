@@ -11,7 +11,7 @@
         @addChosen="addChosen"
         @deleteItem="deleteItem"
       />
-      <dropzone-component />
+      <DropzoneComponent :limitedFile="3" :maxSize="10000000"/>
     </div>
   </div>
 </template>

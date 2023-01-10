@@ -13,7 +13,6 @@ import { ref, uploadBytes } from "firebase/storage";
 export default {
   data() {
     return {
-      // maxSize: 1024 * 1024 * 10,
       maxSize: 10000000,
       limitedFile: 3,
     };
