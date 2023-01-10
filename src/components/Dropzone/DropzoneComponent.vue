@@ -77,6 +77,7 @@ export default {
     onUpload() {
       this.$emit('uploadFile', this.fileList);
       this.successMessage = MESSAGE.SUCCESSFULLY
+      this.errorMessage = "";
       this.fileList = []
     }
   },
