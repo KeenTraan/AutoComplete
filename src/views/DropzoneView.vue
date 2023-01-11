@@ -1,7 +1,7 @@
 <template>
   <div class="dropzone-layout">
     <Navbar />
-    <DropzoneComponent @uploadFile="uploadFile"/>
+    <DropzoneComponent :limitedFile="limitedFile" :maxSize="maxSize" @uploadFile="uploadFile"/>
   </div>
 </template>
 

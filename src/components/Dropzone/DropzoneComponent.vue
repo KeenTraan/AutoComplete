@@ -55,7 +55,7 @@ export default {
       this.errorMessage = "";
       this.successMessage = "";
       newDataFile.forEach((item) => {
-        if (!this.maxSize && item.size > this.maxSize) {
+        if (this.maxSize && item.size > this.maxSize) {
           this.isValid = false;
           this.errorMessage = MESSAGE.SIZE_ERROR + formatBytes(this.maxSize);
         }
@@ -64,7 +64,7 @@ export default {
         this.isValid = false;
         this.errorMessage = MESSAGE.DUPLICATE_ERROR;
       }
-      if (!this.limitedFile && newDataFile.length > this.limitedFile) {
+      if (this.limitedFile && newDataFile.length > this.limitedFile) {
         this.isValid = false;
         this.errorMessage = MESSAGE.LIMITED_ERROR + this.limitedFile;
       }
