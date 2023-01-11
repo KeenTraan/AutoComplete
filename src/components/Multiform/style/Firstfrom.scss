@@ -1,0 +1,84 @@
+.title {
+    width: 164px;
+    height: 36px;
+    color: #333333;
+    font-family: "Noto Sans JP";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.first-form {
+    display: flex;
+    flex-direction: column;
+    width: 926px;
+    height: 849px;
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 32px;
+
+    .input {
+        width: 528px;
+        height: 40px;
+        background: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 4px;
+        align-items: center;
+        padding: 8px 10px;
+    }
+
+    #date {
+        width: 118px;
+        height: 40px;
+        background: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 2px;
+    }
+
+    #description-input {
+        width: 528px;
+        height: 152px;
+        background: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 4px;
+        padding: 8px 10px;
+    }
+
+    .text {
+        font-family: "Noto Sans JP";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 20px;
+        color: #666666;
+    }
+
+    label {
+        font-family: "Noto Sans JP";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #333333;
+        align-items: center;
+        margin-top: 10px;
+    }
+}
+
+.btn-next {
+    width: 102px;
+    height: 40px;
+    background: #627d98;
+    border-radius: 3px;
+    border: none;
+    margin-top: 24px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}

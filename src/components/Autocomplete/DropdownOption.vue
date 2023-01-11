@@ -42,7 +42,7 @@ export default {
   overflow: auto;
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 528px;
   height: 128px;
   align-items: flex-start;
   padding: 0px;
@@ -52,7 +52,7 @@ export default {
   cursor: pointer;
   background-color: #f1f5f8;
   padding: 10px;
-  width: 400px;
+  width: 528px;
   height: 40px;
   display: flex;
   flex-direction: row;
@@ -91,5 +91,4 @@ export default {
   background-color: #617d98;
   color: #ffffff;
 }
-
 </style>

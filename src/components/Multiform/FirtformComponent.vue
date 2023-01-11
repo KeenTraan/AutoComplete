@@ -1,29 +1,60 @@
 <template>
   <div>
-    <p class="text-form">Đơn Ứng Tuyển</p>
-    <PassingInputComponent />
+    <div v-for="(item, index) in dynamicForm" :key="index">
+      <span>{{ index + 1 }}</span>
+    </div>
+    <!-- <p class="title">Đơn Ứng Tuyển</p>
+    <StepperComponent :step="step"/>
+    <div>
+      <form class="first-form">
+        <label for="name">Họ và tên</label>
+        <input type="text" id="name" class="input" />
+        <label for="date">Ngày Sinh</label>
+        <input type="date" id="date" />
+        <label>Thành Phố</label>
+        <select class="input">
+          <option value="">Hà Nội</option>
+          <option value="">Thanh Hóa</option>
+          <option value="">Nghệ An</option>
+          <option value="">Ninh Bình</option>
+          <option value="">Hải Phòng</option>
+        </select>
+        <label>Vị trí làm việc</label>
+        <p class="text">có thể chọn nhiều vị trí mà bạn muốn làm</p>
+        <CityComponent />
+        <label for="description-input">Mô tả về bản thân</label>
+        <textarea id="description-input"></textarea>
+        <textarea id="description-input"></textarea>
+        <label>Ảnh cá nhân</label>
+        <DropzoneComponent :limitedFile="3" :maxSize="10000000" />
+      </form>
+    </div>
+    <button class="btn-next">Tiếp</button> -->
   </div>
 </template>
 
 <script>
-import PassingInputComponent from "@/components/Multiform/components/PassingInputComponent.vue";
+// import StepperComponent from "@/components/Multiform/components/StepperComponent.vue";
+// import CityComponent from "@/components/CityComponent.vue";
+// import DropzoneComponent from "@/components/Dropzone/DropzoneComponent.vue";
 export default {
   name: "FirstformComponent",
   components: {
-    PassingInputComponent,
+
   },
+  props:{ 
+    dynamicForm: {
+      type: Array,
+      required: true,
+    },
+    step: {
+      type: Array,
+      default: () => []
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
-.text-form {
-  width: 164px;
-  height: 36px;
-  color: #333333;
-  font-family: "Noto Sans JP";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 36px;
-}
+@import "@/components/Multiform/style/Firstfrom.scss"
 </style>

@@ -63,7 +63,7 @@ export default {
   font-style: normal;
   font-size: 18px;
   line-height: 22px;
-  width: 842px;
+  // width: 842px;
   height: 232px;
   background: #f8f8f8;
   border: 1px solid #dcdcdc;

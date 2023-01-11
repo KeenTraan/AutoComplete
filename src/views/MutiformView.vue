@@ -1,6 +1,6 @@
 <template>
   <div class="mutiform-layout">
-    <Navbar />
+      <Navbar />
     <MultiformComponent />
   </div>
 </template>

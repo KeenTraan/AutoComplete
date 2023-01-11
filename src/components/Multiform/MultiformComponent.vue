@@ -1,13 +1,20 @@
 <template>
   <div class="multiform-layout">
-    <FirstformComponent />
+    <FirstformComponent :dynamicForm="dynamicForm"/>
+    <DynamicForm :dynamicForm="dynamicForm"/>
   </div>
 </template>
 
 <script>
-import FirstformComponent from "@/components/Multiform/FirtformComponent";
+import FirstformComponent from "@/components/Multiform/FirtformComponent.vue";
+import { dynamicForm } from "@/components/Multiform/dynamicForm";
 export default {
   name: "MultiformComponent",
+  data() {
+    return {
+      dynamicForm
+    }
+  },
   components: {
     FirstformComponent,
   },
@@ -15,8 +22,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.multiform-layout {
-  border: 1px solid red;
-  width: 100%;
-}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="drop-zone">
+  <div>
     <InputComponent
       @addFile="addNewFile"
       :class="{ 'error-vali': valid, 'success-vali': success }"
@@ -11,12 +11,14 @@
       {{ successMessage }}
     </div>
     <FileList :fileList="fileList" @deleteFile="deleteFile" />
-    <button v-if="!isHiden" class="btn-upload" @click="onUpload">Up load</button>
+    <button v-if="!isHiden" class="btn-upload" @click="onUpload">
+      Up load
+    </button>
   </div>
 </template>
 
 <script>
-import { MESSAGE} from "@/constant/Dropzone";
+import { MESSAGE } from "@/constant/Dropzone";
 import FileList from "@/components/Dropzone/FileListComponent.vue";
 import InputComponent from "./InputComponent.vue";
 import formatBytes from "@/utils/FormatFileSize";
@@ -36,31 +38,33 @@ export default {
   props: {
     maxSize: {
       type: Number,
-      require: true
+      required: false, // k bat buoc
     },
     limitedFile: {
       type: Number,
-      require: true
+      required: false,
     },
   },
   methods: {
     addNewFile(dataFile) {
       const newDataFile = [...this.fileList, ...dataFile];
-      const isDuplicate = this.fileList.find((item) => item.lastModified === dataFile[0].lastModified);
+      const isDuplicate = this.fileList.find(
+        (item) => item.lastModified === dataFile[0].lastModified
+      );
       this.isValid = true;
       this.errorMessage = "";
       this.successMessage = "";
       newDataFile.forEach((item) => {
-        if (item.size > this.maxSize) {
+        if (!this.maxSize && item.size > this.maxSize) {
           this.isValid = false;
           this.errorMessage = MESSAGE.SIZE_ERROR + formatBytes(this.maxSize);
         }
       });
-      if(isDuplicate && this.fileList.length !== 0) {
+      if (isDuplicate && this.fileList.length !== 0) {
         this.isValid = false;
         this.errorMessage = MESSAGE.DUPLICATE_ERROR;
       }
-      if (newDataFile.length > this.limitedFile) {
+      if (!this.limitedFile && newDataFile.length > this.limitedFile) {
         this.isValid = false;
         this.errorMessage = MESSAGE.LIMITED_ERROR + this.limitedFile;
       }
@@ -75,11 +79,11 @@ export default {
       this.errorMessage = "";
     },
     onUpload() {
-      this.$emit('uploadFile', this.fileList);
-      this.successMessage = MESSAGE.SUCCESSFULLY
+      this.$emit("uploadFile", this.fileList);
+      this.successMessage = MESSAGE.SUCCESSFULLY;
       this.errorMessage = "";
-      this.fileList = []
-    }
+      this.fileList = [];
+    },
   },
   computed: {
     valid() {
@@ -96,9 +100,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.drop-zone {
-  margin-top: 10px;
-}
 .error-message {
   color: red;
   margin-top: 17px;
