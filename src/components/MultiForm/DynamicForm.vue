@@ -1,24 +1,36 @@
 <template>
-  <div>
-    <StepProgress :stepProgress="stepProgress"/>
+  <div class="dynamic-layout">
+    <StepProgress :stepProgress="stepForm" :currentStep="2" />
+    <FormCard :currentForm="getCurrentForm" />
   </div>
 </template>
 
 <script>
-import StepProgress from './StepProgress.vue';
-import {stepProgress} from './form'
+import StepProgress from "@/components/Multiform/StepProgress.vue";
+import FormCard from "@/components/Multiform/FormCard.vue";
+import { stepForm } from "@/components/Multiform/form";
 export default {
-    data() {
-        return {
-            stepProgress
-        }
+  data() {
+    return {
+      stepForm,
+      currentStep: 0,
+    };
+  },
+  components: {
+    StepProgress,
+    FormCard,
+  },
+  computed: {
+    getCurrentForm() {
+      return this.stepForm[this.currentStep];
     },
-    components: {
-        StepProgress
-    },
-}
+  },
+};
 </script>
 
-<style>
-
+<style scoped lang="scss">
+.dynamic-layout {
+  width: 294px;
+  height: 88px;
+}
 </style>

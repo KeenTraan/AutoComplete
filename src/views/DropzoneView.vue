@@ -1,12 +1,10 @@
 <template>
   <div class="dropzone-layout">
-    <Navbar />
     <DropzoneComponent :limitedFile="limitedFile" :maxSize="maxSize" @uploadFile="uploadFile"/>
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
 import DropzoneComponent from "@/components/Dropzone/DropzoneComponent.vue";
 import { storage } from "@/configs/firebase";
 import { ref, uploadBytes } from "firebase/storage";
@@ -18,7 +16,6 @@ export default {
     };
   },
   components: {
-    Navbar,
     DropzoneComponent,
   },
   methods: {
@@ -34,8 +31,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.dropzone-layout {
-  display: flex;
-}
+<style>
 </style>
