@@ -1,6 +1,5 @@
 <template>
   <div class="auto-layout">
-    <div>
       <Search
         :getSelect="getSelect"
         :placeholder="placeholder"
@@ -15,7 +14,6 @@
         :keyword="keyword"
         @selectItem="selectItem"
       />
-    </div>
   </div>
 </template>
 
@@ -28,7 +26,7 @@ export default {
     return {
       isHiden: false,
       keyword: "",
-      message: "Not Found"
+      message: "Not Found",
     };
   },
   components: {
@@ -42,9 +40,9 @@ export default {
       this.$emit("searchOptions", this.keyword);
     },
     selectItem(item) {
-      this.keyword = "";
-      this.isHiden = false;
-      this.$emit("addChosen", item)
+        this.$emit("addChosen", item)
+        this.keyword = "";
+        this.isHiden = false;
     },
     deleteOptions(item) {
       this.$emit("deleteItem", item)
@@ -62,6 +60,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    limited: {
+      type: Number,
+      require: true
+    }
   },
 };
 </script>
@@ -69,5 +71,6 @@ export default {
 <style lang="scss" scoped>
 .auto-layout {
   display: flex;
+  flex-direction: column;
 }
 </style>

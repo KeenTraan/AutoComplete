@@ -18,6 +18,16 @@ const routes = [
     path: '/users',
     name: 'users',
     component: () => import('@/views/UsersView.vue')
+  },
+  {
+    path: '/dropzone',
+    name: 'dropzone',
+    component: () => import('@/views/DropzoneView.vue')
+  },
+  {
+    path: '/mutiform',
+    name: 'mutiform',
+    component: () => import('@/views/MutiformView')
   }
 ]
 

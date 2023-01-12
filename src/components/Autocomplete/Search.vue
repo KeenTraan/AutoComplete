@@ -27,13 +27,13 @@ export default {
   name: "SearchItem",
   data() {
     return {
-      valueInput: ""
-    }
+      valueInput: "",
+    };
   },
   props: {
     getSelect: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     placeholder: {
       type: String,
@@ -41,13 +41,13 @@ export default {
     },
     keyword: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   watch: {
     keyword(value) {
       this.valueInput = value;
-    }
+    },
   },
   methods: {
     handleSearch(e) {
@@ -55,7 +55,7 @@ export default {
       this.$emit("searchItem", this.valueInput);
     },
     handleDelete(item) {
-      this.$emit('deleteOptions', item)
+      this.$emit("deleteOptions", item);
     },
   },
 };
@@ -67,11 +67,11 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  width: 400px;
+  width: 528px;
   min-height: 49px;
   padding: 8px 10px;
   gap: 4px;
-  background: rgba(230, 249, 255, 0.2);
+  // background-color: rgba(230, 249, 255, 0.2);
   border: 1px solid #dbdbdb;
   border-radius: 4px;
   flex: none;
@@ -95,7 +95,6 @@ input {
   flex: none;
   order: 1;
   flex-grow: 1;
-  // border: 1px solid red;
 }
 .option-items {
   display: flex;
@@ -106,13 +105,12 @@ input {
   gap: 8px;
   width: max-content;
   height: 32px;
-  background: #f0f4f8;
+  background-color: #f0f4f8;
   border: 1px solid #dcdcdc;
   border-radius: 4px;
   flex: none;
   flex-grow: 0;
   margin-right: 3px;
-  // border: 1px solid red;
   .icons {
     cursor: pointer;
   }
@@ -129,6 +127,6 @@ input {
   }
 }
 .input-layout:focus-within {
-  border: 1px solid skyblue;
+  border: 2px solid black;
 }
 </style>
