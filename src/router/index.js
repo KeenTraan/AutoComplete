@@ -25,10 +25,10 @@ const routes = [
     component: () => import('@/views/DropzoneView.vue')
   },
   {
-    path: '/mutiform',
-    name: 'mutiform',
-    component: () => import('@/views/MutiformView')
-  }
+    path: '/multiform',
+    name: 'multiform',
+    component: () => import('@/views/MultiformView.vue')
+  },
 ]
 
 const router = new VueRouter({
