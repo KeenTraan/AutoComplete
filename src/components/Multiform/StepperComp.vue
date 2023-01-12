@@ -2,15 +2,15 @@
   <div class="wrapper-stepper">
     <div class="stepper">
       <div
-        v-for="(step, index) in step"
-        :key="step"
-        @click="onClick(index)"
+        v-for="step, index in stepProgress"
+        :key="step.id"
+        @click="onStepChange(index)"
         class="stepper-item-counter"
         :class="{ active: index < 1 }"
       >
         <div>
           <span class="number">
-            {{ step }}
+            {{ step.num }}
           </span>
         </div>
       </div>
@@ -22,14 +22,18 @@
 export default {
   name: "StepperComponent",
   props: {
-    step: {
+    stepProgress: {
       type: Array,
-      default: () => []
-    }
+      required: true,
+    },
+    currentStep: {
+      type: Number,
+      required: true,
+    } 
   },
   methods: {
-    onClick(index) {
-      this.$emit("nextStep", index)
+    onStepChange(index) {
+      this.$emit("handleStep", index)
     },
   },
 };

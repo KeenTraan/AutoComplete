@@ -7,7 +7,7 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue"
-import MultiformComponent from "@/components/Multiform/MultiformComponent.vue";
+import MultiformComponent from "@/components/Multiform/MultiformComp.vue";
 export default {
 components: {
     Navbar,
