@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import DynamicForm from '@/components/Multiform/DynamicForm'
+import DynamicForm from '@/components/MultiForm/DynamicForm'
 export default {
 components: {
     DynamicForm

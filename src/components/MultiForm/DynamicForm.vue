@@ -1,14 +1,14 @@
 <template>
   <div class="dynamic-layout">
-    <StepProgress :stepProgress="stepForm" :currentStep="2" />
+    <StepProgress :stepProgress="stepForm" :currentStep="1" />
     <FormCard :currentForm="getCurrentForm" />
   </div>
 </template>
 
 <script>
-import StepProgress from "@/components/Multiform/StepProgress.vue";
-import FormCard from "@/components/Multiform/FormCard.vue";
-import { stepForm } from "@/components/Multiform/form";
+import StepProgress from "@/components/MultiForm/StepProgress.vue";
+import FormCard from "@/components/MultiForm/FormCard.vue";
+import { stepForm } from "@/components/MultiForm/form";
 export default {
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
 
 <style scoped lang="scss">
 .dynamic-layout {
-  width: 294px;
+  width: 500px;
   height: 88px;
 }
 </style>

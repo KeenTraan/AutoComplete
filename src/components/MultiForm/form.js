@@ -13,7 +13,7 @@ export const stepForm = [
             {
                 id: uuidv4(),
                 label: 'Ngày Sinh',
-                type: "text",
+                type: "datetime",
                 key: 'age',
             },
             {
@@ -100,15 +100,3 @@ export const stepForm = [
 ]
 
 
-
-// [
-//     {
-//         name: 'quang',
-//         old: 25,
-//     },
-
-//     {
-//         name: 'quang',
-//         old: 25,
-//     }
-// ]
