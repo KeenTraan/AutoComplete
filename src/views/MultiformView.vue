@@ -1,16 +1,16 @@
 <template>
   <div class="mutiform-layout">
-      <DynamicForm />
+    <DynamicForm />
   </div>
 </template>
 
 <script>
-import DynamicForm from '@/components/MultiForm/DynamicForm'
+import DynamicForm from "@/components/Multiform/DynamicForm.vue";
 export default {
-components: {
-    DynamicForm
-}
-}
+  components: {
+    DynamicForm,
+  },
+};
 </script>
 
 <style>

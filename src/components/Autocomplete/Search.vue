@@ -16,6 +16,7 @@
           :placeholder="placeholder"
           :value="valueInput"
           @input="handleSearch"
+          multiple
         />
       </div>
     </div>
@@ -63,7 +64,6 @@ export default {
 
 <style scoped lang="scss">
 .input-layout {
-  margin: 10px 0 2px 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -127,6 +127,6 @@ input {
   }
 }
 .input-layout:focus-within {
-  border: 2px solid black;
+  border: 1px solid skyblue;
 }
 </style>

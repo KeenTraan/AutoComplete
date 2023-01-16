@@ -25,17 +25,18 @@ export const stepForm = [
             {
                 id: uuidv4(),
                 label: 'Vị trí làm việc',
-                type: 'search',
+                description: 'Có thể chọn nhiều vị trí làm việc mà bạn muốn làm việc',
+                type: 'position',
             },
             {
                 id: uuidv4(),
                 label: 'Mô tả về bản thân',
-                type: 'text_area'
+                type: 'textarea'
             },
             {
                 id: uuidv4(),
                 label: 'Ảnh cá nhân',
-                type: "Drop_and_Drag"
+                type: 'Drop_and_Drag'
             },
         ]
     },
@@ -69,7 +70,7 @@ export const stepForm = [
         ]
     },
     {
-        label: "Xác Nhận Thông Tin",
+        label: "Xác nhận thông tin",
         layout: [
             {
                 id: uuidv4(),

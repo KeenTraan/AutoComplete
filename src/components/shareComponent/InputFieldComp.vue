@@ -1,19 +1,24 @@
 <template>
   <div class="input-field-layout">
-    <div v-for="input, index in currentForm" :key="index">
-      <div v-if="input.type === 'text'">
-        <p class="form-label">{{ input.label }}</p>
-        <input type="text" />
+    <div>
+      <div class="title">
+        <CheckrequireComp />
+        <p class="form-label">{{ form.label }}</p>
       </div>
+      <input type="text" />
     </div>
   </div>
 </template>
 
 <script>
+import CheckrequireComp from "@/components/shareComponent/CheckrequireComp.vue";
 export default {
+  components: {
+    CheckrequireComp,
+  },
   props: {
-    currentForm: {
-      type: Array,
+    form: {
+      type: Object,
     },
   },
 };
@@ -23,7 +28,10 @@ export default {
 .input-field-layout {
   width: 528px;
   height: 66px;
-  // border: 1px solid red;
+  .title {
+    display: flex;
+    margin-bottom: 6px;
+  }
   .form-label {
     font-weight: 400;
     font-size: 14px;
@@ -40,7 +48,7 @@ export default {
   }
   input:focus {
     border: none;
-    outline: 2px solid skyblue;
+    outline: 1px solid skyblue;
   }
 }
 </style>

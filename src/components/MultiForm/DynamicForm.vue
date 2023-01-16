@@ -2,13 +2,15 @@
   <div class="dynamic-layout">
     <StepProgress :stepProgress="stepForm" :currentStep="1" />
     <FormCard :currentForm="getCurrentForm" />
+    <NextButtonComp />
   </div>
 </template>
 
 <script>
-import StepProgress from "@/components/MultiForm/StepProgress.vue";
-import FormCard from "@/components/MultiForm/FormCard.vue";
-import { stepForm } from "@/components/MultiForm/form";
+import StepProgress from "@/components/Multiform/StepProgress.vue";
+import FormCard from "@/components/Multiform/FormCard.vue";
+import { stepForm } from "@/components/Multiform/form";
+import NextButtonComp from "../Multiform/Button/NextButtonComp.vue";
 export default {
   data() {
     return {
@@ -19,6 +21,7 @@ export default {
   components: {
     StepProgress,
     FormCard,
+    NextButtonComp,
   },
   computed: {
     getCurrentForm() {

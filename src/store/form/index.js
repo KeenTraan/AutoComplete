@@ -1,13 +1,27 @@
+import axios from "axios";
 const MultiStepForm = {
+    namespaced: true,
     state: {
-        firstForm: [],
-        secondForm: [],
-        thirdForm: []
+        cities: [],
     },
     getters: {
-        getFirstForm: (state) => state.firstForm,
-        getSecondFrom: (state) => state.secondForm,
-        getThirdForm: (state) => state.thirdForm
-    }
-}
+        getCities: (state) => state.cities,
+    },
+    mutations: {
+        SET_CITIES: (state, cities) => {
+            state.cities = cities
+        }
+    },
+    actions: {
+        async fetchCities({ commit }) {
+            const API = "https://provinces.open-api.vn/api/p/"
+            try {
+                const data = await axios.get(API);
+                commit("SET_CITIES", data.data);
+            } catch (error) {
+                console.log(error);
+            }
+        },
+    },
+};
 export default MultiStepForm;

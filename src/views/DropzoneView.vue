@@ -1,6 +1,10 @@
 <template>
   <div class="dropzone-layout">
-    <DropzoneComponent :limitedFile="limitedFile" :maxSize="maxSize" @uploadFile="uploadFile"/>
+    <DropzoneComponent
+      :limitedFile="limitedFile"
+      :maxSize="maxSize"
+      @uploadFile="uploadFile"
+    />
   </div>
 </template>
 
@@ -24,12 +28,15 @@ export default {
       for (let i = 0; i < files.length; i++) {
         let file = files[i];
         let storageRef = ref(storage, "Files/" + file.name);
-        uploadBytes(storageRef, file)
+        uploadBytes(storageRef, file);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+.dropzone-layout {
+  padding-top: 20px;
+}
 </style>

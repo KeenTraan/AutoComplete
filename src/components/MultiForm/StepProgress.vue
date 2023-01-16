@@ -108,6 +108,7 @@ export default {
   display: flex;
   gap: 10px;
   align-items: center;
+  text-align: center;
   flex-direction: column;
   color: black;
   transition: all 500ms ease;
