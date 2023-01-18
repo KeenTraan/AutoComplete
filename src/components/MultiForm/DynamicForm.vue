@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import StepProgress from "@/components/Multiform/StepProgress.vue";
-import FormCard from "@/components/Multiform/FormCard.vue";
-import { stepForm } from "@/components/Multiform/form";
-import NextButtonComp from "../Multiform/Button/NextButtonComp.vue";
+import StepProgress from "@/components/MultiForm/StepProgress.vue";
+import FormCard from "@/components/MultiForm/FormCard.vue";
+import { stepForm } from "@/components/MultiForm/form";
+import NextButtonComp from "@/components/MultiForm/button/NextButtonComp.vue";
 export default {
   data() {
     return {

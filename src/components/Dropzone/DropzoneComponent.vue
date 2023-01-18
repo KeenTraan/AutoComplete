@@ -11,8 +11,8 @@
       {{ successMessage }}
     </div>
     <FileList :fileList="fileList" @deleteFile="deleteFile" />
-    <button v-if="!isHiden" class="btn-upload" @click="onUpload">
-      Up load
+    <button v-if="!isHiden && show" class="btn-upload" @click="onUpload">
+      Upload
     </button>
   </div>
 </template>
@@ -38,10 +38,14 @@ export default {
   props: {
     maxSize: {
       type: Number,
-      required: false, // k bat buoc
+      required: false,
     },
     limitedFile: {
       type: Number,
+      required: false,
+    },
+    show: {
+      type: Boolean,
       required: false,
     },
   },

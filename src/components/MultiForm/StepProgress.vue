@@ -69,7 +69,7 @@ export default {
 <style scoped lang="scss">
 .wrapper-stepper {
   background-color: #fff;
-  margin: 20px;
+  margin: 24px;
   border-radius: 32px;
   box-shadow: rgba($color: #000000, $alpha: 0.09);
   position: relative;

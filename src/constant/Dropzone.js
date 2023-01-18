@@ -1,3 +1,4 @@
+import convertMbtoBytes from "@/utils/ConvertMbToBytes";
 export const MESSAGE = {
   SIZE_ERROR: "File size must be less than ",
   LIMITED_ERROR: "File Limited ",
@@ -10,3 +11,4 @@ export const TYPE_FILE = {
   XLS: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   PP: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
 }
+export const MAXSIZE = convertMbtoBytes(10);

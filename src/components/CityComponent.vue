@@ -4,7 +4,6 @@
       :getSelect="selectedCities"
       :placeholder="placeholder"
       :filtersItem="filtersItem"
-      :limited="limited"
       @searchOptions="searchOptions"
       @addChosen="addChosen"
       @deleteItem="deleteItem"
@@ -21,7 +20,6 @@ export default {
     return {
       placeholder: PLACEHOLDER.CITY,
       keyWord: "",
-      limited: 3,
     };
   },
   components: {

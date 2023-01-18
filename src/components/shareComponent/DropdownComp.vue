@@ -3,7 +3,7 @@
     <div>
       <p class="input-text">{{ form.label }}</p>
       <select class="drop-input">
-        <option v-for="cities in cities" :key="cities.code">
+        <option v-for="cities in data" :key="cities.code">
           {{ cities.name }}
         </option>
       </select>
@@ -17,7 +17,7 @@ export default {
     form: {
       type: Object,
     },
-    cities: {
+    data: {
       type: Array,
     },
   },

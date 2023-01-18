@@ -3,6 +3,7 @@
     <DropzoneComponent
       :limitedFile="limitedFile"
       :maxSize="maxSize"
+      :show="show"
       @uploadFile="uploadFile"
     />
   </div>
@@ -12,11 +13,13 @@
 import DropzoneComponent from "@/components/Dropzone/DropzoneComponent.vue";
 import { storage } from "@/configs/firebase";
 import { ref, uploadBytes } from "firebase/storage";
+import { MAXSIZE } from "@/constant/Dropzone";
 export default {
   data() {
     return {
-      maxSize: 10000000,
+      maxSize: MAXSIZE,
       limitedFile: 3,
+      show: true,
     };
   },
   components: {
@@ -38,5 +41,7 @@ export default {
 <style scoped lang="scss">
 .dropzone-layout {
   padding-top: 20px;
+  width: 844px;
+  height: 192px;
 }
 </style>

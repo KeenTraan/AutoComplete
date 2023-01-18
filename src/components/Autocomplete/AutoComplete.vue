@@ -1,5 +1,6 @@
 <template>
   <div class="auto-layout">
+    <div class="auto-completed">
       <Search
         :getSelect="getSelect"
         :placeholder="placeholder"
@@ -8,12 +9,13 @@
         @deleteOptions="deleteOptions"
       />
       <DropdownOption
-        v-if="isHiden"
+        v-if="showDropdown"
         :listOptions="filtersItem"
         :message="message"
         :keyword="keyword"
         @selectItem="selectItem"
       />
+    </div>
   </div>
 </template>
 
@@ -24,7 +26,6 @@ export default {
   name: "AutoComplete",
   data() {
     return {
-      isHiden: false,
       keyword: "",
       message: "Not Found",
     };
@@ -40,13 +41,18 @@ export default {
       this.$emit("searchOptions", this.keyword);
     },
     selectItem(item) {
-        this.$emit("addChosen", item)
-        this.keyword = "";
-        this.isHiden = false;
+      this.$emit("addChosen", item);
+      this.keyword = "";
+      this.isHiden = false;
     },
     deleteOptions(item) {
-      this.$emit("deleteItem", item)
-    }
+      this.$emit("deleteItem", item);
+    },
+  },
+  computed: {
+    showDropdown() {
+      return this.filtersItem.length !== 0;
+    },
   },
   props: {
     placeholder: {
@@ -62,8 +68,8 @@ export default {
     },
     limited: {
       type: Number,
-      require: true
-    }
+      require: true,
+    },
   },
 };
 </script>

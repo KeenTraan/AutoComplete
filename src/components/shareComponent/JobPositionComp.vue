@@ -3,14 +3,14 @@
     <div>
       <p class="input-text">{{ form.label }}</p>
       <p class="input-text-description">{{ form.description }}</p>
-      <Search :placeholder="placeholder" :keyword="''" />
+      <AutoComplete :placeholder="placeholder" />
     </div>
   </div>
 </template>
 
 <script>
-import Search from "@/components/Autocomplete/Search.vue";
 import { PLACEHOLDER } from "@/constant/Form";
+import AutoComplete from "@/components/Autocomplete/AutoComplete.vue";
 export default {
   data() {
     return {
@@ -18,7 +18,8 @@ export default {
     };
   },
   components: {
-    Search,
+    // Search,
+    AutoComplete,
   },
   props: {
     form: {

@@ -1,13 +1,20 @@
 <template>
-  <button class="btn">Tiếp</button>
+  <button class="btn" @click="onClick">Tiếp</button>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    onClick() {
+      console.log("onClick");
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
 .btn {
+  cursor: pointer;
   margin-top: 24px;
   width: 102px;
   height: 40px;

@@ -9,11 +9,11 @@
       <InputdateComp :form="form" v-if="form.type === 'datetime'" />
       <DropdownComp
         :form="form"
-        :cities="cities"
+        :data="cities"
         v-if="form.type === 'dropdown'"
       />
       <JobPositionComp :form="form" v-if="form.type === 'position'" />
-      <DescriptionComp
+      <TextAreaComp
         :form="form"
         :character="1000"
         v-if="form.type === 'textarea'"
@@ -28,7 +28,7 @@ import InputFiedComp from "@/components/shareComponent/InputFieldComp.vue";
 import InputdateComp from "@/components/shareComponent/InputDateComp.vue";
 import JobPositionComp from "../shareComponent/JobPositionComp.vue";
 import DropdownComp from "@/components/shareComponent/DropdownComp.vue";
-import DescriptionComp from "../shareComponent/DescriptionComp.vue";
+import TextAreaComp from "../shareComponent/TextAreaComp.vue";
 import DropzoneComp from "../shareComponent/DropzoneComp.vue";
 import { mapGetters, mapActions } from "vuex";
 export default {
@@ -42,7 +42,7 @@ export default {
     InputdateComp,
     DropdownComp,
     JobPositionComp,
-    DescriptionComp,
+    TextAreaComp,
     DropzoneComp,
   },
   computed: {

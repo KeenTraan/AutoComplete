@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import DynamicForm from "@/components/Multiform/DynamicForm.vue";
+import DynamicForm from "@/components/MultiForm/DynamicForm.vue";
 export default {
   components: {
     DynamicForm,
