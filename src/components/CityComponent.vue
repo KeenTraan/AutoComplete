@@ -65,6 +65,7 @@ export default {
   <style lang="scss" scoped>
 .city-layout {
   display: flex;
+  margin-top: 20px;
 }
 </style>
   

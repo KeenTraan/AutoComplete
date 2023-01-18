@@ -46,4 +46,13 @@ export default {
     }
   }
 }
+::v-deep .input-layout {
+  width: 528px;
+  height: 40px;
+  padding: 1px 11px;
+  input {
+    width: 476px;
+    height: 20px;
+  }
+}
 </style>

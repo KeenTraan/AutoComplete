@@ -5,7 +5,7 @@
         <CheckrequireComp />
         <p class="form-label">{{ form.label }}</p>
       </div>
-      <input type="date" />
+      <input type="date" value="" />
     </div>
   </div>
 </template>
@@ -15,8 +15,11 @@ import CheckrequireComp from "./CheckrequireComp.vue";
 export default {
   components: { CheckrequireComp },
   props: {
-    form: Object,
+    form: {
+      type: Object,
+    },
   },
+  methods: {},
 };
 </script>
 

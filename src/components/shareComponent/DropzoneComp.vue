@@ -30,7 +30,7 @@ export default {
 <style scoped lang="scss">
 .dropzone-layout {
   width: 844px;
-  margin-top: 24px;
+  margin-top: 14px;
   .input-label {
     margin-bottom: 8px;
   }

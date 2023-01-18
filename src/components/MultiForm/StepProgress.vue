@@ -13,9 +13,8 @@
         v-for="(step, index) in stepProgress"
         :key="step.id"
         class="stepper-item"
-        :style="itemHightlight"
       >
-        <div class="stepper-item-counter" @click="onChange">
+        <div class="stepper-item-counter" :style="styleObject">
           <span class="number">
             {{ index + 1 }}
           </span>
@@ -30,6 +29,13 @@
 
 <script>
 export default {
+  data() {
+    return {
+      styleObject: {
+        backgroundColor: "#617d98",
+      },
+    };
+  },
   props: {
     stepProgress: {
       type: Array,
@@ -40,11 +46,7 @@ export default {
       default: 0,
     },
   },
-  methods: {
-    onChange() {
-      console.log("next step");
-    },
-  },
+  methods: {},
   computed: {
     widthProgess() {
       return {
@@ -59,9 +61,6 @@ export default {
           ((this.currentStep - 1) / (this.stepProgress.length - 1)) * 100 + "%",
       };
     },
-    itemHightlight() {
-      return {};
-    },
   },
 };
 </script>
@@ -73,70 +72,70 @@ export default {
   border-radius: 32px;
   box-shadow: rgba($color: #000000, $alpha: 0.09);
   position: relative;
-}
 
-.stepper {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  z-index: 1;
-  &-progress {
-    background-color: #c5c5c5;
-    position: absolute;
-    z-index: 0;
-    height: 2px;
-    top: 20px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    &-bar {
+  .stepper {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    &-progress {
+      background-color: #c5c5c5;
       position: absolute;
+      z-index: 0;
+      height: 2px;
+      top: 20px;
       left: 0;
-      height: 100%;
-      width: 0%;
-      background-color: #617d98;
-      transition: all 500ms ease;
-      &-hightlight {
+      right: 0;
+      margin: 0 auto;
+      &-bar {
         position: absolute;
-        inset: 0;
-        background: #617d98;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        background-color: #617d98;
+        transition: all 500ms ease;
+        &-hightlight {
+          position: absolute;
+          inset: 0;
+          background: #617d98;
+        }
       }
     }
   }
-}
-.stepper-item {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-  color: black;
-  transition: all 500ms ease;
-  padding: 0 10px;
-  cursor: pointer;
-  flex: 1;
-  &-counter {
-    height: 40px;
-    width: 40px;
-    display: grid;
-    place-items: center;
-    background-color: #c5c5c5;
-    border-radius: 100%;
-    position: relative;
+  .stepper-item {
+    display: flex;
+    gap: 10px;
     align-items: center;
-    .number {
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 20px;
-      transition: all 500ms ease;
-      color: #fff;
+    text-align: center;
+    flex-direction: column;
+    color: black;
+    transition: all 500ms ease;
+    padding: 0 10px;
+    cursor: pointer;
+    flex: 1;
+    &-counter {
+      height: 40px;
+      width: 40px;
+      display: grid;
+      place-items: center;
+      background-color: #c5c5c5;
+      border-radius: 100%;
+      position: relative;
+      align-items: center;
+      .number {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+        transition: all 500ms ease;
+        color: #fff;
+      }
     }
-  }
-  &-title {
-    position: absolute;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
+    &-title {
+      position: absolute;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+    }
   }
 }
 </style>

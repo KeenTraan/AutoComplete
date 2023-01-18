@@ -3,9 +3,9 @@
     <div>
       <div class="title">
         <CheckrequireComp />
-        <p class="form-label">{{ form.label }}</p>
+        <p class="form-label">{{ label }}</p>
       </div>
-      <input type="text" />
+      <input type="text" :value="inputValue" @input="handleInput" />
     </div>
   </div>
 </template>
@@ -13,12 +13,29 @@
 <script>
 import CheckrequireComp from "@/components/shareComponent/CheckrequireComp.vue";
 export default {
+  methods: {
+    handleInput(e) {
+      this.$emit("onChangeInput", {
+        value: e.target.value,
+        id: this.id,
+      });
+    },
+  },
   components: {
     CheckrequireComp,
   },
   props: {
-    form: {
-      type: Object,
+    label: {
+      type: String,
+    },
+    inputValue: {
+      type: String,
+    },
+    id: {
+      type: String,
+    },
+    required: {
+      type: Boolean,
     },
   },
 };

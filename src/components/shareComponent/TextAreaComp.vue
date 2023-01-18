@@ -2,7 +2,7 @@
   <div class="description-layout">
     <div class="description">
       <p class="text-label">{{ form.label }}</p>
-      <textarea cols="30" rows="10" class="text-description"></textarea>
+      <textarea cols="30" rows="10" class="text-content"></textarea>
       <p class="character">0/{{ character }}</p>
     </div>
   </div>
@@ -35,7 +35,7 @@ export default {
     align-items: center;
     margin-bottom: 6px;
   }
-  .text-description {
+  .text-content {
     width: 528px;
     height: 152px;
     background: #ffffff;

@@ -34,7 +34,7 @@ export default {
     line-height: 20px;
     width: 71px;
     height: 20px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .drop-input {
     width: 528px;
@@ -42,7 +42,7 @@ export default {
     background: #ffffff;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
-    padding: 8px 10px;
+    padding: 8px 8px;
     outline: none;
     cursor: pointer;
   }

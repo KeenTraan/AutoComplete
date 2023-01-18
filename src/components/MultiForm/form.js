@@ -9,18 +9,22 @@ export const stepForm = [
                 type: 'text',
                 key: 'name',
                 required: true,
+                value: ""
             },
             {
                 id: uuidv4(),
                 label: 'Ngày Sinh',
                 type: "datetime",
                 key: 'age',
+                value: ""
             },
             {
                 id: uuidv4(),
                 label: 'Thành Phố',
                 type: 'dropdown',
-                listOptions: []
+                key: 'address',
+                dropdown_type: 'chosen_city',
+                value: ""
             },
             {
                 id: uuidv4(),
