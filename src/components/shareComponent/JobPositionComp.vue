@@ -1,9 +1,9 @@
 <template>
   <div class="position-layout">
     <div>
-      <p class="input-text">{{ form.label }}</p>
-      <p class="input-text-description">{{ form.description }}</p>
-      <AutoComplete :placeholder="placeholder" />
+      <p class="input-text">{{ label }}</p>
+      <p class="input-text-description">{{ description }}</p>
+      <AutoComplete :placeholder="placeholder"/>
     </div>
   </div>
 </template>
@@ -15,16 +15,27 @@ export default {
   data() {
     return {
       placeholder: PLACEHOLDER.JOB_POSITION,
+      position: []
     };
   },
+  methods: {
+    getPosiotion() {
+      const jobPosition = this.data.forEach(item => item)
+      console.log(jobPosition);
+    }
+  },
   components: {
-    // Search,
     AutoComplete,
   },
   props: {
-    form: {
-      type: Object,
+    label: {
+      type: String,
+      default: ""
     },
+    description: {
+      type: String,
+      required: false
+    }
   },
 };
 </script>

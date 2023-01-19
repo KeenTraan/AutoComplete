@@ -1,7 +1,7 @@
 <template>
   <div class="drop-layout">
     <div>
-      <p class="input-text">{{ form.label }}</p>
+      <p class="input-text">{{ label }}</p>
       <select class="drop-input">
         <option v-for="cities in data" :key="cities.code">
           {{ cities.name }}
@@ -14,8 +14,8 @@
 <script>
 export default {
   props: {
-    form: {
-      type: Object,
+    label: {
+      type: String,
     },
     data: {
       type: Array,

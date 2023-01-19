@@ -9,14 +9,15 @@ export const stepForm = [
                 type: 'text',
                 key: 'name',
                 required: true,
-                value: ""
+                value: ''
             },
             {
                 id: uuidv4(),
                 label: 'Ngày Sinh',
                 type: "datetime",
                 key: 'age',
-                value: ""
+                required: true,
+                value: ''
             },
             {
                 id: uuidv4(),
@@ -24,22 +25,30 @@ export const stepForm = [
                 type: 'dropdown',
                 key: 'address',
                 dropdown_type: 'chosen_city',
-                value: ""
+                required: true,
+                value: ''
             },
             {
                 id: uuidv4(),
                 label: 'Vị trí làm việc',
                 description: 'Có thể chọn nhiều vị trí làm việc mà bạn muốn làm việc',
+                required: true,
                 type: 'position',
+                value: '',
+                key: 'job'
             },
             {
                 id: uuidv4(),
                 label: 'Mô tả về bản thân',
-                type: 'textarea'
+                required: true,
+                type: 'textarea',
+                value: '',
+                key: 'description'
             },
             {
                 id: uuidv4(),
                 label: 'Ảnh cá nhân',
+                required: true,
                 type: 'Drop_and_Drag'
             },
         ]
@@ -103,5 +112,4 @@ export const stepForm = [
         ]
     }
 ]
-
 

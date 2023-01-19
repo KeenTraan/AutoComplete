@@ -6,6 +6,8 @@ const MultiStepForm = {
     },
     getters: {
         getCities: (state) => state.cities,
+        // getCities: (state) => console.log(state),
+
     },
     mutations: {
         SET_CITIES: (state, cities) => {

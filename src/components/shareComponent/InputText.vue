@@ -30,12 +30,14 @@ export default {
     },
     inputValue: {
       type: String,
+      required: true,
     },
     id: {
       type: String,
     },
     required: {
       type: Boolean,
+      required: true,
     },
   },
 };

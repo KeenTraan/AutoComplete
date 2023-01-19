@@ -1,8 +1,14 @@
 <template>
   <div class="description-layout">
     <div class="description">
-      <p class="text-label">{{ form.label }}</p>
-      <textarea cols="30" rows="10" class="text-content"></textarea>
+      <p class="text-label">{{ label }}</p>
+      <textarea
+        cols="30"
+        rows="10"
+        class="text-content"
+        value="inputValue"
+        @input="handleInput"
+      ></textarea>
       <p class="character">0/{{ character }}</p>
     </div>
   </div>
@@ -10,12 +16,24 @@
 
 <script>
 export default {
+  methods: {
+    handleInput(e) {
+      console.log(e.target.value);
+      this.$emit("onChangeInput", { value: e.target.value, id: this.id });
+    },
+  },
   props: {
-    form: {
-      type: Object,
+    label: {
+      type: String,
     },
     character: {
       type: Number,
+    },
+    inputValue: {
+      type: String,
+    },
+    id: {
+      type: String,
     },
   },
 };
