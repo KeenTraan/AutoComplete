@@ -1,6 +1,6 @@
 <template>
   <div class="mutiform-layout">
-    <DynamicForm :currentStep="currentStep" />
+    <DynamicForm :currentStep="currentStep"  @handleBtn="handleBtn"/>
   </div>
 </template>
 
@@ -11,6 +11,11 @@ export default {
     return {
       currentStep: 1,
     };
+  },
+  methods: {
+    handleBtn() {
+      this.currentStep ++;
+    }
   },
   components: {
     DynamicForm,

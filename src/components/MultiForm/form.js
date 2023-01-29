@@ -22,7 +22,7 @@ export const stepForm = [
             {
                 id: uuidv4(),
                 label: 'Thành Phố',
-                type: 'dropdown',
+                type: 'select',
                 key: 'address',
                 dropdown_type: 'chosen_city',
                 required: true,
@@ -58,8 +58,8 @@ export const stepForm = [
         layout: [
             {
                 id: uuidv4(),
-                label: 'Thông tin cá nhân',
-                isDone: true,
+                label: '',
+                type: ''
             },
             {
                 id: uuidv4(),

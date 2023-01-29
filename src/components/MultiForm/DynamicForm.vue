@@ -2,7 +2,9 @@
   <div class="dynamic-layout">
     <StepProgress :stepProgress="stepForm" :currentStep="currentStep" />
     <FormCard :dataForm="stepForm[0]" v-if="currentStep === 1" />
-    <NextButtonComp />
+    <FormCard :dataForm="stepForm[1]" v-if="currentStep === 2" />
+    <FormCard :dataForm="stepForm[2]" v-if="currentStep === 3"/>
+    <NextButtonComp @handleClick="handleClick" />
   </div>
 </template>
 
@@ -10,12 +12,17 @@
 import StepProgress from "@/components/MultiForm/StepProgress.vue";
 import FormCard from "@/components/MultiForm/FormCard.vue";
 import NextButtonComp from "@/components/MultiForm/button/NextButtonComp.vue";
-import { stepForm} from "@/components/MultiForm/form";
+import { stepForm } from "@/components/MultiForm/form";
 export default {
   data() {
     return {
       stepForm,
     };
+  },
+  methods: {
+    handleClick() {
+      this.$emit('handleBtn')
+    }
   },
   props: {
     currentStep: {
@@ -26,7 +33,7 @@ export default {
   components: {
     StepProgress,
     FormCard,
-    NextButtonComp
+    NextButtonComp,
   },
   computed: {
     getCurrentForm() {

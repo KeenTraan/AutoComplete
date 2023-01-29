@@ -3,10 +3,16 @@ const MultiStepForm = {
     namespaced: true,
     state: {
         cities: [],
+        jobPosition: [
+            {id: 1, name: 'Software Developer(FE)'},
+            {id: 2, name: 'Software Developer(BE)'},
+            {id: 3, name: 'Tester'},
+            {id: 4, name: 'Business Analyst'}
+        ]
     },
     getters: {
         getCities: (state) => state.cities,
-        // getCities: (state) => console.log(state),
+        getPosition: (state) => state.jobPosition,
 
     },
     mutations: {

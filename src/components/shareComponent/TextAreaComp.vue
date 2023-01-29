@@ -18,7 +18,6 @@
 export default {
   methods: {
     handleInput(e) {
-      console.log(e.target.value);
       this.$emit("onChangeInput", { value: e.target.value, id: this.id });
     },
   },

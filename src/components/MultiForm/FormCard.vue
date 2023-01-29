@@ -19,11 +19,11 @@
           @onChangeInput="onChangeInput"
         />
         <SelectComp
-          v-if="form.type === 'dropdown'"
+          v-if="form.type === 'select'"
           :label="form.label"
           :data="cities"
         />
-        <JobPositionComp
+        <SearchComp
           v-if="form.type === 'position'"
           :label="form.label"
           :description="form.description"
@@ -45,7 +45,7 @@
 <script>
 import InputText from "@/components/shareComponent/InputText.vue";
 import InputdateComp from "@/components/shareComponent/InputDateComp.vue";
-import JobPositionComp from "../shareComponent/JobPositionComp.vue";
+import SearchComp from "../shareComponent/SeachComp.vue";
 import SelectComp from "@/components/shareComponent/SelectComp.vue";
 import TextAreaComp from "../shareComponent/TextAreaComp.vue";
 import DropzoneComp from "../shareComponent/DropzoneComp.vue";
@@ -61,7 +61,7 @@ export default {
     InputText,
     InputdateComp,
     SelectComp,
-    JobPositionComp,
+    SearchComp,
     TextAreaComp,
     DropzoneComp,
   },
