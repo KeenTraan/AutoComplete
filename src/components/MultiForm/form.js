@@ -58,28 +58,29 @@ export const stepForm = [
         layout: [
             {
                 id: uuidv4(),
-                label: '',
-                type: ''
+                type: 'select',
+                key: 'positions',
+                value: ''
             },
             {
                 id: uuidv4(),
-                label: 'Kinh nghiệm làm việc',
-                isDone: true,
+                label: 'Vị trí từng làm',
+                type: 'text',
+                key: 'worked_posiotion',
+                value: ''
             },
             {
                 id: uuidv4(),
-                label: 'Xác nhận thông tin',
-                isDone: true,
+                label: 'Thời gian làm việc',
+                key: 'working_time',
+                type: "working_time"
             },
             {
                 id: uuidv4(),
-                label: 'Xác nhận thông tin',
-                isDone: true,
-            }, {
-                id: uuidv4(),
-                label: 'Xác nhận thông tin',
-                isDone: true,
-            },
+                label: 'Mô tả công việc',
+                key: 'description',
+                type: 'textarea',
+            }
         ]
     },
     {
@@ -87,26 +88,14 @@ export const stepForm = [
         layout: [
             {
                 id: uuidv4(),
-                label: 'Thông tin cá nhân',
+                label: 'Lý do muốn ứng tuyển vào công ty',
+                type: 'textarea',
                 isDone: true,
             },
             {
                 id: uuidv4(),
-                label: 'Kinh nghiệm làm việc',
-                isDone: true,
-            },
-            {
-                id: uuidv4(),
-                label: 'Xác nhận thông tin',
-                isDone: true,
-            },
-            {
-                id: uuidv4(),
-                label: 'Xác nhận thông tin',
-                isDone: true,
-            }, {
-                id: uuidv4(),
-                label: 'Xác nhận thông tin',
+                label: 'Mức lương mong muốn',
+                type: 'salary',
                 isDone: true,
             },
         ]

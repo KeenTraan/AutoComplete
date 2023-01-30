@@ -18,10 +18,11 @@
           :required="form.required"
           @onChangeInput="onChangeInput"
         />
+        <WorkingTime :label="form.label" :id="form.key" />
         <SelectComp
           v-if="form.type === 'select'"
           :label="form.label"
-          :data="cities"
+          :data="data"
         />
         <SearchComp
           v-if="form.type === 'position'"
@@ -49,12 +50,15 @@ import SearchComp from "../shareComponent/SeachComp.vue";
 import SelectComp from "@/components/shareComponent/SelectComp.vue";
 import TextAreaComp from "../shareComponent/TextAreaComp.vue";
 import DropzoneComp from "../shareComponent/DropzoneComp.vue";
-import { mapGetters, mapActions } from "vuex";
+import WorkingTime from "../shareComponent/WorkingTime.vue";
 export default {
   name: "FormCard",
   props: {
     dataForm: {
       type: Object,
+    },
+    data: {
+      type: Array,
     },
   },
   components: {
@@ -64,19 +68,13 @@ export default {
     SearchComp,
     TextAreaComp,
     DropzoneComp,
-  },
-  computed: {
-    ...mapGetters("form", { cities: "getCities" }),
+    WorkingTime,
   },
   methods: {
-    ...mapActions("form", ["fetchCities"]),
     onChangeInput({ value, id }) {
       const data = this.dataForm.layout.find((item) => item.key === id);
       data.value = value;
     },
-  },
-  created() {
-    this.fetchCities();
   },
 };
 </script>

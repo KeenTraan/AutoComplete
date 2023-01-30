@@ -62,6 +62,10 @@ export default {
     outline: none;
     resize: none;
   }
+  .text-content:focus {
+    border: none;
+    outline: 1px solid skyblue;
+  }
   .character {
     margin-top: 10px;
   }
