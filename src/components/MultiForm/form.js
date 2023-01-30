@@ -33,7 +33,7 @@ export const stepForm = [
                 label: 'Vị trí làm việc',
                 description: 'Có thể chọn nhiều vị trí làm việc mà bạn muốn làm việc',
                 required: true,
-                type: 'position',
+                type: 'input_search',
                 value: '',
                 key: 'job'
             },
@@ -49,7 +49,7 @@ export const stepForm = [
                 id: uuidv4(),
                 label: 'Ảnh cá nhân',
                 required: true,
-                type: 'Drop_and_Drag',
+                type: 'input_multi_file',
                 value: {}
             },
         ]
@@ -73,8 +73,8 @@ export const stepForm = [
             {
                 id: uuidv4(),
                 label: 'Thời gian làm việc',
-                key: 'working_time',
-                type: "working_time",
+                key: 'input_range_time',
+                type: "input_range_time",
                 value: ''
             },
             {

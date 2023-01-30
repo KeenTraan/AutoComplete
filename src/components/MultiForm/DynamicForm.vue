@@ -2,7 +2,11 @@
   <div class="dynamic-layout">
     <StepProgress :stepProgress="stepForm" :currentStep="currentStep" />
     <FormCard :dataForm="stepForm[0]" v-if="currentStep === 1" :data="cities" />
-    <FormCard :dataForm="stepForm[1]" v-if="currentStep === 2" />
+    <FormCard
+      :dataForm="stepForm[1]"
+      v-if="currentStep === 2"
+      :data="jobPosition"
+    />
     <FormCard :dataForm="stepForm[2]" v-if="currentStep === 3" />
     <NextButtonComp @handleClick="handleClick" :disabled="isDisabled" />
   </div>
@@ -42,7 +46,7 @@ export default {
     NextButtonComp,
   },
   computed: {
-    ...mapGetters("form", { cities: "getCities" }),
+    ...mapGetters("form", { cities: "getCities", jobPosition: "getPosition" }),
     getCurrentForm() {
       return this.stepForm[this.currentStep];
     },

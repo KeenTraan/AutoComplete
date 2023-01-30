@@ -19,7 +19,7 @@
           @onChangeInput="onChangeInput"
         />
         <WorkingTime
-          v-if="form.type === 'working_time'"
+          v-if="form.type === 'input_range_time'"
           :label="form.label"
           :id="form.key"
         />
@@ -29,7 +29,7 @@
           :data="data"
         />
         <SearchComp
-          v-if="form.type === 'position'"
+          v-if="form.type === 'input_search'"
           :label="form.label"
           :description="form.description"
         />
@@ -42,7 +42,7 @@
           :id="form.key"
           @onChangeInput="onChangeInput"
         />
-        <DropzoneComp :form="form" v-if="form.type === 'Drop_and_Drag'" />
+        <DropzoneComp :form="form" v-if="form.type === 'input_multi_file'" />
         <SalaryComp
           v-if="form.type === 'salary'"
           :label="form.label"

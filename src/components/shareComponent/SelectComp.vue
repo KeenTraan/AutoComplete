@@ -3,8 +3,8 @@
     <div>
       <p class="input-text">{{ label }}</p>
       <select class="select-input">
-        <option v-for="cities in data" :key="cities.code">
-          {{ cities.name }}
+        <option v-for="item in data" :key="item.code || item.id">
+          {{ item.name }}
         </option>
       </select>
     </div>
@@ -19,6 +19,7 @@ export default {
     },
     data: {
       type: Array,
+      default: () => [],
     },
   },
 };
