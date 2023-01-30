@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const stepForm = [
     {
         label: "Thông tin",
+        isActive: true,
         layout: [
             {
                 id: uuidv4(),
@@ -56,6 +57,7 @@ export const stepForm = [
     },
     {
         label: "Kinh nghiệm làm việc",
+        isActive: false,
         layout: [
             {
                 id: uuidv4(),
@@ -89,17 +91,20 @@ export const stepForm = [
     },
     {
         label: "Xác nhận thông tin",
+        isActive: false,
         layout: [
             {
                 id: uuidv4(),
                 label: 'Lý do muốn ứng tuyển vào công ty',
                 type: 'textarea',
+                value: ''
             },
             {
                 id: uuidv4(),
                 label: 'Mức lương mong muốn',
                 type: 'salary',
-                required: true
+                required: true,
+                value: ''
             },
         ]
     }

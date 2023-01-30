@@ -25,8 +25,11 @@
         />
         <SelectComp
           v-if="form.type === 'select'"
+          :inputValue="form.value"
+          :id="form.key"
           :label="form.label"
           :data="data"
+          @handleSelect="onChangeInput"
         />
         <SearchComp
           v-if="form.type === 'input_search'"

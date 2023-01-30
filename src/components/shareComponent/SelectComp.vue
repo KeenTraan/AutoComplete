@@ -2,8 +2,8 @@
   <div class="select-layout">
     <div>
       <p class="input-text">{{ label }}</p>
-      <select class="select-input">
-        <option v-for="item in data" :key="item.code || item.id">
+      <select class="select-input" @change="onChange">
+        <option v-for="item in data" :key="item.code || item.id" :value="value">
           {{ item.name }}
         </option>
       </select>
@@ -13,6 +13,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      value: "",
+    };
+  },
   props: {
     label: {
       type: String,
@@ -20,6 +25,28 @@ export default {
     data: {
       type: Array,
       default: () => [],
+    },
+    inputValue: {
+      type: String,
+      required: true,
+    },
+    id: {
+      type: String,
+    },
+  },
+  watch: {
+    inputValue: {
+      handler(value) {
+        this.value = value;
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+  methods: {
+    onChange(e) {
+      var value = e.target.options[e.target.options.selectedIndex].text;
+      this.$emit("handleSelect", { id: this.id, value: value });
     },
   },
 };

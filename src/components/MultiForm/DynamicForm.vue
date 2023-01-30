@@ -8,7 +8,12 @@
       :data="jobPosition"
     />
     <FormCard :dataForm="stepForm[2]" v-if="currentStep === 3" />
-    <NextButtonComp @handleClick="handleClick" :disabled="isDisabled" />
+    <NextButtonComp
+      @handleClick="handleClick"
+      :disabled="isDisabled"
+      v-if="currentStep < 3"
+    />
+    <SubmitButtonComp :currentStep="currentStep" />
   </div>
 </template>
 
@@ -18,6 +23,7 @@ import FormCard from "@/components/MultiForm/FormCard.vue";
 import NextButtonComp from "@/components/MultiForm/button/NextButtonComp.vue";
 import { stepForm } from "@/components/MultiForm/form";
 import { mapActions, mapGetters } from "vuex";
+import SubmitButtonComp from "./button/SubmitButtonComp.vue";
 export default {
   data() {
     return {
@@ -44,6 +50,7 @@ export default {
     StepProgress,
     FormCard,
     NextButtonComp,
+    SubmitButtonComp,
   },
   computed: {
     ...mapGetters("form", { cities: "getCities", jobPosition: "getPosition" }),

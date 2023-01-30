@@ -14,7 +14,7 @@
         :key="step.id"
         class="stepper-item"
       >
-        <div class="stepper-item-counter">
+        <div class="stepper-item-counter" :class="{ active: step.isActive }">
           <span class="number">
             {{ index + 1 }}
           </span>
@@ -29,9 +29,6 @@
 
 <script>
 export default {
-  data() {
-    return {};
-  },
   props: {
     stepProgress: {
       type: Array,
@@ -42,7 +39,6 @@ export default {
       default: 0,
     },
   },
-  methods: {},
   computed: {
     widthProgess() {
       return {
@@ -88,7 +84,6 @@ export default {
         left: 0;
         height: 100%;
         width: 0%;
-        // background-color: #617d98;
         transition: all 500ms ease;
         &-hightlight {
           position: absolute;
@@ -132,6 +127,9 @@ export default {
       font-size: 14px;
       line-height: 24px;
     }
+  }
+  .active {
+    background-color: #617d98;
   }
 }
 </style>
