@@ -40,7 +40,7 @@ export const stepForm = [
             {
                 id: uuidv4(),
                 label: 'Mô tả về bản thân',
-                required: true,
+                required: false,
                 type: 'textarea',
                 value: '',
                 key: 'description'
@@ -49,7 +49,8 @@ export const stepForm = [
                 id: uuidv4(),
                 label: 'Ảnh cá nhân',
                 required: true,
-                type: 'Drop_and_Drag'
+                type: 'Drop_and_Drag',
+                value: {}
             },
         ]
     },
@@ -73,13 +74,16 @@ export const stepForm = [
                 id: uuidv4(),
                 label: 'Thời gian làm việc',
                 key: 'working_time',
-                type: "working_time"
+                type: "working_time",
+                value: ''
             },
             {
                 id: uuidv4(),
                 label: 'Mô tả công việc',
                 key: 'description',
                 type: 'textarea',
+                required: false,
+                value: ''
             }
         ]
     },
@@ -90,13 +94,12 @@ export const stepForm = [
                 id: uuidv4(),
                 label: 'Lý do muốn ứng tuyển vào công ty',
                 type: 'textarea',
-                isDone: true,
             },
             {
                 id: uuidv4(),
                 label: 'Mức lương mong muốn',
                 type: 'salary',
-                isDone: true,
+                required: true
             },
         ]
     }

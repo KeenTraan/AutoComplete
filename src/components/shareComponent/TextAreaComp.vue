@@ -1,20 +1,23 @@
 <template>
-  <div class="description-layout">
-    <div class="description">
+  <div class="description">
+    <div class="title">
+      <CheckrequireComp v-if="required === true" />
       <p class="text-label">{{ label }}</p>
-      <textarea
-        cols="30"
-        rows="10"
-        class="text-content"
-        value="inputValue"
-        @input="handleInput"
-      ></textarea>
-      <p class="character">0/{{ character }}</p>
     </div>
+    <textarea
+      cols="30"
+      rows="10"
+      class="text-content"
+      value="inputValue"
+      @input="handleInput"
+    ></textarea>
+    <p class="character">0/{{ character }}</p>
   </div>
 </template>
 
 <script>
+import CheckrequireComp from "./CheckrequireComp.vue";
+
 export default {
   methods: {
     handleInput(e) {
@@ -24,9 +27,11 @@ export default {
   props: {
     label: {
       type: String,
+      required: true,
     },
     character: {
       type: Number,
+      required: false,
     },
     inputValue: {
       type: String,
@@ -34,15 +39,22 @@ export default {
     id: {
       type: String,
     },
+    required: {
+      type: Boolean,
+      required: false,
+    },
   },
+  components: { CheckrequireComp },
 };
 </script>
 
 <style scoped lang="scss">
-.description-layout {
-  .description {
+.description {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  .title {
     display: flex;
-    flex-direction: column;
   }
   .text-label {
     font-weight: 400;

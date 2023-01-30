@@ -1,9 +1,9 @@
 <template>
-  <div class="input-field-layout">
+  <div class="input-text-layout">
     <div>
       <div class="title">
         <CheckrequireComp />
-        <p class="form-label">{{ label }}</p>
+        <p>{{ label }}</p>
       </div>
       <input type="text" :value="inputValue" @input="handleInput" />
     </div>
@@ -27,6 +27,7 @@ export default {
   props: {
     label: {
       type: String,
+      required: true,
     },
     inputValue: {
       type: String,
@@ -37,21 +38,19 @@ export default {
     },
     required: {
       type: Boolean,
-      required: true,
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.input-field-layout {
+.input-text-layout {
   width: 528px;
   height: 66px;
+  margin-top: 24px;
   .title {
     display: flex;
     margin-bottom: 6px;
-  }
-  .form-label {
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;

@@ -1,12 +1,18 @@
 <template>
-  <button class="btn" @click="onClick">Tiếp</button>
+  <button :disabled="!disabled" class="btn" @click="onClick">Tiếp</button>
 </template>
 
 <script>
 export default {
+  props: {
+    disabled: {
+      type: Boolean,
+      default: true,
+    },
+  },
   methods: {
     onClick() {
-      this.$emit('handleClick')
+      this.$emit("handleClick");
     },
   },
 };
@@ -26,5 +32,10 @@ export default {
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
+}
+.btn:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+  background: #dcdcdc;
 }
 </style>

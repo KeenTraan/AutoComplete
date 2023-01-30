@@ -1,6 +1,10 @@
 <template>
   <div class="mutiform-layout">
-    <DynamicForm :currentStep="currentStep"  @handleBtn="handleBtn"/>
+    <DynamicForm
+      :currentStep="currentStep"
+      @handleBtn="handleBtn"
+      :isDisabled="isDisabled"
+    />
   </div>
 </template>
 
@@ -10,12 +14,16 @@ export default {
   data() {
     return {
       currentStep: 1,
+      isDisabled: true,
     };
   },
   methods: {
     handleBtn() {
-      this.currentStep ++;
-    }
+      if (this.currentStep === 2) {
+        this.isDisabled = false;
+      }
+      this.currentStep++;
+    },
   },
   components: {
     DynamicForm,

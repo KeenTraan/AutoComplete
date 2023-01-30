@@ -3,9 +3,14 @@
     <div>
       <div class="title">
         <CheckrequireComp />
-        <p class="form-label">{{ label }}</p>
+        <p>{{ label }}</p>
       </div>
-      <input type="date" value="inputValue" @change="handleInputDate"/>
+      <input
+        class="input-date"
+        type="date"
+        value="inputValue"
+        @change="handleInputDate"
+      />
     </div>
   </div>
 </template>
@@ -17,7 +22,7 @@ export default {
   props: {
     label: {
       type: String,
-      default: ""
+      default: "",
     },
     inputValue: {
       type: String,
@@ -30,12 +35,12 @@ export default {
     required: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   methods: {
     handleInputDate(e) {
-      this.$emit("onChangeInput", {value: e.target.value, id: this.id});
-    }
+      this.$emit("onChangeInput", { value: e.target.value, id: this.id });
+    },
   },
 };
 </script>
@@ -47,12 +52,15 @@ export default {
   .title {
     display: flex;
     margin-bottom: 6px;
-  }
-  .form-label {
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     color: #333333;
+  }
+  .input-date {
+    padding: 6px;
+    font-weight: 400;
+    font-size: 14px;
   }
   input[type="date"] {
     outline: none;

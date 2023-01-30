@@ -4,7 +4,7 @@
     <FormCard :dataForm="stepForm[0]" v-if="currentStep === 1" :data="cities" />
     <FormCard :dataForm="stepForm[1]" v-if="currentStep === 2" />
     <FormCard :dataForm="stepForm[2]" v-if="currentStep === 3" />
-    <NextButtonComp @handleClick="handleClick" />
+    <NextButtonComp @handleClick="handleClick" :disabled="isDisabled" />
   </div>
 </template>
 
@@ -29,6 +29,10 @@ export default {
   props: {
     currentStep: {
       type: Number,
+      required: true,
+    },
+    isDisabled: {
+      type: Boolean,
       required: true,
     },
   },

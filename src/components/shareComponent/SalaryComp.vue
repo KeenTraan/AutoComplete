@@ -1,23 +1,25 @@
 <template>
-  <div class="working-time-layout">
+  <div class="salary-layout">
     <div class="title">
       <CheckrequireComp />
       <p>{{ label }}</p>
     </div>
-    <div class="date-time">
-      <input class="input-date" type="date" />
-      <p class="line">-</p>
-      <input class="input-date" type="date" />
+    <div class="content">
+      <input type="number" />
+      <p>{{ currency }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import CheckrequireComp from "./CheckrequireComp.vue";
-
 export default {
   props: {
     label: {
+      type: String,
+      default: "",
+    },
+    currency: {
       type: String,
       required: true,
     },
@@ -27,8 +29,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.working-time-layout {
-  margin-top: 24px;
+.salary-layout {
   .title {
     display: flex;
     margin-bottom: 6px;
@@ -36,24 +37,27 @@ export default {
     font-size: 14px;
     line-height: 20px;
   }
-  .date-time {
+  .content {
     display: flex;
-    gap: 18px;
     align-items: center;
-    width: 284px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
     height: 40px;
-    .input-date {
-      padding: 4px;
-      width: 118px;
-      height: 40px;
-      border: 1px solid #dcdcdc;
-      border-radius: 2px;
-      font-weight: 400;
-      font-size: 14px;
-    }
-    .line {
-      color: #bfbfbf;
-    }
+    padding: 10px 8px;
   }
+  input {
+    background: #ffffff;
+    border: none;
+    margin-right: 10px;
+  }
+}
+input:focus {
+  outline: 1px solid skyblue;
+  border-radius: 2px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 </style>

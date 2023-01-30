@@ -18,7 +18,11 @@
           :required="form.required"
           @onChangeInput="onChangeInput"
         />
-        <WorkingTime :label="form.label" :id="form.key" />
+        <WorkingTime
+          v-if="form.type === 'working_time'"
+          :label="form.label"
+          :id="form.key"
+        />
         <SelectComp
           v-if="form.type === 'select'"
           :label="form.label"
@@ -31,6 +35,7 @@
         />
         <TextAreaComp
           v-if="form.type === 'textarea'"
+          :required="form.required"
           :label="form.label"
           :inputValue="form.value"
           :character="1000"
@@ -38,6 +43,13 @@
           @onChangeInput="onChangeInput"
         />
         <DropzoneComp :form="form" v-if="form.type === 'Drop_and_Drag'" />
+        <SalaryComp
+          v-if="form.type === 'salary'"
+          :label="form.label"
+          :inputValue="form.value"
+          :id="form.key"
+          :currency="CURRENCY.VND"
+        />
       </div>
     </div>
   </div>
@@ -51,7 +63,14 @@ import SelectComp from "@/components/shareComponent/SelectComp.vue";
 import TextAreaComp from "../shareComponent/TextAreaComp.vue";
 import DropzoneComp from "../shareComponent/DropzoneComp.vue";
 import WorkingTime from "../shareComponent/WorkingTime.vue";
+import SalaryComp from "../shareComponent/SalaryComp.vue";
+import { CURRENCY } from "@/constant/Form";
 export default {
+  data() {
+    return {
+      CURRENCY: CURRENCY,
+    };
+  },
   name: "FormCard",
   props: {
     dataForm: {
@@ -69,6 +88,7 @@ export default {
     TextAreaComp,
     DropzoneComp,
     WorkingTime,
+    SalaryComp,
   },
   methods: {
     onChangeInput({ value, id }) {
