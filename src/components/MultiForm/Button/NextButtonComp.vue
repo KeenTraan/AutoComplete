@@ -1,15 +1,9 @@
 <template>
-  <button :disabled="!disabled" class="btn" @click="onClick">Tiếp</button>
+  <button class="btn" @click="onClick">Tiếp</button>
 </template>
 
 <script>
 export default {
-  props: {
-    disabled: {
-      type: Boolean,
-      default: true,
-    },
-  },
   methods: {
     onClick() {
       this.$emit("handleClick");

@@ -43,6 +43,7 @@ export const stepForm = [
                 label: 'Mô tả về bản thân',
                 required: false,
                 type: 'textarea',
+                wordLimit: 1000,
                 value: '',
                 key: 'description'
             },
@@ -77,13 +78,14 @@ export const stepForm = [
                 label: 'Thời gian làm việc',
                 key: 'input_range_time',
                 type: "input_range_time",
-                value: ''
+                value: { from: "", to: "" }
             },
             {
                 id: uuidv4(),
                 label: 'Mô tả công việc',
                 key: 'description',
                 type: 'textarea',
+                wordLimit: 1000,
                 required: false,
                 value: ''
             }

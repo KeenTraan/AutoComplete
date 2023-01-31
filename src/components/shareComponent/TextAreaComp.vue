@@ -35,9 +35,11 @@ export default {
     },
     inputValue: {
       type: String,
+      required: true,
     },
     id: {
       type: String,
+      required: true,
     },
     required: {
       type: Boolean,

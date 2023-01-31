@@ -1,17 +1,27 @@
 <template>
   <div class="dynamic-layout">
     <StepProgress :stepProgress="stepForm" :currentStep="currentStep" />
-    <FormCard :dataForm="stepForm[0]" v-if="currentStep === 1" :data="cities" />
+    <FormCard
+      :dataForm="stepForm[0]"
+      v-if="currentStep === 1"
+      :data="cities"
+      :currentStep="currentStep"
+    />
     <FormCard
       :dataForm="stepForm[1]"
       v-if="currentStep === 2"
       :data="jobPosition"
+      :currentStep="currentStep"
     />
-    <FormCard :dataForm="stepForm[2]" v-if="currentStep === 3" />
-    <NextButtonComp
-      @handleClick="handleClick"
-      :disabled="isDisabled"
-      v-if="currentStep < 3"
+    <FormCard
+      :dataForm="stepForm[2]"
+      v-if="currentStep === 3"
+      :currentStep="currentStep"
+    />
+    <NextButtonComp @handleClick="handleClick" v-if="currentStep < 3" />
+    <BackButtonComp
+      v-if="currentStep > 1 && currentStep < 3"
+      @onClick="handleBackBtn"
     />
     <SubmitButtonComp :currentStep="currentStep" />
   </div>
@@ -24,6 +34,7 @@ import NextButtonComp from "@/components/MultiForm/button/NextButtonComp.vue";
 import { stepForm } from "@/components/MultiForm/form";
 import { mapActions, mapGetters } from "vuex";
 import SubmitButtonComp from "./button/SubmitButtonComp.vue";
+import BackButtonComp from "./button/BackButtonComp.vue";
 export default {
   data() {
     return {
@@ -35,14 +46,13 @@ export default {
     handleClick() {
       this.$emit("handleBtn");
     },
+    handleBackBtn() {
+      this.$emit("handleBackBtn");
+    },
   },
   props: {
     currentStep: {
       type: Number,
-      required: true,
-    },
-    isDisabled: {
-      type: Boolean,
       required: true,
     },
   },
@@ -51,6 +61,7 @@ export default {
     FormCard,
     NextButtonComp,
     SubmitButtonComp,
+    BackButtonComp,
   },
   computed: {
     ...mapGetters("form", { cities: "getCities", jobPosition: "getPosition" }),

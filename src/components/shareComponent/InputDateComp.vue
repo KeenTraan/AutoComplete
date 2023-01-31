@@ -9,7 +9,7 @@
         class="input-date"
         type="date"
         value="inputValue"
-        @change="handleInputDate"
+        @input="handleInputDate"
       />
     </div>
   </div>
@@ -30,7 +30,7 @@ export default {
     },
     id: {
       type: String,
-      default: "",
+      required: true,
     },
     required: {
       type: Boolean,

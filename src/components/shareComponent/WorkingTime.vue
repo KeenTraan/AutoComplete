@@ -5,23 +5,66 @@
       <p>{{ label }}</p>
     </div>
     <div class="date-time">
-      <input class="input-date" type="date" />
+      <input
+        class="input-date"
+        type="date"
+        :value="inputValue.from"
+        @input="handleInput"
+      />
       <p class="line">-</p>
-      <input class="input-date" type="date" />
+      <input
+        class="input-date"
+        type="date"
+        :value="inputValue.to"
+        @input="handleInput"
+      />
     </div>
+    <!-- {{ show }} -->
   </div>
 </template>
 
 <script>
 import CheckrequireComp from "./CheckrequireComp.vue";
-
 export default {
+  data() {
+    return {
+      value: {
+        from: "",
+        to: "",
+      },
+    };
+  },
   props: {
     label: {
       type: String,
       required: true,
     },
+    inputValue: {
+      type: Object,
+      required: true,
+    },
+    id: {
+      type: String,
+      required: true,
+    },
   },
+  methods: {
+    handleInput(e) {
+      this.value.from = e.target.value;
+      this.value.to = e.target.value;
+      console.log(this.value);
+      // this.$emit("onChangeInput", { value: value, id: this.id });
+    },
+    // handleInputTo(e) {
+    //   this.value.to = e.target.value;
+    //   console.log(this.value);
+    // },
+  },
+  // computed: {
+  //   show() {
+  //     return console.log(this.value);
+  //   },
+  // },
   components: { CheckrequireComp },
 };
 </script>

@@ -3,7 +3,7 @@
     <DynamicForm
       :currentStep="currentStep"
       @handleBtn="handleBtn"
-      :isDisabled="isDisabled"
+      @handleBackBtn="handleBackBtn"
     />
   </div>
 </template>
@@ -17,17 +17,16 @@ export default {
     return {
       stepForm,
       currentStep: 1,
-      isDisabled: true,
     };
   },
   methods: {
     handleBtn() {
-      if (this.currentStep > 2) {
-        this.isDisabled = false;
-      } else {
-        this.currentStep++;
-        this.stepForm[this.currentStep - 1].isActive = true;
-      }
+      this.currentStep++;
+      this.stepForm[this.currentStep - 1].isActive = true;
+    },
+    handleBackBtn() {
+      this.currentStep--;
+      this.stepForm[this.currentStep].isActive = false;
     },
   },
   components: {

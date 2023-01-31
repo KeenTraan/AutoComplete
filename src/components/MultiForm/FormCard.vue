@@ -22,6 +22,7 @@
           v-if="form.type === 'input_range_time'"
           :label="form.label"
           :id="form.key"
+          :inputValue="form.value"
         />
         <SelectComp
           v-if="form.type === 'select'"
@@ -41,7 +42,7 @@
           :required="form.required"
           :label="form.label"
           :inputValue="form.value"
-          :character="1000"
+          :character="form.wordLimit"
           :id="form.key"
           @onChangeInput="onChangeInput"
         />
@@ -55,6 +56,7 @@
         />
       </div>
     </div>
+    <AddButtonComp v-if="currentStep === 2" />
   </div>
 </template>
 
@@ -68,6 +70,7 @@ import DropzoneComp from "../shareComponent/DropzoneComp.vue";
 import WorkingTime from "../shareComponent/WorkingTime.vue";
 import SalaryComp from "../shareComponent/SalaryComp.vue";
 import { CURRENCY } from "@/constant/Form";
+import AddButtonComp from "./button/AddButtonComp.vue";
 export default {
   data() {
     return {
@@ -78,9 +81,15 @@ export default {
   props: {
     dataForm: {
       type: Object,
+      default: () => {},
     },
     data: {
       type: Array,
+      default: () => [],
+    },
+    currentStep: {
+      type: Number,
+      required: true,
     },
   },
   components: {
@@ -92,6 +101,7 @@ export default {
     DropzoneComp,
     WorkingTime,
     SalaryComp,
+    AddButtonComp,
   },
   methods: {
     onChangeInput({ value, id }) {
