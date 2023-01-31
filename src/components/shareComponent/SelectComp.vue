@@ -3,7 +3,12 @@
     <div>
       <p class="input-text">{{ label }}</p>
       <select class="select-input" @input="onChange">
-        <option v-for="item in data" :key="item.code || item.id" :value="value">
+        <option
+          v-for="item in data"
+          :key="item.code || item.id"
+          :value="item.name"
+          :selected="false"
+        >
           {{ item.name }}
         </option>
       </select>

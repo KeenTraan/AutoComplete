@@ -1,0 +1,10 @@
+export default {
+    // mixins
+    // components
+    // props
+    // data
+    // computed
+    // watch
+    // hooks -> created -> mounted
+    // methods
+}

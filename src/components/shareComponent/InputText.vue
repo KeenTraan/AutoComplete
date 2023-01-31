@@ -5,7 +5,12 @@
         <CheckrequireComp v-if="required" />
         <p>{{ label }}</p>
       </div>
-      <input type="text" :value="inputValue" @input="handleInput" />
+      <input
+        type="text"
+        :value="inputValue"
+        @input="handleInput"
+        :class="{ error: valid }"
+      />
       <p class="error-message">{{ errorMessage }}</p>
     </div>
   </div>
@@ -24,10 +29,7 @@ export default {
       if (this.inputValue.length > this.maxLength) {
         this.errorMessage = "Invalid input";
       }
-      if (
-        this.inputValue.length < this.maxLength ||
-        this.inputValue.length == 0
-      ) {
+      if (this.inputValue.length < this.maxLength) {
         this.errorMessage = "";
       }
       this.$emit("handleInput", {
