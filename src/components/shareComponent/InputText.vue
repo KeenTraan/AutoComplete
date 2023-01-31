@@ -6,6 +6,7 @@
         <p>{{ label }}</p>
       </div>
       <input type="text" :value="inputValue" @input="handleInput" />
+      <p class="error-message">{{ errorMessage }}</p>
     </div>
   </div>
 </template>
@@ -13,9 +14,23 @@
 <script>
 import CheckrequireComp from "@/components/shareComponent/CheckrequireComp.vue";
 export default {
+  data() {
+    return {
+      errorMessage: "",
+    };
+  },
   methods: {
     handleInput(e) {
-      this.$emit("onChangeInput", {
+      if (this.inputValue.length > this.maxLength) {
+        this.errorMessage = "Invalid input";
+      }
+      if (
+        this.inputValue.length < this.maxLength ||
+        this.inputValue.length == 0
+      ) {
+        this.errorMessage = "";
+      }
+      this.$emit("handleInput", {
         value: e.target.value,
         id: this.id,
       });
@@ -41,6 +56,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    maxLength: {
+      type: Number,
+      required: true,
+    },
   },
 };
 </script>
@@ -48,7 +67,6 @@ export default {
 <style scoped lang="scss">
 .input-text-layout {
   width: 528px;
-  height: 66px;
   margin-top: 24px;
   .title {
     display: flex;
@@ -69,6 +87,12 @@ export default {
   input:focus {
     border: none;
     outline: 1px solid skyblue;
+  }
+  .error-message {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: red;
   }
 }
 </style>

@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     handleInputDate(e) {
-      this.$emit("onChangeInput", { value: e.target.value, id: this.id });
+      this.$emit("handleInput", { value: e.target.value, id: this.id });
     },
   },
 };

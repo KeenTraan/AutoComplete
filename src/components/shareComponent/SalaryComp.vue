@@ -5,7 +5,7 @@
       <p>{{ label }}</p>
     </div>
     <div class="content">
-      <input type="number" />
+      <input type="number" @input="handleInput" :value="inputValue" />
       <p>{{ currency }}</p>
     </div>
   </div>
@@ -22,6 +22,20 @@ export default {
     currency: {
       type: String,
       required: true,
+    },
+    inputValue: {
+      type: String,
+      required: true,
+    },
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    handleInput(e) {
+      const value = e.target.value;
+      this.$emit("handleInput", { value: value, id: this.id });
     },
   },
   components: { CheckrequireComp },

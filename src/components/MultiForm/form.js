@@ -9,6 +9,7 @@ export const stepForm = [
                 label: 'Họ và tên',
                 type: 'text',
                 key: 'name',
+                maxLength: 100,
                 required: true,
                 value: ''
             },
@@ -107,6 +108,7 @@ export const stepForm = [
                 id: uuidv4(),
                 label: 'Mức lương mong muốn',
                 type: 'salary',
+                key: 'salary',
                 required: true,
                 value: ''
             },

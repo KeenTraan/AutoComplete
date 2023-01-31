@@ -8,7 +8,8 @@
           :id="form.key"
           :inputValue="form.value"
           :required="form.required"
-          @onChangeInput="onChangeInput"
+          :maxLength="form.maxLength"
+          @handleInput="onChangeInput"
         />
         <InputdateComp
           v-if="form.type === 'datetime'"
@@ -16,7 +17,7 @@
           :inputValue="form.value"
           :id="form.key"
           :required="form.required"
-          @onChangeInput="onChangeInput"
+          @handleInput="onChangeInput"
         />
         <WorkingTime
           v-if="form.type === 'input_range_time'"
@@ -45,7 +46,7 @@
           :inputValue="form.value"
           :character="form.wordLimit"
           :id="form.key"
-          @onChangeInput="onChangeInput"
+          @handleInput="onChangeInput"
         />
         <DropzoneComp :form="form" v-if="form.type === 'input_multi_file'" />
         <SalaryComp
@@ -54,6 +55,7 @@
           :inputValue="form.value"
           :id="form.key"
           :currency="CURRENCY.VND"
+          @handleInput="onChangeInput"
         />
       </div>
     </div>

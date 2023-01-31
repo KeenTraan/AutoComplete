@@ -21,7 +21,7 @@ import CheckrequireComp from "./CheckrequireComp.vue";
 export default {
   methods: {
     handleInput(e) {
-      this.$emit("onChangeInput", { value: e.target.value, id: this.id });
+      this.$emit("handleInput", { value: e.target.value, id: this.id });
     },
   },
   props: {
