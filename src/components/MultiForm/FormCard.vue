@@ -23,6 +23,7 @@
           :label="form.label"
           :id="form.key"
           :inputValue="form.value"
+          @handleInput="onChangeInput"
         />
         <SelectComp
           v-if="form.type === 'select'"

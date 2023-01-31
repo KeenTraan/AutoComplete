@@ -52,7 +52,6 @@ export default {
 
 <style scoped lang="scss">
 .description {
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
   .title {

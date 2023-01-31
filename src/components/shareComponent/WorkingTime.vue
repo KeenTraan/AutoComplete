@@ -9,31 +9,22 @@
         class="input-date"
         type="date"
         :value="inputValue.from"
-        @input="handleInput"
+        @input="handleInputStart"
       />
       <p class="line">-</p>
       <input
         class="input-date"
         type="date"
         :value="inputValue.to"
-        @input="handleInput"
+        @input="handleInputEnd"
       />
     </div>
-    <!-- {{ show }} -->
   </div>
 </template>
 
 <script>
 import CheckrequireComp from "./CheckrequireComp.vue";
 export default {
-  data() {
-    return {
-      value: {
-        from: "",
-        to: "",
-      },
-    };
-  },
   props: {
     label: {
       type: String,
@@ -49,22 +40,21 @@ export default {
     },
   },
   methods: {
-    handleInput(e) {
-      this.value.from = e.target.value;
-      this.value.to = e.target.value;
-      console.log(this.value);
-      // this.$emit("onChangeInput", { value: value, id: this.id });
+    handleInputStart(e) {
+      const value = e.target.value;
+      this.$emit("handleInput", {
+        value: { from: value, to: this.inputValue.to },
+        id: this.id,
+      });
     },
-    // handleInputTo(e) {
-    //   this.value.to = e.target.value;
-    //   console.log(this.value);
-    // },
+    handleInputEnd(e) {
+      const value = e.target.value;
+      this.$emit("handleInput", {
+        value: { from: this.inputValue.from, to: value },
+        id: this.id,
+      });
+    },
   },
-  // computed: {
-  //   show() {
-  //     return console.log(this.value);
-  //   },
-  // },
   components: { CheckrequireComp },
 };
 </script>

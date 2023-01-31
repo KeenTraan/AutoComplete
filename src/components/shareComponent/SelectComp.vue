@@ -2,7 +2,7 @@
   <div class="select-layout">
     <div>
       <p class="input-text">{{ label }}</p>
-      <select class="select-input" @change="onChange">
+      <select class="select-input" @input="onChange">
         <option v-for="item in data" :key="item.code || item.id" :value="value">
           {{ item.name }}
         </option>
@@ -63,7 +63,6 @@ export default {
     line-height: 20px;
     width: 71px;
     height: 20px;
-    margin-bottom: 4px;
   }
   .select-input {
     width: 528px;

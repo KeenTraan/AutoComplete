@@ -78,7 +78,7 @@ export const stepForm = [
                 label: 'Thời gian làm việc',
                 key: 'input_range_time',
                 type: "input_range_time",
-                value: { from: "", to: "" }
+                value: { from: '', to: '' }
             },
             {
                 id: uuidv4(),
@@ -99,6 +99,8 @@ export const stepForm = [
                 id: uuidv4(),
                 label: 'Lý do muốn ứng tuyển vào công ty',
                 type: 'textarea',
+                key: 'description',
+                wordLimit: 1000,
                 value: ''
             },
             {

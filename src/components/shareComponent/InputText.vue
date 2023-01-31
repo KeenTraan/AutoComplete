@@ -2,7 +2,7 @@
   <div class="input-text-layout">
     <div>
       <div class="title">
-        <CheckrequireComp />
+        <CheckrequireComp v-if="required" />
         <p>{{ label }}</p>
       </div>
       <input type="text" :value="inputValue" @input="handleInput" />
@@ -39,6 +39,7 @@ export default {
     },
     required: {
       type: Boolean,
+      default: true,
     },
   },
 };
