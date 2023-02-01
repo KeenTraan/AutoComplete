@@ -38,6 +38,11 @@
           v-if="form.type === 'input_search'"
           :label="form.label"
           :description="form.description"
+          :filtersItem="filtersItem"
+          :selected="selected"
+          @handleAddItem="handleAddItem"
+          @handleDeleteItem="handleDeleteItem"
+          @handleSearch="handleSearch"
         />
         <TextAreaComp
           v-if="form.type === 'textarea'"
@@ -95,6 +100,18 @@ export default {
       type: Number,
       required: true,
     },
+    position: {
+      type: Array,
+      default: () => [],
+    },
+    filtersItem: {
+      type: Array,
+      default: () => [],
+    },
+    selected: {
+      type: Array,
+      default: () => [],
+    },
   },
   components: {
     InputText,
@@ -111,6 +128,15 @@ export default {
     onChangeInput({ value, id }) {
       const data = this.dataForm.layout.find((item) => item.key === id);
       data.value = value;
+    },
+    handleAddItem(item) {
+      this.$emit("addItem", item);
+    },
+    handleDeleteItem(item) {
+      this.$emit("deleteItem", item);
+    },
+    handleSearch(keyword) {
+      this.$emit("searchItem", keyword);
     },
   },
 };

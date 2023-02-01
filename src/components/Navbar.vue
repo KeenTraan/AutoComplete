@@ -14,7 +14,7 @@ export default {
   name: "NavbarComponent",
   data() {
     return {
-       navlink: [
+      navlink: [
         { id: 1, name: "Home", path: "/" },
         { id: 2, name: "City", path: "/city" },
         { id: 3, name: "User", path: "/users" },
@@ -27,9 +27,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .nav-bar {
-  background-color:  rgb(211,211,211);
+  background-color: rgb(211, 211, 211);
   width: calc(300px - 50px);
-  height: 1200px;
+  height: 1300px;
   margin-right: 20px;
   .text {
     padding: 0 10px;
@@ -42,7 +42,7 @@ export default {
     margin-top: 20px;
     a {
       text-decoration: none;
-      color: #666666;;
+      color: #666666;
       padding: 10px;
       font-size: large;
       &.router-link-exact-active {

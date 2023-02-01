@@ -10,7 +10,13 @@
       v-if="currentStep === 1"
       :dataForm="stepForm[0]"
       :data="cities"
+      :position="jobPosition"
+      :filtersItem="filtersItem"
+      :selected="selected"
       :currentStep="currentStep"
+      @addItem="addItem"
+      @deleteItem="deleteItem"
+      @searchItem="searchItem"
     />
     <FormCard
       v-if="currentStep === 2"
@@ -44,16 +50,8 @@ export default {
   data() {
     return {
       stepForm,
+      keyWord: "",
     };
-  },
-  methods: {
-    ...mapActions("form", ["fetchCities"]),
-    handleClick() {
-      this.$emit("handleBtn");
-    },
-    handleBackBtn() {
-      this.$emit("handleBackBtn");
-    },
   },
   props: {
     currentStep: {
@@ -69,9 +67,41 @@ export default {
     BackButtonComp,
   },
   computed: {
-    ...mapGetters("form", { cities: "getCities", jobPosition: "getPosition" }),
+    ...mapGetters("form", {
+      cities: "getCities",
+      jobPosition: "getPosition",
+      selected: "getSelected",
+    }),
+    filtersItem() {
+      return this.jobPosition.filter((item) => {
+        return item.name.toLowerCase().includes(this.keyWord.toLowerCase());
+      });
+    },
     getCurrentForm() {
       return this.stepForm[this.currentStep];
+    },
+  },
+  methods: {
+    ...mapActions("form", {
+      fetchCities: "fetchCities",
+      selectedItem: "selected",
+      deletedItem: "deleted",
+    }),
+    handleClick() {
+      this.$emit("handleBtn");
+    },
+    handleBackBtn() {
+      this.$emit("handleBackBtn");
+    },
+    addItem(item) {
+      this.selectedItem(item);
+      this.keyWord = "";
+    },
+    deleteItem(item) {
+      this.deletedItem(item);
+    },
+    searchItem(keyword) {
+      this.keyWord = keyword.trim();
     },
   },
   created() {

@@ -7,6 +7,9 @@
         :placeholder="placeholder"
         :getSelect="selected"
         :filtersItem="filtersItem"
+        @searchOptions="searchOptions"
+        @addChosen="addChosen"
+        @deleteItem="deleteItem"
       />
     </div>
   </div>
@@ -15,12 +18,10 @@
 <script>
 import { PLACEHOLDER } from "@/constant/Form";
 import AutoComplete from "@/components/Autocomplete/AutoComplete.vue";
-import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       placeholder: PLACEHOLDER.JOB_POSITION,
-      keywords: "",
     };
   },
   components: {
@@ -35,17 +36,25 @@ export default {
       type: String,
       required: false,
     },
-  },
-  computed: {
-    ...mapGetters("form", { position: "getPosition", selected: "getSelected" }),
-    filtersItem() {
-      return this.position.filter((item) => {
-        return item.name.toLowerCase().includes(this.keywords.toLowerCase());
-      });
+    filtersItem: {
+      type: Array,
+      required: true,
+    },
+    selected: {
+      type: Array,
+      required: true,
     },
   },
   methods: {
-    ...mapActions({}),
+    addChosen(item) {
+      this.$emit("handleAddItem", item);
+    },
+    deleteItem(item) {
+      this.$emit("handleDeleteItem", item);
+    },
+    searchOptions(keyword) {
+      this.$emit("handleSearch", keyword);
+    },
   },
 };
 </script>
@@ -68,11 +77,10 @@ export default {
 }
 ::v-deep .input-layout {
   width: 528px;
-  height: 40px;
   padding: 1px 11px;
   input {
     width: 476px;
-    height: 20px;
+    height: 40px;
   }
 }
 </style>

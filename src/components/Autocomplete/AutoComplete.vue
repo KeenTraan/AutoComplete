@@ -9,7 +9,7 @@
         @deleteOptions="deleteOptions"
       />
       <DropdownOption
-        v-if="showDropdown"
+        v-if="!showDropdown"
         :listOptions="filtersItem"
         :message="message"
         :keyword="keyword"
@@ -37,13 +37,11 @@ export default {
   methods: {
     searchItem(valueInput) {
       this.keyword = valueInput;
-      this.isHiden = true;
       this.$emit("searchOptions", this.keyword);
     },
     selectItem(item) {
       this.$emit("addChosen", item);
       this.keyword = "";
-      this.isHiden = false;
     },
     deleteOptions(item) {
       this.$emit("deleteItem", item);
@@ -51,7 +49,7 @@ export default {
   },
   computed: {
     showDropdown() {
-      return this.filtersItem.length !== 0;
+      return this.keyword.length === 0;
     },
   },
   props: {
@@ -78,5 +76,8 @@ export default {
 .auto-layout {
   display: flex;
   flex-direction: column;
+  .auto-completed {
+    position: relative;
+  }
 }
 </style>

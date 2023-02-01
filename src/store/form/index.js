@@ -7,7 +7,8 @@ const MultiStepForm = {
             { id: 1, name: 'Software Developer(FE)' },
             { id: 2, name: 'Software Developer(BE)' },
             { id: 3, name: 'Tester' },
-            { id: 4, name: 'Business Analyst' }
+            { id: 4, name: 'Business Analyst' },
+            { id: 5, name: 'Technical Leader' }
         ],
         selected: []
     },
@@ -22,7 +23,11 @@ const MultiStepForm = {
         },
         SELECT_POSITION: (state, position) => {
             state.selected.push(position)
-            state.jobPosition = state.position.filter(item => item.name != position.name)
+            state.jobPosition = state.jobPosition.filter(item => item.name != position.name)
+        },
+        DELETE_POSITION: (state, position) => {
+            state.jobPosition.push(position)
+            state.selected = state.selected.filter(item => item.id != position.id)
         }
     },
     actions: {
@@ -37,6 +42,9 @@ const MultiStepForm = {
         },
         selected({ commit }, position) {
             commit("SELECT_POSITION", position)
+        },
+        deleted({ commit }, position) {
+            commit("DELETE_POSITION", position)
         }
     },
 };
