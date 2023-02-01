@@ -8,12 +8,12 @@
       cols="30"
       rows="10"
       class="text-content"
-      value="inputValue"
+      :value="inputValue"
       :class="{ 'error-valid': valid }"
       @input="handleInput"
     ></textarea>
     <p class="error-message">{{ errorMessage }}</p>
-    <p class="character">{{ `${word}/${character}` }}</p>
+    <p class="character">{{ `${inputValue.length}/${character}` }}</p>
   </div>
 </template>
 
@@ -24,7 +24,6 @@ export default {
   data() {
     return {
       errorMessage: "",
-      word: 0,
     };
   },
   computed: {
@@ -36,12 +35,10 @@ export default {
     handleInput(e) {
       if (this.inputValue.length > this.maxLength) {
         this.errorMessage = "Invalid input";
-      }
-      if (this.inputValue.length > this.maxLength) {
-        this.word--;
+      } else {
+        this.errorMessage = "";
       }
       this.$emit("handleInput", { value: e.target.value, id: this.id });
-      this.word++;
     },
   },
   props: {

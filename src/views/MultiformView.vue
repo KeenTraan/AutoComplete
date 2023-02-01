@@ -2,7 +2,7 @@
   <div class="mutiform-layout">
     <DynamicForm
       :currentStep="currentStep"
-      @handleBtn="handleNextBtn"
+      @handleNextBtn="handleNextBtn"
       @handleBackBtn="handleBackBtn"
     />
   </div>

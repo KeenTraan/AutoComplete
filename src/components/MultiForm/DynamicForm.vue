@@ -88,7 +88,7 @@ export default {
       deletedItem: "deleted",
     }),
     handleClick() {
-      this.$emit("handleBtn");
+      this.$emit("handleNextBtn");
     },
     handleBackBtn() {
       this.$emit("handleBackBtn");
