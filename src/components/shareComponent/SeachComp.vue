@@ -3,7 +3,11 @@
     <div>
       <p class="input-text">{{ label }}</p>
       <p class="input-text-description">{{ description }}</p>
-      <AutoComplete :placeholder="placeholder"/>
+      <AutoComplete
+        :placeholder="placeholder"
+        :getSelect="selected"
+        :filtersItem="filtersItem"
+      />
     </div>
   </div>
 </template>
@@ -11,18 +15,13 @@
 <script>
 import { PLACEHOLDER } from "@/constant/Form";
 import AutoComplete from "@/components/Autocomplete/AutoComplete.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       placeholder: PLACEHOLDER.JOB_POSITION,
-      position: []
+      keywords: "",
     };
-  },
-  methods: {
-    getPosiotion() {
-      const jobPosition = this.data.forEach(item => item)
-      console.log(jobPosition);
-    }
   },
   components: {
     AutoComplete,
@@ -30,12 +29,23 @@ export default {
   props: {
     label: {
       type: String,
-      default: ""
+      default: "",
     },
     description: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
+  },
+  computed: {
+    ...mapGetters("form", { position: "getPosition", selected: "getSelected" }),
+    filtersItem() {
+      return this.position.filter((item) => {
+        return item.name.toLowerCase().includes(this.keywords.toLowerCase());
+      });
+    },
+  },
+  methods: {
+    ...mapActions({}),
   },
 };
 </script>
@@ -43,7 +53,6 @@ export default {
 <style scoped lang="scss">
 .position-layout {
   width: 528px;
-  height: 88px;
   .input-text {
     font-weight: 400;
     font-size: 14px;

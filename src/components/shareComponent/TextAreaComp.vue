@@ -9,9 +9,11 @@
       rows="10"
       class="text-content"
       value="inputValue"
+      :class="{ 'error-valid': valid }"
       @input="handleInput"
     ></textarea>
-    <p class="character">0/{{ character }}</p>
+    <p class="error-message">{{ errorMessage }}</p>
+    <p class="character">{{ `${word}/${character}` }}</p>
   </div>
 </template>
 
@@ -19,9 +21,27 @@
 import CheckrequireComp from "./CheckrequireComp.vue";
 
 export default {
+  data() {
+    return {
+      errorMessage: "",
+      word: 0,
+    };
+  },
+  computed: {
+    valid() {
+      return this.inputValue.length > this.maxLength;
+    },
+  },
   methods: {
     handleInput(e) {
+      if (this.inputValue.length > this.maxLength) {
+        this.errorMessage = "Invalid input";
+      }
+      if (this.inputValue.length > this.maxLength) {
+        this.word--;
+      }
       this.$emit("handleInput", { value: e.target.value, id: this.id });
+      this.word++;
     },
   },
   props: {
@@ -39,6 +59,10 @@ export default {
     },
     id: {
       type: String,
+      required: true,
+    },
+    maxLength: {
+      type: Number,
       required: true,
     },
     required: {
@@ -76,11 +100,20 @@ export default {
     resize: none;
   }
   .text-content:focus {
-    border: none;
-    outline: 1px solid skyblue;
+    // border: none;
+    border: 1px solid skyblue;
   }
   .character {
     margin-top: 10px;
+  }
+  .error-message {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: red;
+  }
+  .error-valid {
+    border: 1px solid red;
   }
 }
 </style>

@@ -46,6 +46,7 @@
           :inputValue="form.value"
           :character="form.wordLimit"
           :id="form.key"
+          :maxLength="form.wordLimit"
           @handleInput="onChangeInput"
         />
         <DropzoneComp :form="form" v-if="form.type === 'input_multi_file'" />

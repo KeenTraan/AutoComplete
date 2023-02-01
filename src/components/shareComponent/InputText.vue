@@ -9,7 +9,7 @@
         type="text"
         :value="inputValue"
         @input="handleInput"
-        :class="{ error: valid }"
+        :class="{ 'error-valid': valid }"
       />
       <p class="error-message">{{ errorMessage }}</p>
     </div>
@@ -24,6 +24,14 @@ export default {
       errorMessage: "",
     };
   },
+  components: {
+    CheckrequireComp,
+  },
+  computed: {
+    valid() {
+      return this.inputValue.length > this.maxLength;
+    },
+  },
   methods: {
     handleInput(e) {
       if (this.inputValue.length > this.maxLength) {
@@ -37,9 +45,6 @@ export default {
         id: this.id,
       });
     },
-  },
-  components: {
-    CheckrequireComp,
   },
   props: {
     label: {
@@ -95,6 +100,9 @@ export default {
     font-size: 12px;
     line-height: 20px;
     color: red;
+  }
+  .error-valid {
+    border: 1px solid red;
   }
 }
 </style>

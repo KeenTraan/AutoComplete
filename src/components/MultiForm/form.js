@@ -72,6 +72,7 @@ export const stepForm = [
                 label: 'Vị trí từng làm',
                 type: 'text',
                 key: 'worked_posiotion',
+                maxLength: 100,
                 value: ''
             },
             {
@@ -86,7 +87,7 @@ export const stepForm = [
                 label: 'Mô tả công việc',
                 key: 'description',
                 type: 'textarea',
-                wordLimit: 1000,
+                wordLimit: 5000,
                 required: false,
                 value: ''
             }

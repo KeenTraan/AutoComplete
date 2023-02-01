@@ -7,7 +7,6 @@
           v-for="item in data"
           :key="item.code || item.id"
           :value="item.name"
-          :selected="false"
         >
           {{ item.name }}
         </option>

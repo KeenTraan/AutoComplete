@@ -14,7 +14,11 @@
         :key="step.id"
         class="stepper-item"
       >
-        <div class="stepper-item-counter" :class="{ active: step.isActive }">
+        <div
+          class="stepper-item-counter"
+          :class="{ active: step.isActive }"
+          @click="onClick"
+        >
           <span class="number">
             {{ index + 1 }}
           </span>
@@ -52,6 +56,11 @@ export default {
         width:
           ((this.currentStep - 1) / (this.stepProgress.length - 1)) * 100 + "%",
       };
+    },
+  },
+  methods: {
+    onClick() {
+      this.$emit("handleClick");
     },
   },
 };
@@ -102,9 +111,9 @@ export default {
     color: black;
     transition: all 500ms ease;
     padding: 0 10px;
-    cursor: pointer;
     flex: 1;
     &-counter {
+      cursor: pointer;
       height: 40px;
       width: 40px;
       display: grid;

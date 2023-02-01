@@ -2,7 +2,7 @@
   <div class="mutiform-layout">
     <DynamicForm
       :currentStep="currentStep"
-      @handleBtn="handleBtn"
+      @handleBtn="handleNextBtn"
       @handleBackBtn="handleBackBtn"
     />
   </div>
@@ -20,7 +20,7 @@ export default {
     };
   },
   methods: {
-    handleBtn() {
+    handleNextBtn() {
       this.currentStep++;
       this.stepForm[this.currentStep - 1].isActive = true;
     },

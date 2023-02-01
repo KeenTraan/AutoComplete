@@ -1,21 +1,26 @@
 <template>
   <div class="dynamic-layout">
-    <StepProgress :stepProgress="stepForm" :currentStep="currentStep" />
+    <StepProgress
+      v-if="currentStep < 4"
+      :stepProgress="stepForm"
+      :currentStep="currentStep"
+      @handleClick="handleClick"
+    />
     <FormCard
-      :dataForm="stepForm[0]"
       v-if="currentStep === 1"
+      :dataForm="stepForm[0]"
       :data="cities"
       :currentStep="currentStep"
     />
     <FormCard
-      :dataForm="stepForm[1]"
       v-if="currentStep === 2"
+      :dataForm="stepForm[1]"
       :data="jobPosition"
       :currentStep="currentStep"
     />
     <FormCard
-      :dataForm="stepForm[2]"
       v-if="currentStep === 3"
+      :dataForm="stepForm[2]"
       :currentStep="currentStep"
     />
     <NextButtonComp @handleClick="handleClick" v-if="currentStep < 3" />
