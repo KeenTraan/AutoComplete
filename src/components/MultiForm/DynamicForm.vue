@@ -1,13 +1,13 @@
 <template>
   <div class="dynamic-layout">
     <StepProgress
-      v-if="currentStep < 4"
+      v-if="currentStep < 3"
       :stepProgress="stepForm"
       :currentStep="currentStep"
       @handleClick="handleClick"
     />
     <FormCard
-      v-if="currentStep === 1"
+      v-if="currentStep === 0"
       :dataForm="stepForm[0]"
       :data="cities"
       :position="jobPosition"
@@ -19,21 +19,18 @@
       @searchItem="searchItem"
     />
     <FormCard
-      v-if="currentStep === 2"
+      v-if="currentStep === 1"
       :dataForm="stepForm[1]"
       :data="jobPosition"
       :currentStep="currentStep"
     />
     <FormCard
-      v-if="currentStep === 3"
+      v-if="currentStep === 2"
       :dataForm="stepForm[2]"
       :currentStep="currentStep"
     />
-    <NextButtonComp @handleClick="handleClick" v-if="currentStep < 3" />
-    <BackButtonComp
-      v-if="currentStep > 1 && currentStep < 3"
-      @onClick="handleBackBtn"
-    />
+    <NextButtonComp @handleClick="handleClick" :currentStep="currentStep" />
+    <BackButtonComp @onClick="handleBackBtn" :currentStep="currentStep" />
     <SubmitButtonComp :currentStep="currentStep" />
   </div>
 </template>
@@ -90,6 +87,11 @@ export default {
     handleClick() {
       this.$emit("handleNextBtn");
     },
+    // nextProgress(index) {
+    //   if (this.currentStep === index) {
+    //     this.$emit("handleProgress", this.stepForm[index]);
+    //   }
+    // },
     handleBackBtn() {
       this.$emit("handleBackBtn");
     },

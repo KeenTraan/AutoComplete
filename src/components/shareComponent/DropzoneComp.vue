@@ -1,15 +1,14 @@
 <template>
   <div class="dropzone-layout">
-    <div>
-      <p class="input-label">{{ form.label }}</p>
-      <DropzoneComponent :limitedFile="3" :maxSize="maxsize" />
-    </div>
+    <CheckrequireComp v-if="required" />
+    <DropzoneComponent :limitedFile="3" :maxSize="maxsize" />
   </div>
 </template>
 
 <script>
 import DropzoneComponent from "@/components/Dropzone/DropzoneComponent.vue";
 import { MAXSIZE } from "@/constant/Dropzone";
+import CheckrequireComp from "./CheckrequireComp.vue";
 export default {
   data() {
     return {
@@ -18,11 +17,16 @@ export default {
   },
   components: {
     DropzoneComponent,
+    CheckrequireComp,
   },
   props: {
     form: {
       type: Object,
       default: () => {},
+    },
+    required: {
+      type: Boolean,
+      default: true,
     },
   },
 };
@@ -32,8 +36,8 @@ export default {
 .dropzone-layout {
   width: 844px;
   margin-top: 14px;
-  .input-label {
-    margin-bottom: 8px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 </style>

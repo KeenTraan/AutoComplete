@@ -27,17 +27,17 @@ export const stepForm = [
                 type: 'select',
                 key: 'address',
                 dropdown_type: 'chosen_city',
-                required: true,
+                required: false,
                 value: ''
             },
             {
                 id: uuidv4(),
                 label: 'Vị trí làm việc',
                 description: 'Có thể chọn nhiều vị trí làm việc mà bạn muốn làm việc',
-                required: true,
+                required: false,
                 type: 'input_search',
-                value: '',
-                key: 'job'
+                key: 'job',
+                value: []
             },
             {
                 id: uuidv4(),
@@ -51,7 +51,7 @@ export const stepForm = [
             {
                 id: uuidv4(),
                 label: 'Ảnh cá nhân',
-                required: true,
+                required: false,
                 type: 'input_multi_file',
                 value: {}
             },
@@ -65,6 +65,7 @@ export const stepForm = [
                 id: uuidv4(),
                 type: 'select',
                 key: 'positions',
+                required: false,
                 value: ''
             },
             {
@@ -73,6 +74,7 @@ export const stepForm = [
                 type: 'text',
                 key: 'worked_posiotion',
                 maxLength: 100,
+                required: true,
                 value: ''
             },
             {
@@ -80,6 +82,7 @@ export const stepForm = [
                 label: 'Thời gian làm việc',
                 key: 'input_range_time',
                 type: "input_range_time",
+                required: true,
                 value: { from: '', to: '' }
             },
             {
@@ -103,6 +106,7 @@ export const stepForm = [
                 type: 'textarea',
                 key: 'description',
                 wordLimit: 1000,
+                required: true,
                 value: ''
             },
             {

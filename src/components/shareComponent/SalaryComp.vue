@@ -1,7 +1,7 @@
 <template>
   <div class="salary-layout">
     <div class="title">
-      <CheckrequireComp />
+      <CheckrequireComp v-if="required" />
       <p>{{ label }}</p>
     </div>
     <div class="content">
@@ -30,6 +30,10 @@ export default {
     id: {
       type: String,
       required: true,
+    },
+    required: {
+      type: Boolean,
+      default: true,
     },
   },
   methods: {

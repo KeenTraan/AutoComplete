@@ -1,5 +1,5 @@
 <template>
-  <button v-if="currentStep === 3" class="btn">Hoàn Thành</button>
+  <button v-if="currentStep === 2" class="btn">Hoàn Thành</button>
 </template>
 
 <script>

@@ -2,6 +2,7 @@
   <div class="mutiform-layout">
     <DynamicForm
       :currentStep="currentStep"
+      @handleProgress="nextProgress"
       @handleNextBtn="handleNextBtn"
       @handleBackBtn="handleBackBtn"
     />
@@ -16,17 +17,21 @@ export default {
   data() {
     return {
       stepForm,
-      currentStep: 1,
+      currentStep: 0,
     };
   },
   methods: {
     handleNextBtn() {
       this.currentStep++;
-      this.stepForm[this.currentStep - 1].isActive = true;
+      this.stepForm[this.currentStep].isActive = true;
     },
     handleBackBtn() {
       this.currentStep--;
-      this.stepForm[this.currentStep].isActive = false;
+      this.stepForm[this.currentStep + 1].isActive = false;
+    },
+    nextProgress(index) {
+      // this.stepForm[index];
+      console.log(index);
     },
   },
   components: {

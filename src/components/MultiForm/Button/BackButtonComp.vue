@@ -1,9 +1,21 @@
-``<template>
-  <button class="btn-layout" @click="handleClick">Quay lại</button>
+<template>
+  <button
+    v-if="currentStep < 2 && currentStep > 0"
+    class="btn-layout"
+    @click="handleClick"
+  >
+    Quay lại
+  </button>
 </template>
 
 <script>
 export default {
+  props: {
+    currentStep: {
+      type: Number,
+      required: true,
+    },
+  },
   methods: {
     handleClick() {
       this.$emit("onClick");

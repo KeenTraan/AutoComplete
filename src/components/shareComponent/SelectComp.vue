@@ -1,21 +1,24 @@
 <template>
   <div class="select-layout">
-    <div>
-      <p class="input-text">{{ label }}</p>
-      <select class="select-input" @input="onChange">
-        <option
-          v-for="item in data"
-          :key="item.code || item.id"
-          :value="item.name"
-        >
-          {{ item.name }}
-        </option>
-      </select>
+    <div class="title">
+      <CheckrequireComp v-if="required" />
+      <p class="text-label">{{ label }}</p>
     </div>
+    <select class="select-input" @input="onChange">
+      <option
+        v-for="item in data"
+        :key="item.code || item.id"
+        :value="item.name"
+      >
+        {{ item.name }}
+      </option>
+    </select>
   </div>
 </template>
 
 <script>
+import CheckrequireComp from "./CheckrequireComp.vue";
+
 export default {
   data() {
     return {
@@ -38,6 +41,10 @@ export default {
       type: String,
       required: true,
     },
+    required: {
+      type: Boolean,
+      default: true,
+    },
   },
   watch: {
     inputValue: {
@@ -54,6 +61,7 @@ export default {
       this.$emit("handleSelect", { id: this.id, value: value });
     },
   },
+  components: { CheckrequireComp },
 };
 </script>
 
@@ -61,7 +69,10 @@ export default {
 .select-layout {
   width: 528px;
   height: 64px;
-  .input-text {
+  .title {
+    display: flex;
+  }
+  .text-label {
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;

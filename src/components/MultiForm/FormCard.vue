@@ -32,6 +32,7 @@
           :id="form.key"
           :label="form.label"
           :data="data"
+          :required="form.required"
           @handleSelect="onChangeInput"
         />
         <SearchComp
@@ -40,6 +41,7 @@
           :description="form.description"
           :filtersItem="filtersItem"
           :selected="selected"
+          :required="form.required"
           @handleAddItem="handleAddItem"
           @handleDeleteItem="handleDeleteItem"
           @handleSearch="handleSearch"
@@ -54,12 +56,17 @@
           :maxLength="form.wordLimit"
           @handleInput="onChangeInput"
         />
-        <DropzoneComp :form="form" v-if="form.type === 'input_multi_file'" />
+        <DropzoneComp
+          :form="form"
+          :required="form.required"
+          v-if="form.type === 'input_multi_file'"
+        />
         <SalaryComp
           v-if="form.type === 'salary'"
           :label="form.label"
           :inputValue="form.value"
           :id="form.key"
+          :required="form.required"
           :currency="CURRENCY.VND"
           @handleInput="onChangeInput"
         />

@@ -17,7 +17,7 @@
         <div
           class="stepper-item-counter"
           :class="{ active: step.isActive }"
-          @click="onClick"
+          @click="onClick(index)"
         >
           <span class="number">
             {{ index + 1 }}
@@ -53,14 +53,14 @@ export default {
     },
     widthProgessHightLight() {
       return {
-        width:
-          ((this.currentStep - 1) / (this.stepProgress.length - 1)) * 100 + "%",
+        width: (this.currentStep / (this.stepProgress.length - 1)) * 100 + "%",
       };
     },
   },
   methods: {
-    onClick() {
-      this.$emit("handleClick");
+    onClick(index) {
+      // console.log(index);
+      this.$emit("handleClick", index);
     },
   },
 };

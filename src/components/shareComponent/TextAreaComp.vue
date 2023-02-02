@@ -1,7 +1,7 @@
 <template>
   <div class="description">
     <div class="title">
-      <CheckrequireComp v-if="required === true" />
+      <CheckrequireComp v-if="required" />
       <p class="text-label">{{ label }}</p>
     </div>
     <textarea
@@ -64,7 +64,7 @@ export default {
     },
     required: {
       type: Boolean,
-      required: false,
+      default: true,
     },
   },
   components: { CheckrequireComp },
