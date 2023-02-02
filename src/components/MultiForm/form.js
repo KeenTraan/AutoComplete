@@ -12,7 +12,6 @@ export const stepForm = [
                 key: 'name',
                 maxLength: 100,
                 required: true,
-                // message: "Invalid input",
                 value: ''
             },
             {

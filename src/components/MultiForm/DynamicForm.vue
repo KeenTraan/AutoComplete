@@ -17,6 +17,7 @@
       @addItem="addItem"
       @deleteItem="deleteItem"
       @searchItem="searchItem"
+      @changeValidation="changeValidation"
     />
     <FormCard
       v-if="currentStep === 1"
@@ -46,6 +47,7 @@ export default {
   data() {
     return {
       keyWord: "",
+      isError: true,
     };
   },
   props: {
@@ -87,7 +89,14 @@ export default {
       deletedItem: "deleted",
     }),
     handleClick() {
-      this.$emit("handleNextBtn");
+      if(this.isError){ 
+        return
+      }else {
+        this.$emit("handleNextBtn");
+      }
+    },
+    changeValidation(name) {
+      this.isError = name;
     },
     handleBackBtn() {
       this.$emit("handleBackBtn");

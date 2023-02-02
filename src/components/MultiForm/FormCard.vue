@@ -5,11 +5,12 @@
         <InputText
           v-if="form.type === 'text'"
           :label="form.label"
-          :id="form.key"
+          :name="form.key"
           :maxLength="form.maxLength"
           :inputValue="form.value"
           :required="form.required"
           @handleInput="onChangeInput"
+          @handleValidation="onChangeValidation"
         />
         <InputdateComp
           v-if="form.type === 'datetime'"
@@ -134,9 +135,12 @@ export default {
     AddButtonComp,
   },
   methods: {
-    onChangeInput({ value, id }) {
-      const data = this.dataForm.layout.find((item) => item.key === id);
+    onChangeInput({ value, name }) {
+      const data = this.dataForm.layout.find((item) => item.key === name);
       data.value = value;
+    },
+    onChangeValidation(name) {
+      this.$emit('changeValidation', name)
     },
     handleAddItem(item) {
       this.$emit("addItem", item);
