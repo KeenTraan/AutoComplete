@@ -11,7 +11,7 @@
         @input="handleInput"
         :class="{ 'error-valid': valid }"
       />
-      <p class="error-message">{{ message }}</p>
+      <p class="error-message">{{ errorMessage }}</p>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ import CheckrequireComp from "@/components/shareComponent/CheckrequireComp.vue";
 export default {
   data() {
     return {
-      message: "",
+      errorMessage: "",
     };
   },
   components: {
@@ -49,10 +49,6 @@ export default {
       type: Number,
       required: true,
     },
-    // message: {
-    //   type: String,
-    //   required: true,
-    // },
   },
   computed: {
     valid() {
@@ -63,9 +59,11 @@ export default {
     handleInput(e) {
       if (this.inputValue.length > this.maxLength) {
         this.$emit('handleValidation',true);
+        this.errorMessage = "Invalid input"
       }
       if (this.inputValue.length < this.maxLength) {
         this.$emit('handleValidation',false);
+        this.errorMessage = ""
       }
       this.$emit("handleInput", {
         value: e.target.value,

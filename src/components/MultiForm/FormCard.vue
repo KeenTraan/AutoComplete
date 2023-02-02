@@ -10,27 +10,27 @@
           :inputValue="form.value"
           :required="form.required"
           @handleInput="onChangeInput"
-          @handleValidation="onChangeValidation"
+          @handleValidation="validation"
         />
         <InputdateComp
           v-if="form.type === 'datetime'"
           :label="form.label"
           :inputValue="form.value"
-          :id="form.key"
+          :name="form.key"
           :required="form.required"
           @handleInput="onChangeInput"
         />
         <WorkingTime
           v-if="form.type === 'input_range_time'"
           :label="form.label"
-          :id="form.key"
+          :name="form.key"
           :inputValue="form.value"
           @handleInput="onChangeInput"
         />
         <SelectComp
           v-if="form.type === 'select'"
           :inputValue="form.value"
-          :id="form.key"
+          :name="form.key"
           :label="form.label"
           :data="data"
           :required="form.required"
@@ -53,20 +53,21 @@
           :label="form.label"
           :inputValue="form.value"
           :character="form.wordLimit"
-          :id="form.key"
+          :name="form.key"
           :maxLength="form.wordLimit"
           @handleInput="onChangeInput"
+          @handleValidation="validation"
         />
         <DropzoneComp
+          v-if="form.type === 'input_multi_file'"
           :form="form"
           :required="form.required"
-          v-if="form.type === 'input_multi_file'"
         />
         <SalaryComp
           v-if="form.type === 'salary'"
           :label="form.label"
           :inputValue="form.value"
-          :id="form.key"
+          :name="form.key"
           :required="form.required"
           :currency="CURRENCY.VND"
           @handleInput="onChangeInput"
@@ -74,7 +75,6 @@
       </div>
     </div>
     <AddButtonComp v-if="currentStep === 1" />
-    <!-- {{ dataForm.layout.message }} -->
   </div>
 </template>
 
@@ -93,7 +93,6 @@ export default {
   data() {
     return {
       CURRENCY: CURRENCY,
-      message: "",
     };
   },
   name: "FormCard",
@@ -139,7 +138,7 @@ export default {
       const data = this.dataForm.layout.find((item) => item.key === name);
       data.value = value;
     },
-    onChangeValidation(name) {
+    validation(name) {
       this.$emit('changeValidation', name)
     },
     handleAddItem(item) {

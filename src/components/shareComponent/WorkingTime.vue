@@ -34,7 +34,7 @@ export default {
       type: Object,
       required: true,
     },
-    id: {
+    name: {
       type: String,
       required: true,
     },
@@ -44,7 +44,7 @@ export default {
       const value = e.target.value;
       this.$emit("handleInput", {
         value: { from: value, to: this.inputValue.to },
-        id: this.id,
+        name: this.name,
       });
     },
     handleInputEnd(e) {

@@ -28,7 +28,7 @@ export default {
       type: String,
       required: true,
     },
-    id: {
+    name: {
       type: String,
       required: true,
     },
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     handleInputDate(e) {
-      this.$emit("handleInput", { value: e.target.value, id: this.id });
+      this.$emit("handleInput", { value: e.target.value, name: this.name });
     },
   },
 };

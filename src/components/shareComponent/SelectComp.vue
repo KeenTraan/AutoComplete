@@ -8,7 +8,7 @@
       <option
         v-for="item in data"
         :key="item.code || item.id"
-        :value="item.name"
+        :value="inputValue"
       >
         {{ item.name }}
       </option>
@@ -37,7 +37,7 @@ export default {
       type: String,
       required: true,
     },
-    id: {
+    name: {
       type: String,
       required: true,
     },
@@ -58,7 +58,7 @@ export default {
   methods: {
     onChange(e) {
       var value = e.target.options[e.target.options.selectedIndex].text;
-      this.$emit("handleSelect", { id: this.id, value: value });
+      this.$emit("handleSelect", { name: this.name, value: value });
     },
   },
   components: { CheckrequireComp },

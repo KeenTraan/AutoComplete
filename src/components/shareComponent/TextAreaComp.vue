@@ -1,5 +1,5 @@
 <template>
-  <div class="description">
+  <div class="description" :id="this.name">
     <div class="title">
       <CheckrequireComp v-if="required" />
       <p class="text-label">{{ label }}</p>
@@ -39,7 +39,7 @@ export default {
       type: String,
       required: true,
     },
-    id: {
+    name: {
       type: String,
       required: true,
     },
@@ -61,11 +61,14 @@ export default {
   methods: {
     handleInput(e) {
       if (this.inputValue.length > this.maxLength) {
+        this.$emit('handleValidation',true)
         this.errorMessage = "Invalid input";
-      } else {
+      } 
+      if(this.inputValue.length < this.maxLength) {
+        this.$emit('handleValidation',false)
         this.errorMessage = "";
       }
-      this.$emit("handleInput", { value: e.target.value, id: this.id });
+      this.$emit("handleInput", { value: e.target.value, name: this.name });
     },
   },
 };

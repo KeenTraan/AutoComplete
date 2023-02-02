@@ -27,7 +27,7 @@ export default {
       type: String,
       required: true,
     },
-    id: {
+    name: {
       type: String,
       required: true,
     },
@@ -39,7 +39,7 @@ export default {
   methods: {
     handleInput(e) {
       const value = e.target.value;
-      this.$emit("handleInput", { value: value, id: this.id });
+      this.$emit("handleInput", { value: value, name: this.name });
     },
   },
   components: { CheckrequireComp },
