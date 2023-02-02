@@ -3,6 +3,7 @@ export const stepForm = [
     {
         label: "Thông tin",
         isActive: true,
+        step: 1,
         layout: [
             {
                 id: uuidv4(),
@@ -11,6 +12,7 @@ export const stepForm = [
                 key: 'name',
                 maxLength: 100,
                 required: true,
+                // message: "Invalid input",
                 value: ''
             },
             {
@@ -60,6 +62,7 @@ export const stepForm = [
     {
         label: "Kinh nghiệm làm việc",
         isActive: false,
+        step: 2,
         layout: [
             {
                 id: uuidv4(),
@@ -99,6 +102,7 @@ export const stepForm = [
     {
         label: "Xác nhận thông tin",
         isActive: false,
+        step: 3,
         layout: [
             {
                 id: uuidv4(),

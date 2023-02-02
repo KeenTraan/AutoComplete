@@ -11,40 +11,22 @@
         @input="handleInput"
         :class="{ 'error-valid': valid }"
       />
-      <p class="error-message">{{ errorMessage }}</p>
+      <p class="error-message">{{ message }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import CheckrequireComp from "@/components/shareComponent/CheckrequireComp.vue";
+// import { scroll } from "@/utils/ValidateMultiform";
 export default {
   data() {
     return {
-      errorMessage: "",
+      message: "",
     };
   },
   components: {
     CheckrequireComp,
-  },
-  computed: {
-    valid() {
-      return this.inputValue.length > this.maxLength;
-    },
-  },
-  methods: {
-    handleInput(e) {
-      if (this.inputValue.length > this.maxLength) {
-        this.errorMessage = "Invalid input";
-      }
-      if (this.inputValue.length < this.maxLength) {
-        this.errorMessage = "";
-      }
-      this.$emit("handleInput", {
-        value: e.target.value,
-        id: this.id,
-      });
-    },
   },
   props: {
     label: {
@@ -66,6 +48,29 @@ export default {
     maxLength: {
       type: Number,
       required: true,
+    },
+    // message: {
+    //   type: String,
+    //   required: true,
+    // },
+  },
+  computed: {
+    valid() {
+      return this.inputValue.length > this.maxLength;
+    },
+  },
+  methods: {
+    handleInput(e) {
+      if (this.inputValue.length > this.maxLength) {
+        this.message = "Invalid input";
+      }
+      if (this.inputValue.length < this.maxLength) {
+        this.message = "";
+      }
+      this.$emit("handleInput", {
+        value: e.target.value,
+        id: this.id,
+      });
     },
   },
 };
@@ -92,8 +97,7 @@ export default {
     padding: 8px 10px;
   }
   input:focus {
-    border: none;
-    outline: 1px solid skyblue;
+    outline: none;
   }
   .error-message {
     font-weight: 400;
@@ -103,6 +107,7 @@ export default {
   }
   .error-valid {
     border: 1px solid red;
+    background: rgb(255, 0, 0, 0.1);
   }
 }
 </style>

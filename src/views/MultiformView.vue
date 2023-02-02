@@ -1,8 +1,8 @@
 <template>
   <div class="mutiform-layout">
     <DynamicForm
+      :stepForm="stepForm"
       :currentStep="currentStep"
-      @handleProgress="nextProgress"
       @handleNextBtn="handleNextBtn"
       @handleBackBtn="handleBackBtn"
     />
@@ -12,7 +12,7 @@
 <script>
 import DynamicForm from "@/components/MultiForm/DynamicForm.vue";
 import { stepForm } from "@/components/MultiForm/form";
-
+// import { validationNextStep } from "@/utils/ValidateMultiform";
 export default {
   data() {
     return {
@@ -28,10 +28,6 @@ export default {
     handleBackBtn() {
       this.currentStep--;
       this.stepForm[this.currentStep + 1].isActive = false;
-    },
-    nextProgress(index) {
-      // this.stepForm[index];
-      console.log(index);
     },
   },
   components: {

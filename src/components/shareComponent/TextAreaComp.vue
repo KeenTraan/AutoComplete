@@ -26,21 +26,6 @@ export default {
       errorMessage: "",
     };
   },
-  computed: {
-    valid() {
-      return this.inputValue.length > this.maxLength;
-    },
-  },
-  methods: {
-    handleInput(e) {
-      if (this.inputValue.length > this.maxLength) {
-        this.errorMessage = "Invalid input";
-      } else {
-        this.errorMessage = "";
-      }
-      this.$emit("handleInput", { value: e.target.value, id: this.id });
-    },
-  },
   props: {
     label: {
       type: String,
@@ -68,6 +53,21 @@ export default {
     },
   },
   components: { CheckrequireComp },
+  computed: {
+    valid() {
+      return this.inputValue.length > this.maxLength;
+    },
+  },
+  methods: {
+    handleInput(e) {
+      if (this.inputValue.length > this.maxLength) {
+        this.errorMessage = "Invalid input";
+      } else {
+        this.errorMessage = "";
+      }
+      this.$emit("handleInput", { value: e.target.value, id: this.id });
+    },
+  },
 };
 </script>
 
@@ -93,12 +93,11 @@ export default {
     border: 1px solid #dcdcdc;
     border-radius: 4px;
     padding: 8px 10px;
-    outline: none;
     resize: none;
+    overflow: auto;
   }
   .text-content:focus {
-    // border: none;
-    border: 1px solid skyblue;
+    outline: none;
   }
   .character {
     margin-top: 10px;
@@ -111,6 +110,19 @@ export default {
   }
   .error-valid {
     border: 1px solid red;
+    background: rgb(255, 0, 0, 0.1);
+  }
+  .text-content::-webkit-scrollbar {
+    width: 5px;
+    height: 0;
+  }
+  .text-content::-webkit-scrollbar-thumb {
+    border-radius: 100rem;
+    background-color: rgb(141, 141, 141, 0.5);
+  }
+  .text-content::-webkit-scrollbar-track {
+    border-radius: 100rem;
+    background-color: white;
   }
 }
 </style>

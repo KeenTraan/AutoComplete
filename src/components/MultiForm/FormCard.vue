@@ -6,9 +6,9 @@
           v-if="form.type === 'text'"
           :label="form.label"
           :id="form.key"
+          :maxLength="form.maxLength"
           :inputValue="form.value"
           :required="form.required"
-          :maxLength="form.maxLength"
           @handleInput="onChangeInput"
         />
         <InputdateComp
@@ -72,7 +72,8 @@
         />
       </div>
     </div>
-    <AddButtonComp v-if="currentStep === 2" />
+    <AddButtonComp v-if="currentStep === 1" />
+    <!-- {{ dataForm.layout.message }} -->
   </div>
 </template>
 
@@ -91,6 +92,7 @@ export default {
   data() {
     return {
       CURRENCY: CURRENCY,
+      message: "",
     };
   },
   name: "FormCard",

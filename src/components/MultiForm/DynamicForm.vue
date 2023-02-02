@@ -21,7 +21,7 @@
     <FormCard
       v-if="currentStep === 1"
       :dataForm="stepForm[1]"
-      :data="jobPosition"
+      :data="selected"
       :currentStep="currentStep"
     />
     <FormCard
@@ -39,20 +39,22 @@
 import StepProgress from "@/components/MultiForm/StepProgress.vue";
 import FormCard from "@/components/MultiForm/FormCard.vue";
 import NextButtonComp from "@/components/MultiForm/button/NextButtonComp.vue";
-import { stepForm } from "@/components/MultiForm/form";
 import { mapActions, mapGetters } from "vuex";
 import SubmitButtonComp from "./button/SubmitButtonComp.vue";
 import BackButtonComp from "./button/BackButtonComp.vue";
 export default {
   data() {
     return {
-      stepForm,
       keyWord: "",
     };
   },
   props: {
     currentStep: {
       type: Number,
+      required: true,
+    },
+    stepForm: {
+      type: Array,
       required: true,
     },
   },
@@ -87,11 +89,6 @@ export default {
     handleClick() {
       this.$emit("handleNextBtn");
     },
-    // nextProgress(index) {
-    //   if (this.currentStep === index) {
-    //     this.$emit("handleProgress", this.stepForm[index]);
-    //   }
-    // },
     handleBackBtn() {
       this.$emit("handleBackBtn");
     },
