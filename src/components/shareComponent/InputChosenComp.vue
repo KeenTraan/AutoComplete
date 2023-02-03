@@ -2,7 +2,11 @@
   <div>
     <div class="chosen-layout">
       <select class="chosen-input" @input="onChange">
-        <option v-for="item in data" :key="item.code || item.id">
+        <option
+          v-for="item in data"
+          :key="item.code || item.id"
+          :value="inputValue"
+        >
           {{ item.name }}
         </option>
       </select>
@@ -21,12 +25,21 @@ export default {
   props: {
     data: {
       type: Array,
+      default: () => [],
+    },
+    inputValue: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
       required: true,
     },
   },
   methods: {
-    onChange() {
-      console.log("onChange");
+    onChange(e) {
+      var value = e.target.options[e.target.options.selectedIndex].text;
+      this.$emit("handleChosen", { name: this.name, value: value });
     },
     deletedItem() {
       console.log("deletedItem");
@@ -58,6 +71,7 @@ export default {
     width: 32px;
     height: 32px;
     margin: 14px 0 14px 16px;
+    cursor: pointer;
   }
 }
 </style>

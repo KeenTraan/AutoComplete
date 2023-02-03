@@ -73,7 +73,13 @@
           :currency="CURRENCY.VND"
           @handleInput="onChangeInput"
         />
-        <InputChosenComp v-if="form.type === 'chosen'" :data="nameCompany" />
+        <InputChosenComp
+          v-if="form.type === 'chosen'"
+          :data="nameCompany"
+          :inputValue="form.value"
+          :name="form.key"
+          @handleChosen="onChangeInput"
+        />
       </div>
     </div>
     <AddButtonComp v-if="currentStep === 1" />

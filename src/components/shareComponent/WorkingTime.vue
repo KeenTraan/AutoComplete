@@ -8,6 +8,7 @@
       <input
         class="input-date"
         type="date"
+        :max="today"
         :value="inputValue.from"
         @input="handleInputStart"
       />
@@ -15,6 +16,7 @@
       <input
         class="input-date"
         type="date"
+        :max="today"
         :value="inputValue.to"
         @input="handleInputEnd"
       />
@@ -25,6 +27,11 @@
 <script>
 import CheckrequireComp from "./CheckrequireComp.vue";
 export default {
+  data() {
+    return {
+      today: new Date().toISOString().split("T")[0],
+    };
+  },
   props: {
     label: {
       type: String,
