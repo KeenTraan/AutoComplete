@@ -18,7 +18,6 @@
 
 <script>
 import CheckrequireComp from "@/components/shareComponent/CheckrequireComp.vue";
-// import { scroll } from "@/utils/ValidateMultiform";
 export default {
   data() {
     return {
@@ -55,15 +54,21 @@ export default {
       return this.inputValue.length > this.maxLength;
     },
   },
+  watch: {
+    inputValue: {
+      handler() {
+        if (this.inputValue.length > this.maxLength || !this.inputValue) {
+          this.$emit("handleValidation", true);
+          this.errorMessage = "Invalid input";
+        }
+      },
+    },
+  },
   methods: {
     handleInput(e) {
-      if (this.inputValue.length > this.maxLength) {
-        this.$emit('handleValidation',true);
-        this.errorMessage = "Invalid input"
-      }
       if (this.inputValue.length < this.maxLength) {
-        this.$emit('handleValidation',false);
-        this.errorMessage = ""
+        this.$emit("handleValidation", false);
+        this.errorMessage = "";
       }
       this.$emit("handleInput", {
         value: e.target.value,

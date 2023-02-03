@@ -1,5 +1,12 @@
 <template>
-  <button v-if="currentStep < 2" class="btn" @click="onClick">Tiếp</button>
+  <button
+    :class="{ 'err-valid': valid }"
+    v-if="currentStep < 2"
+    class="btn"
+    @click="onClick"
+  >
+    Tiếp
+  </button>
 </template>
 
 <script>
@@ -8,6 +15,15 @@ export default {
     currentStep: {
       type: Number,
       required: true,
+    },
+    isError: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    valid() {
+      return this.isError;
     },
   },
   methods: {
@@ -37,5 +53,10 @@ export default {
   opacity: 1;
   cursor: not-allowed;
   background: #dcdcdc;
+}
+.err-valid {
+  background: #c5c5c5;
+  opacity: 0.8;
+  cursor: not-allowed;
 }
 </style>

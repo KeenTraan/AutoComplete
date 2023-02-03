@@ -8,7 +8,8 @@
       <input
         class="input-date"
         type="date"
-        value="inputValue"
+        :max="today"
+        :value="inputValue"
         @input="handleInputDate"
       />
     </div>
@@ -37,9 +38,15 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      today: new Date().toISOString().split("T")[0],
+    };
+  },
   methods: {
     handleInputDate(e) {
-      this.$emit("handleInput", { value: e.target.value, name: this.name });
+      const value = e.target.value;
+      this.$emit("handleInput", { value: value, name: this.name });
     },
   },
 };

@@ -51,7 +51,7 @@ export default {
       const value = e.target.value;
       this.$emit("handleInput", {
         value: { from: this.inputValue.from, to: value },
-        id: this.id,
+        name: this.name,
       });
     },
   },

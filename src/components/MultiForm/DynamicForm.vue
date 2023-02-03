@@ -6,31 +6,39 @@
       :currentStep="currentStep"
       @handleClick="handleClick"
     />
-    <FormCard
-      v-if="currentStep === 0"
-      :dataForm="stepForm[0]"
-      :data="cities"
-      :position="jobPosition"
-      :filtersItem="filtersItem"
-      :selected="selected"
+    <div v-for="(form, index) in stepForm" :key="form.step">
+      <FormCard
+        v-if="currentStep === index"
+        :dataForm="stepForm[index]"
+        :data="cities"
+        :position="jobPosition"
+        :filtersItem="filtersItem"
+        :selected="selected"
+        :nameCompany="nameCompany"
+        :currentStep="currentStep"
+        @addItem="addItem"
+        @deleteItem="deleteItem"
+        @searchItem="searchItem"
+        @changeValidation="changeValidation"
+      />
+      <!-- <FormCard
+        v-if="currentStep === 1"
+        :dataForm="stepForm[1]"
+        :data="selected"
+        :currentStep="currentStep"
+        @changeValidation="changeValidation"
+      />
+      <FormCard
+        v-if="currentStep === 2"
+        :dataForm="stepForm[2]"
+        :currentStep="currentStep"
+      /> -->
+    </div>
+    <NextButtonComp
+      @handleClick="handleClick"
       :currentStep="currentStep"
-      @addItem="addItem"
-      @deleteItem="deleteItem"
-      @searchItem="searchItem"
-      @changeValidation="changeValidation"
+      :isError="isError"
     />
-    <FormCard
-      v-if="currentStep === 1"
-      :dataForm="stepForm[1]"
-      :data="selected"
-      :currentStep="currentStep"
-    />
-    <FormCard
-      v-if="currentStep === 2"
-      :dataForm="stepForm[2]"
-      :currentStep="currentStep"
-    />
-    <NextButtonComp @handleClick="handleClick" :currentStep="currentStep" />
     <BackButtonComp @onClick="handleBackBtn" :currentStep="currentStep" />
     <SubmitButtonComp :currentStep="currentStep" />
   </div>
@@ -72,6 +80,7 @@ export default {
       cities: "getCities",
       jobPosition: "getPosition",
       selected: "getSelected",
+      nameCompany: "getNameCompany",
     }),
     filtersItem() {
       return this.jobPosition.filter((item) => {
@@ -89,9 +98,9 @@ export default {
       deletedItem: "deleted",
     }),
     handleClick() {
-      if(this.isError){ 
-        return
-      }else {
+      if (this.isError) {
+        return;
+      } else {
         this.$emit("handleNextBtn");
       }
     },

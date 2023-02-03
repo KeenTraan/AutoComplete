@@ -3,6 +3,7 @@ const MultiStepForm = {
     namespaced: true,
     state: {
         cities: [],
+        selected: [],
         jobPosition: [
             { id: 1, name: 'Software Developer(FE)' },
             { id: 2, name: 'Software Developer(BE)' },
@@ -10,12 +11,17 @@ const MultiStepForm = {
             { id: 4, name: 'Business Analyst' },
             { id: 5, name: 'Technical Leader' }
         ],
-        selected: []
+        nameCompany: [
+            { id: 1, name: "Mor Software" },
+            { id: 2, name: "FPT Software" },
+            { id: 3, name: "Viettel Software" },
+        ]
     },
     getters: {
         getCities: (state) => state.cities,
         getPosition: (state) => state.jobPosition,
-        getSelected: (state) => state.selected
+        getSelected: (state) => state.selected,
+        getNameCompany: (state) => state.nameCompany
     },
     mutations: {
         SET_CITIES: (state, cities) => {

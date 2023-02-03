@@ -33,6 +33,7 @@
           :name="form.key"
           :label="form.label"
           :data="data"
+          :selected="selected"
           :required="form.required"
           @handleSelect="onChangeInput"
         />
@@ -72,6 +73,7 @@
           :currency="CURRENCY.VND"
           @handleInput="onChangeInput"
         />
+        <InputChosenComp v-if="form.type === 'chosen'" :data="nameCompany" />
       </div>
     </div>
     <AddButtonComp v-if="currentStep === 1" />
@@ -89,6 +91,7 @@ import WorkingTime from "../shareComponent/WorkingTime.vue";
 import SalaryComp from "../shareComponent/SalaryComp.vue";
 import { CURRENCY } from "@/constant/Form";
 import AddButtonComp from "./button/AddButtonComp.vue";
+import InputChosenComp from "../shareComponent/InputChosenComp.vue";
 export default {
   data() {
     return {
@@ -121,6 +124,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    nameCompany: {
+      type: Array,
+      default: () => [],
+    },
   },
   components: {
     InputText,
@@ -132,6 +139,7 @@ export default {
     WorkingTime,
     SalaryComp,
     AddButtonComp,
+    InputChosenComp,
   },
   methods: {
     onChangeInput({ value, name }) {
@@ -139,7 +147,7 @@ export default {
       data.value = value;
     },
     validation(name) {
-      this.$emit('changeValidation', name)
+      this.$emit("changeValidation", name);
     },
     handleAddItem(item) {
       this.$emit("addItem", item);
@@ -156,7 +164,7 @@ export default {
 
 <style scoped lang="scss">
 .form-card-layout {
-  width: 926px;
+  width: max-content;
   background: #ffffff;
   border: 1px solid #dcdcdc;
   border-radius: 4px;

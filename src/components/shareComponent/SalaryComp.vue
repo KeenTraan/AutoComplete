@@ -6,7 +6,7 @@
     </div>
     <div class="content">
       <input type="number" @input="handleInput" :value="inputValue" />
-      <p>{{ currency }}</p>
+      <p class="currency">{{ currency }}</p>
     </div>
   </div>
 </template>
@@ -60,18 +60,25 @@ export default {
     align-items: center;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
+    width: 119px;
     height: 40px;
     padding: 10px 8px;
   }
   input {
     background: #ffffff;
     border: none;
+    outline: none;
     margin-right: 10px;
+    width: 63px;
+    height: 20px;
+  }
+  .currency {
+    font-weight: 400;
+    font-size: 14px;
   }
 }
-input:focus {
+.content:focus {
   outline: 1px solid skyblue;
-  border-radius: 2px;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

@@ -20,7 +20,7 @@ export const stepForm = [
                 type: "datetime",
                 key: 'age',
                 required: true,
-                value: ''
+                value: ""
             },
             {
                 id: uuidv4(),
@@ -65,7 +65,7 @@ export const stepForm = [
         layout: [
             {
                 id: uuidv4(),
-                type: 'select',
+                type: 'chosen',
                 key: 'positions',
                 required: false,
                 value: ''
