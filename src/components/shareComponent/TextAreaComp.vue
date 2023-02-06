@@ -61,11 +61,11 @@ export default {
   methods: {
     handleInput(e) {
       if (this.inputValue.length > this.maxLength) {
-        this.$emit('handleValidation',true)
+        this.$emit("handleValidation", true);
         this.errorMessage = "Invalid input";
-      } 
-      if(this.inputValue.length < this.maxLength) {
-        this.$emit('handleValidation',false)
+      }
+      if (this.inputValue.length < this.maxLength) {
+        this.$emit("handleValidation", false);
         this.errorMessage = "";
       }
       this.$emit("handleInput", { value: e.target.value, name: this.name });

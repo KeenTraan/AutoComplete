@@ -12,7 +12,6 @@
 <script>
 import DynamicForm from "@/components/MultiForm/DynamicForm.vue";
 import { stepForm } from "@/components/MultiForm/form";
-// import { validationNextStep } from "@/utils/ValidateMultiform";
 export default {
   data() {
     return {

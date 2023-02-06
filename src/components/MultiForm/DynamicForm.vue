@@ -21,18 +21,6 @@
         @searchItem="searchItem"
         @changeValidation="changeValidation"
       />
-      <!-- <FormCard
-        v-if="currentStep === 1"
-        :dataForm="stepForm[1]"
-        :data="selected"
-        :currentStep="currentStep"
-        @changeValidation="changeValidation"
-      />
-      <FormCard
-        v-if="currentStep === 2"
-        :dataForm="stepForm[2]"
-        :currentStep="currentStep"
-      /> -->
     </div>
     <NextButtonComp
       @handleClick="handleClick"

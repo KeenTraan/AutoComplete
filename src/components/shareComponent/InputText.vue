@@ -110,7 +110,6 @@ export default {
   }
   .error-valid {
     border: 1px solid red;
-    background: rgb(255, 0, 0, 0.1);
   }
 }
 </style>
