@@ -1,6 +1,5 @@
 <template>
   <button
-    :class="{ 'err-valid': valid }"
     v-if="currentStep < 2"
     class="btn"
     @click="onClick"
@@ -54,9 +53,9 @@ export default {
   cursor: not-allowed;
   background: #dcdcdc;
 }
-.err-valid {
-  background: #c5c5c5;
-  opacity: 0.8;
-  cursor: not-allowed;
-}
+// .err-valid {
+//   background: #c5c5c5;
+//   opacity: 0.8;
+//   cursor: not-allowed;
+// }
 </style>

@@ -4,11 +4,11 @@
       <CheckrequireComp v-if="required" />
       <p class="text-label">{{ label }}</p>
     </div>
-    <select class="select-input" @input="onChange">
+    <select class="select-input" @input="onChange" :value="inputValue">
       <option
         v-for="item in data"
         :key="item.code || item.id"
-        :value="inputValue"
+        :value="item.name"
       >
         {{ item.name }}
       </option>
@@ -20,11 +20,6 @@
 import CheckrequireComp from "./CheckrequireComp.vue";
 
 export default {
-  data() {
-    return {
-      value: "",
-    };
-  },
   props: {
     label: {
       type: String,

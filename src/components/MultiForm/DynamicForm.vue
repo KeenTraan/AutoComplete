@@ -16,6 +16,7 @@
         :selected="selected"
         :nameCompany="nameCompany"
         :currentStep="currentStep"
+        :validate="reactive"
         @addItem="addItem"
         @deleteItem="deleteItem"
         @searchItem="searchItem"
@@ -23,9 +24,9 @@
       />
     </div>
     <NextButtonComp
-      @handleClick="handleClick"
       :currentStep="currentStep"
       :isError="isError"
+      @handleClick="handleClick"
     />
     <BackButtonComp @onClick="handleBackBtn" :currentStep="currentStep" />
     <SubmitButtonComp :currentStep="currentStep" />
@@ -44,6 +45,7 @@ export default {
     return {
       keyWord: "",
       isError: true,
+      reactive: false
     };
   },
   props: {
@@ -87,6 +89,7 @@ export default {
     }),
     handleClick() {
       if (this.isError) {
+        this.reactive = true;
         return;
       } else {
         this.$emit("handleNextBtn");

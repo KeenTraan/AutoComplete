@@ -9,7 +9,7 @@
         class="input-date"
         type="date"
         :max="today"
-        :value="inputValue"
+        :value="today"
         @input="handleInputDate"
       />
     </div>
@@ -19,6 +19,11 @@
 <script>
 import CheckrequireComp from "./CheckrequireComp.vue";
 export default {
+  data() {
+    return {
+      today: new Date().toISOString().split("T")[0],
+    };
+  },
   components: { CheckrequireComp },
   props: {
     label: {
@@ -37,11 +42,6 @@ export default {
       type: Boolean,
       required: true,
     },
-  },
-  data() {
-    return {
-      today: new Date().toISOString().split("T")[0],
-    };
   },
   methods: {
     handleInputDate(e) {

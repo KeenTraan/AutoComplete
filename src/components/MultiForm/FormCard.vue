@@ -9,6 +9,7 @@
           :maxLength="form.maxLength"
           :inputValue="form.value"
           :required="form.required"
+          :validate="validate"
           @handleInput="onChangeInput"
           @handleValidation="validation"
         />
@@ -134,6 +135,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    validate: {
+      type: Boolean,
+      required: true,
+    }
   },
   components: {
     InputText,

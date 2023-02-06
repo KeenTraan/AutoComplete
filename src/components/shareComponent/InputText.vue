@@ -11,7 +11,7 @@
         @input="handleInput"
         :class="{ 'error-valid': valid }"
       />
-      <p class="error-message">{{ errorMessage }}</p>
+      <p class="error-message" v-if="valid">{{ errorMessage }}</p>
     </div>
   </div>
 </template>
@@ -48,10 +48,14 @@ export default {
       type: Number,
       required: true,
     },
+    validate: {
+      type: Boolean,
+      required: true,
+    },
   },
   computed: {
     valid() {
-      return this.inputValue.length > this.maxLength;
+      return this.inputValue.length > this.maxLength && this.validate === true;
     },
   },
   watch: {
@@ -59,7 +63,7 @@ export default {
       handler() {
         if (this.inputValue.length > this.maxLength || !this.inputValue) {
           this.$emit("handleValidation", true);
-          this.errorMessage = "Invalid input";
+          this.errorMessage = "Invalid input";  
         }
       },
     },
