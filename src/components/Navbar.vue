@@ -20,6 +20,7 @@ export default {
         { id: 3, name: "User", path: "/users" },
         { id: 4, name: "Dropzone", path: "/dropzone" },
         { id: 5, name: "Multi Form", path: "/multiform" },
+        { id: 6, name: "Exam 3 Multi Form", path: "/exam3" },
       ],
     };
   },

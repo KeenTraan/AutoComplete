@@ -1,18 +1,16 @@
 <template>
   <div class="input-text-layout" :id="this.name">
-    <div>
-      <div class="title">
-        <CheckrequireComp v-if="required" />
-        <p>{{ label }}</p>
-      </div>
-      <input
-        type="text"
-        :value="inputValue"
-        @input="handleInput"
-        :class="{ 'error-valid': valid }"
-      />
-      <p class="error-message">{{ errorMessage }}</p>
+    <div class="title">
+      <CheckrequireComp v-if="required" />
+      <p>{{ label }}</p>
     </div>
+    <input
+      type="text"
+      :value="inputValue"
+      @input="handleInput"
+      :class="{ 'error-valid': valid }"
+    />
+    <p class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
 

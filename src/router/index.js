@@ -29,6 +29,11 @@ const routes = [
     name: 'multiform',
     component: () => import('@/views/MultiformView.vue')
   },
+  {
+    path: '/exam3',
+    name: 'multiform',
+    component: () => import('@/views/Exam3View.vue')
+  },
 ]
 
 const router = new VueRouter({
