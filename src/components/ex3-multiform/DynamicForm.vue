@@ -34,6 +34,10 @@
         :required="form.required"
         :placeholder="placeholder"
         :data="filtersItem"
+        :selected="selected"
+        @handleSearch="search"
+        @handelAddItem="addItem"
+        @handelDeleteItem="deleteItem"
       />
       <InputTextarea
         v-if="form.type === 'textarea'"
@@ -127,11 +131,25 @@ export default {
     },
   },
   methods: {
-    ...mapActions("form", { fetchCities: "fetchCities" }),
+    ...mapActions("form", { 
+      fetchCities: "fetchCities", 
+      selectedItem: "selected",
+      deletedItem: "deleted" 
+    }),
     onchangeInput({ value, id }) {
       const data = this.data.find((item) => item.id === id);
       data.value = value;
     },
+    search(keyword) {
+      this.keyWord = keyword.trim();
+    },
+    addItem(item) {
+      this.selectedItem(item);
+      this.keyWord = ""
+    },
+    deleteItem(item) {
+      this.deletedItem(item)
+    }
   },
   created() {
     this.fetchCities();

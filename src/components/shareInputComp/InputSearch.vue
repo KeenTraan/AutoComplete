@@ -4,7 +4,10 @@
     <AutoComplete
       :filtersItem="data"
       :placeholder="placeholder"
+      :getSelect="selected"
       @searchOptions="searchOptions"
+      @addChosen="addChosen"
+      @deleteItem="deletedItem"
     />
   </div>
 </template>
@@ -29,6 +32,10 @@ export default {
       type: String,
       required: true,
     },
+    selected: {
+      type: Array,
+      default: () => []
+    }
   },
   components: {
     AutoComplete,
@@ -37,6 +44,12 @@ export default {
     searchOptions(keyword) {
       this.$emit("handleSearch", keyword);
     },
+    addChosen(item) {
+      this.$emit('handelAddItem', item);
+    },
+    deletedItem(item) {
+      this.$emit('handelDeleteItem', item);
+    }
   },
 };
 </script>
