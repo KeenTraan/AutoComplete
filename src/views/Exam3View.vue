@@ -12,8 +12,8 @@
     </div>
     <button
       class="btn-next"
-      @click="handleNext"
       v-show="currentStep >= 1 && currentStep < 3"
+      @click="handleNext"
     >
       Next
     </button>
@@ -48,21 +48,40 @@ export default {
     },
   },
   methods: {
+    validate() {
+      let isValid = false;
+      const data = this.dataForm.layout;
+      data.forEach((item) => {
+        if (item.value.length > item.maxLength) {
+          item.err = `${item.label} phải nhỏ hơn ${item.maxLength} kí tự`;
+          isValid = true;
+        }
+        if (item.required) {
+          if (!item.value) {
+            // console.log("active here");
+            item.err = `${item.label} không được để trống`;
+            isValid = true;
+          }
+        }
+      });
+      return isValid;
+    },
     handleNext() {
-      this.currentStep++;
-      this.stepForm[this.currentStep - 1].isActive = true;
+      // console.log("active");
+      if (!this.validate()) {
+        this.currentStep++;
+        this.stepForm[this.currentStep - 1].isActive = true;
+      }
     },
     handleBack() {
       this.currentStep--;
       this.stepForm[this.currentStep].isActive = false;
+      this.validate();
     },
     handleSubmit() {
       alert("Hoan thanh");
     },
     handleStep(step) {
-      //   if (this.currentStep !== step) {
-      //     this.stepForm[this.currentStep - 1].isActive = false;
-      //   }
       this.currentStep = step;
       this.stepForm[this.currentStep - 1].isActive = true;
     },

@@ -1,6 +1,7 @@
 <template>
   <div class="textarea-layout">
     <textarea
+      :class="{ 'err-valid': err }"
       class="text-content"
       cols="30"
       rows="10"
@@ -8,6 +9,7 @@
       @input="onChange"
     ></textarea>
     <p class="character">{{ `${inputValue.length}/${character}` }}</p>
+    <p :class="{ 'err-msg': err }">{{ err }}</p>
   </div>
 </template>
 
@@ -29,6 +31,10 @@ export default {
     required: {
       type: Boolean,
       required: false,
+    },
+    err: {
+      type: String,
+      default: "",
     },
   },
   methods: {
@@ -66,6 +72,15 @@ export default {
   .text-content::-webkit-scrollbar-track {
     border-radius: 100rem;
     background-color: white;
+  }
+  .err-msg {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: red;
+  }
+  .err-valid {
+    border: 1px solid red;
   }
 }
 </style>

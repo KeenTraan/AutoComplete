@@ -1,14 +1,17 @@
 <template>
   <div class="form-layout">
     <div v-for="form in data" :key="form.id">
-      <CheckRequireComp v-show="form.required" />
-      <div class="form-title">{{ form.label }}</div>
+      <div class="form-header">
+        <CheckRequireComp v-show="form.required" />
+        <div class="form-title">{{ form.label }}</div>
+      </div>
       <InputText
         v-if="form.type === 'text'"
         :id="form.id"
         :inputValue="form.value"
         :required="form.required"
         :maxlength="form.maxLength"
+        :err="form.err"
         @handleInputText="onchangeInput"
       />
       <InputDate
@@ -16,6 +19,7 @@
         :id="form.id"
         :inputValue="form.value"
         :required="form.required"
+        :err="form.err"
         @onChangeInputDate="onchangeInput"
       />
       <InputSelected
@@ -44,7 +48,8 @@
         :inputValue="form.value"
         :id="form.id"
         :reruired="form.required"
-        :character="form.wordLimit"
+        :character="form.maxLength"
+        :err="form.err"
         @handleInputTextarea="onchangeInput"
       />
       <InputChosen
@@ -74,6 +79,7 @@
         v-if="form.type === 'input_multi_file'"
         :required="form.required"
       />
+      <!-- {{ data }} -->
     </div>
   </div>
 </template>
@@ -131,13 +137,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions("form", { 
-      fetchCities: "fetchCities", 
+    ...mapActions("form", {
+      fetchCities: "fetchCities",
       selectedItem: "selected",
-      deletedItem: "deleted" 
+      deletedItem: "deleted",
     }),
     onchangeInput({ value, id }) {
       const data = this.data.find((item) => item.id === id);
+      data.err = "";
       data.value = value;
     },
     search(keyword) {
@@ -145,11 +152,11 @@ export default {
     },
     addItem(item) {
       this.selectedItem(item);
-      this.keyWord = ""
+      this.keyWord = "";
     },
     deleteItem(item) {
-      this.deletedItem(item)
-    }
+      this.deletedItem(item);
+    },
   },
   created() {
     this.fetchCities();
@@ -162,13 +169,15 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  .form-title {
+  .form-header {
     display: flex;
     margin-bottom: 6px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    color: #333333;
+    .form-title {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      color: #333333;
+    }
   }
 }
 </style>

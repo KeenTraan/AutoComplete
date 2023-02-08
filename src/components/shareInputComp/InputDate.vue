@@ -1,6 +1,14 @@
 <template>
   <div class="input-date-layout">
-    <input type="date" :value="inputValue" :max="today" @input="onChange" />
+    <input
+      :class="{ 'err-valid': err }"
+      type="date"
+      :value="inputValue"
+      :max="today"
+      @input="onChange"
+    />
+    <br />
+    <P :class="{ 'err-msg': err }">{{ err }}</P>
   </div>
 </template>
 
@@ -24,6 +32,10 @@ export default {
       type: Boolean,
       require: false,
     },
+    err: {
+      type: String,
+      default: "",
+    },
   },
   methods: {
     onChange(e) {
@@ -42,7 +54,7 @@ export default {
   font-weight: 400;
   font-size: 14px;
 }
-input[type="date"] {
+input {
   outline: none;
   font-weight: 400;
   font-size: 14px;
@@ -51,12 +63,21 @@ input[type="date"] {
   height: 40px;
   background: #ffffff;
   border: 1px solid #dcdcdc;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 input::-webkit-calendar-picker-indicator {
   background-color: #ffffff;
   padding: 5px;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 4px;
+}
+.err-msg {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: red;
+}
+.err-valid {
+  border: 1px solid red;
 }
 </style>

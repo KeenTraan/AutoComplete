@@ -12,6 +12,7 @@ export const stepForm = [
                 key: 'name',
                 maxLength: 100,
                 required: true,
+                err: '',
                 value: ''
             },
             {
@@ -20,6 +21,7 @@ export const stepForm = [
                 type: "datetime",
                 key: 'age',
                 required: true,
+                err: "",
                 value: ""
             },
             {
@@ -45,8 +47,9 @@ export const stepForm = [
                 label: 'Mô tả về bản thân',
                 required: false,
                 type: 'textarea',
-                wordLimit: 1000,
+                maxLength: 1000,
                 value: '',
+                err: "",
                 key: 'description'
             },
             {
@@ -73,6 +76,7 @@ export const stepForm = [
             {
                 id: uuidv4(),
                 label: 'Vị trí từng làm',
+                err: "",
                 type: 'text',
                 key: 'worked_posiotion',
                 maxLength: 100,
@@ -85,6 +89,7 @@ export const stepForm = [
                 key: 'input_range_time',
                 type: "input_range_time",
                 required: true,
+                err: '',
                 value: { from: '', to: '' }
             },
             {
@@ -92,7 +97,7 @@ export const stepForm = [
                 label: 'Mô tả công việc',
                 key: 'description',
                 type: 'textarea',
-                wordLimit: 5000,
+                maxLength: 5000,
                 required: false,
                 value: ''
             }
@@ -108,8 +113,9 @@ export const stepForm = [
                 label: 'Lý do muốn ứng tuyển vào công ty',
                 type: 'textarea',
                 key: 'description',
-                wordLimit: 1000,
+                maxLength: 1000,
                 required: true,
+                err: '',
                 value: ''
             },
             {
@@ -118,6 +124,7 @@ export const stepForm = [
                 type: 'salary',
                 key: 'salary',
                 required: true,
+                err: '',
                 value: ''
             },
         ]
