@@ -4,6 +4,7 @@
       <input
         class="input-date"
         type="date"
+        :class="{ 'err-valid': err }"
         :max="today"
         :value="inputValue.from"
         @input="handleInputStart"
@@ -12,21 +13,18 @@
       <input
         class="input-date"
         type="date"
+        :class="{ 'err-valid': err }"
         :max="today"
         :value="inputValue.to"
         @input="handleInputEnd"
       />
     </div>
+    <p :class="{ 'err-msg': err }">{{ err }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      today: new Date().toISOString().split("T")[0],
-    };
-  },
   props: {
     id: {
       type: String,
@@ -39,6 +37,14 @@ export default {
     required: {
       type: Boolean,
       required: false,
+    },
+    today: {
+      type: String,
+      required: false,
+    },
+    err: {
+      type: String,
+      required: true,
     },
   },
   methods: {
@@ -81,6 +87,15 @@ export default {
     .line {
       color: #bfbfbf;
     }
+  }
+  .err-msg {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: red;
+  }
+  .err-valid {
+    border: 1px solid red;
   }
 }
 </style>

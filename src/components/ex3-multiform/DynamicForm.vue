@@ -20,6 +20,7 @@
         :inputValue="form.value"
         :required="form.required"
         :err="form.err"
+        :today="today"
         @onChangeInputDate="onchangeInput"
       />
       <InputSelected
@@ -65,6 +66,8 @@
         :id="form.id"
         :inputValue="form.value"
         :required="form.required"
+        :err="form.err"
+        :today="today"
         @handleInput="onchangeInput"
       />
       <InputSalary
@@ -73,6 +76,7 @@
         :id="form.id"
         :currency="currency"
         :required="form.required"
+        :err="form.err"
         @handleInputSalary="onchangeInput"
       />
       <InputFiles
@@ -89,7 +93,7 @@ import InputText from "@/components/shareInputComp/InputText.vue";
 import InputDate from "@/components/shareInputComp/InputDate.vue";
 import InputSelected from "@/components/shareInputComp/InputSelected.vue";
 import InputSearch from "@/components/shareInputComp/InputSearch.vue";
-import InputTextarea from "@/components/shareInputComp/InputTextarea";
+import InputTextarea from "@/components/shareInputComp/InputTextarea.vue";
 import InputFiles from "@/components/shareInputComp/InputFiles.vue";
 import InputChosen from "@/components/shareInputComp/InputChosen.vue";
 import InputRangeTime from "@/components/shareInputComp/InputRangeTime.vue";
@@ -103,6 +107,7 @@ export default {
       currency: CURRENCY.VND,
       keyWord: "",
       placeholder: PLACEHOLDER.JOB_POSITION,
+      today: new Date().toISOString().split("T")[0],
     };
   },
   components: {

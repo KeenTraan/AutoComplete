@@ -14,11 +14,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      today: new Date().toISOString().split("T")[0],
-    };
-  },
   props: {
     inputValue: {
       type: String,
@@ -31,6 +26,10 @@ export default {
     required: {
       type: Boolean,
       require: false,
+    },
+    today: {
+      type: String,
+      required: false,
     },
     err: {
       type: String,

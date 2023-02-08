@@ -89,7 +89,7 @@ export const stepForm = [
                 key: 'input_range_time',
                 type: "input_range_time",
                 required: true,
-                err: '',
+                err: "",
                 value: { from: '', to: '' }
             },
             {
@@ -99,6 +99,7 @@ export const stepForm = [
                 type: 'textarea',
                 maxLength: 5000,
                 required: false,
+                err: "",
                 value: ''
             }
         ]
@@ -125,7 +126,8 @@ export const stepForm = [
                 key: 'salary',
                 required: true,
                 err: '',
-                value: ''
+                value: '',
+                maxLength: 10
             },
         ]
     }

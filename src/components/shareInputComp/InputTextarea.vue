@@ -1,7 +1,7 @@
 <template>
   <div class="textarea-layout">
     <textarea
-      :class="{ 'err-valid': err }"
+      :class="{ 'err-valid': errMsg }"
       class="text-content"
       cols="30"
       rows="10"
@@ -9,12 +9,17 @@
       @input="onChange"
     ></textarea>
     <p class="character">{{ `${inputValue.length}/${character}` }}</p>
-    <p :class="{ 'err-msg': err }">{{ err }}</p>
+    <p :class="{ 'err-msg': errMsg }">{{ errMsg }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      errMsg: "",
+    };
+  },
   props: {
     inputValue: {
       type: String,
@@ -35,6 +40,13 @@ export default {
     err: {
       type: String,
       default: "",
+    },
+  },
+  watch: {
+    err: {
+      handler(value) {
+        this.errMsg = value;
+      },
     },
   },
   methods: {

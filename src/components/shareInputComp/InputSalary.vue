@@ -1,9 +1,10 @@
 <template>
   <div class="salary-layout">
-    <div class="content">
+    <div class="content" :class="{ 'err-valid': err }">
       <input type="number" @input="handleInput" :value="inputValue" />
       <p class="currency">{{ currency }}</p>
     </div>
+    <p :class="{ 'err-msg': err }">{{ err }}</p>
   </div>
 </template>
 
@@ -23,6 +24,10 @@ export default {
       required: true,
     },
     id: {
+      type: String,
+      required: true,
+    },
+    err: {
       type: String,
       required: true,
     },
@@ -65,5 +70,14 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.err-msg {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: red;
+}
+.err-valid {
+  border: 1px solid red;
 }
 </style>

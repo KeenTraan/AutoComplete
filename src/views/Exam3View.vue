@@ -4,11 +4,15 @@
       <StepProgress
         :data="stepForm"
         :currenStep="currentStep"
-        @handleStep="handleStep"
+        @handleStep="handleNext"
       />
     </div>
     <div class="form-body">
       <DynamicForm :data="dataForm.layout" />
+    </div>
+    <div class="btn-add" v-show="currentStep === 2">
+      <img src="@/assets/icons/Plus.png" alt="" />
+      <button class="btn-add-item">Thêm Công Ty</button>
     </div>
     <button
       class="btn-next"
@@ -58,8 +62,11 @@ export default {
         }
         if (item.required) {
           if (!item.value) {
-            // console.log("active here");
             item.err = `${item.label} không được để trống`;
+            isValid = true;
+          }
+          if (item.value.length > item.maxLength) {
+            item.err = `${item.label} phải nhỏ hơn ${item.maxLength} kí tự`;
             isValid = true;
           }
         }
@@ -67,7 +74,6 @@ export default {
       return isValid;
     },
     handleNext() {
-      // console.log("active");
       if (!this.validate()) {
         this.currentStep++;
         this.stepForm[this.currentStep - 1].isActive = true;
@@ -138,6 +144,26 @@ export default {
     font-weight: 700;
     font-size: 16px;
     color: white;
+  }
+  .btn-add {
+    cursor: pointer;
+    width: 151px;
+    height: 40px;
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 24px;
+    &-item {
+      cursor: pointer;
+      background: #ffffff;
+      border: none;
+      color: #48647f;
+      font-weight: 400;
+      font-size: 16px;
+    }
   }
 }
 </style>
