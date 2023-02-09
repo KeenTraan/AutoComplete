@@ -35,13 +35,14 @@
 </template>
 
 <script>
-import { stepForm } from "@/components/ex3-multiform/form";
+import { layoutDefault, stepForm } from "@/components/ex3-multiform/form";
 import StepProgress from "@/components/ex3-multiform/StepProgress.vue";
 import DynamicForm from "@/components/ex3-multiform/DynamicForm.vue";
 export default {
   data() {
     return {
       stepForm,
+      layoutDefault,
       currentStep: 1,
       today: new Date().toISOString().split("T")[0],
     };
@@ -113,8 +114,10 @@ export default {
       }
     },
     handleAddItem() {
-      // let formSecond = this.stepForm.find((item) => item.step === 2);
-      // formSecond.layout.push(...JSON.parse(JSON.stringify(layoutDefault)));
+      let formSecond = this.stepForm.find((item) => item.step === 2);
+      // let item = this.layoutDefault.forEach((item) => item)
+      formSecond.layout.push(...JSON.parse(JSON.stringify(layoutDefault)));
+      console.log(formSecond)
     },
     scrollToElement() {
       let errorMsgElement = document.querySelector(".err-msg");
