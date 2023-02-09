@@ -74,6 +74,7 @@ export default {
       }
       if (this.isValid) {
         this.fileList = newDataFile;
+        this.$emit("dropFiles", this.fileList);
       }
     },
     deleteFile(lastModified) {

@@ -4,7 +4,7 @@
       <StepProgress
         :data="stepForm"
         :currenStep="currentStep"
-        @handleStep="handleNext"
+        @handleStep="handleStep"
       />
     </div>
     <div class="form-body">
@@ -64,9 +64,18 @@ export default {
           if (!item.value) {
             item.err = `${item.label} không được để trống`;
             isValid = true;
+            this.scrollToElement();
           }
           if (item.value.length > item.maxLength) {
             item.err = `${item.label} phải nhỏ hơn ${item.maxLength} kí tự`;
+            isValid = true;
+          }
+          if (item.value.from >= item.value.to) {
+            item.err = "thời gian bắt đàu phải nhỏ hơn thời gian kết thúc";
+            isValid = true;
+          }
+          if (item.value.from === "" && item.value.to === "") {
+            item.err = `${item.label} không được để trống`;
             isValid = true;
           }
         }
@@ -85,11 +94,24 @@ export default {
       this.validate();
     },
     handleSubmit() {
-      alert("Hoan thanh");
+      if (!this.validate()) {
+        alert("done");
+      }
     },
     handleStep(step) {
-      this.currentStep = step;
-      this.stepForm[this.currentStep - 1].isActive = true;
+      if (!this.validate()) {
+        this.currentStep = step;
+        this.stepForm[this.currentStep - 1].isActive = true;
+      }
+    },
+    scrollToElement() {
+      setTimeout(() => {
+        let element = document.querySelectorAll(".err-msg");
+        window.scrollTo({
+          top: element - 300,
+          behavior: "smooth",
+        });
+      });
     },
   },
 };

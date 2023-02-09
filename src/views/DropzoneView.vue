@@ -5,6 +5,7 @@
       :maxSize="maxSize"
       :show="show"
       @uploadFile="uploadFile"
+      @dropFiles="dropFiles"
     />
   </div>
 </template>
@@ -33,6 +34,9 @@ export default {
         let storageRef = ref(storage, "Files/" + file.name);
         uploadBytes(storageRef, file);
       }
+    },
+    dropFiles(newDataFile) {
+      console.log(newDataFile);
     },
   },
 };

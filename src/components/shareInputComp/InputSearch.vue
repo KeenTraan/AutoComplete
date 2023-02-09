@@ -8,6 +8,7 @@
       @searchOptions="searchOptions"
       @addChosen="addChosen"
       @deleteItem="deletedItem"
+      @onChangeInput="onChangeInput"
     />
   </div>
 </template>
@@ -34,8 +35,8 @@ export default {
     },
     selected: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   components: {
     AutoComplete,
@@ -45,11 +46,14 @@ export default {
       this.$emit("handleSearch", keyword);
     },
     addChosen(item) {
-      this.$emit('handelAddItem', item);
+      this.$emit("handelAddItem", item);
     },
     deletedItem(item) {
-      this.$emit('handelDeleteItem', item);
-    }
+      this.$emit("handelDeleteItem", item);
+    },
+    onChangeInput() {
+      this.$emit("onChangeInput");
+    },
   },
 };
 </script>

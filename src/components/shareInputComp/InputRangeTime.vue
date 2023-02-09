@@ -5,7 +5,6 @@
         class="input-date"
         type="date"
         :class="{ 'err-valid': err }"
-        :max="today"
         :value="inputValue.from"
         @input="handleInputStart"
       />
@@ -14,7 +13,6 @@
         class="input-date"
         type="date"
         :class="{ 'err-valid': err }"
-        :max="today"
         :value="inputValue.to"
         @input="handleInputEnd"
       />
@@ -36,10 +34,6 @@ export default {
     },
     required: {
       type: Boolean,
-      required: false,
-    },
-    today: {
-      type: String,
       required: false,
     },
     err: {
@@ -87,15 +81,15 @@ export default {
     .line {
       color: #bfbfbf;
     }
+    .err-valid {
+      border: 1px solid red;
+    }
   }
   .err-msg {
     font-weight: 400;
     font-size: 12px;
     line-height: 20px;
     color: red;
-  }
-  .err-valid {
-    border: 1px solid red;
   }
 }
 </style>

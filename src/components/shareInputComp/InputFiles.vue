@@ -1,6 +1,10 @@
 <template>
   <div class="dropzone-layout">
-    <Dropzone :limitedFile="5" :maxSize="maxSize" />
+    <Dropzone
+      :limitedFile="5"
+      :maxSize="maxSize"
+      @dropFiles="handleDropFiles"
+    />
   </div>
 </template>
 
@@ -18,9 +22,18 @@ export default {
       type: Boolean,
       required: false,
     },
+    id: {
+      type: String,
+      required: true,
+    },
   },
   components: {
     Dropzone,
+  },
+  methods: {
+    handleDropFiles(newDataFile) {
+      this.$emit("dropFiles", { value: newDataFile, id: this.id });
+    },
   },
 };
 </script>

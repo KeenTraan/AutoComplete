@@ -7,6 +7,7 @@
         :keyword="keyword"
         @searchItem="searchItem"
         @deleteOptions="deleteOptions"
+        @onChangeInput="onChangeInput"
       />
       <DropdownOption
         v-if="!showDropdown"
@@ -45,6 +46,9 @@ export default {
     },
     deleteOptions(item) {
       this.$emit("deleteItem", item);
+    },
+    onChangeInput() {
+      this.$emit("onChangeInput");
     },
   },
   computed: {

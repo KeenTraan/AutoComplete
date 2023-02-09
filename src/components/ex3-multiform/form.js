@@ -57,7 +57,7 @@ export const stepForm = [
                 label: 'Ảnh cá nhân',
                 required: false,
                 type: 'input_multi_file',
-                value: {}
+                value: []
             },
         ]
     },

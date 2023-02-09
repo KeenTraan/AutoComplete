@@ -54,6 +54,7 @@ export default {
     handleSearch(e) {
       this.valueInput = e.target.value;
       this.$emit("searchItem", this.valueInput);
+      this.$emit("onChangeInput", this.valueInput);
     },
     handleDelete(item) {
       this.$emit("deleteOptions", item);

@@ -34,7 +34,6 @@
       <InputSearch
         v-if="form.type === 'search'"
         :description="form.description"
-        :id="form.id"
         :inputValue="form.value"
         :required="form.required"
         :placeholder="placeholder"
@@ -43,6 +42,7 @@
         @handleSearch="search"
         @handelAddItem="addItem"
         @handelDeleteItem="deleteItem"
+        @onChangeInput="onchangeInput({ id: form.id })"
       />
       <InputTextarea
         v-if="form.type === 'textarea'"
@@ -82,8 +82,9 @@
       <InputFiles
         v-if="form.type === 'input_multi_file'"
         :required="form.required"
+        :id="form.id"
+        @dropFiles="onchangeInput"
       />
-      <!-- {{ data }} -->
     </div>
   </div>
 </template>
@@ -149,8 +150,12 @@ export default {
     }),
     onchangeInput({ value, id }) {
       const data = this.data.find((item) => item.id === id);
-      data.err = "";
-      data.value = value;
+      if (data.type === "search") {
+        data.value = this.selected;
+      } else {
+        data.value = value;
+        data.err = "";
+      }
     },
     search(keyword) {
       this.keyWord = keyword.trim();
