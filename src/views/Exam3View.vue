@@ -113,7 +113,8 @@ export default {
       }
     },
     handleAddItem() {
-      console.log("hey");
+      // let formSecond = this.stepForm.find((item) => item.step === 2);
+      // formSecond.layout.push(...JSON.parse(JSON.stringify(layoutDefault)));
     },
     scrollToElement() {
       let errorMsgElement = document.querySelector(".err-msg");

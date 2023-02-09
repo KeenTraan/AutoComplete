@@ -1,4 +1,44 @@
 import { v4 as uuidv4 } from 'uuid';
+export const layoutDefault = [
+    {
+        id: uuidv4(),
+        type: 'chosen',
+        key: "company",
+        required: false,
+        err: "",
+        value: ''
+    },
+    {
+        id: uuidv4(),
+        label: 'Vị trí từng làm',
+        err: "",
+        type: 'text',
+        key: 'worked_posiotion',
+        maxLength: 100,
+        required: true,
+        value: ''
+    },
+    {
+        id: uuidv4(),
+        label: 'Thời gian làm việc',
+        key: 'input_range_time',
+        type: "input_range_time",
+        required: true,
+        err: "",
+        value: { from: '', to: '' }
+    },
+    {
+        id: uuidv4(),
+        label: 'Mô tả công việc',
+        key: 'description',
+        type: 'textarea',
+        maxLength: 5000,
+        required: false,
+        err: "",
+        value: ''
+    }
+]
+
 export const stepForm = [
     {
         label: "Thông tin",
@@ -60,50 +100,13 @@ export const stepForm = [
                 value: []
             },
         ]
+
     },
     {
         label: "Kinh nghiệm làm việc",
         isActive: false,
         step: 2,
-        layout: [
-            {
-                id: uuidv4(),
-                type: 'chosen',
-                key: "company",
-                required: false,
-                err: "",
-                value: ''
-            },
-            {
-                id: uuidv4(),
-                label: 'Vị trí từng làm',
-                err: "",
-                type: 'text',
-                key: 'worked_posiotion',
-                maxLength: 100,
-                required: true,
-                value: ''
-            },
-            {
-                id: uuidv4(),
-                label: 'Thời gian làm việc',
-                key: 'input_range_time',
-                type: "input_range_time",
-                required: true,
-                err: "",
-                value: { from: '', to: '' }
-            },
-            {
-                id: uuidv4(),
-                label: 'Mô tả công việc',
-                key: 'description',
-                type: 'textarea',
-                maxLength: 5000,
-                required: false,
-                err: "",
-                value: ''
-            }
-        ]
+        layout: layoutDefault
     },
     {
         label: "Xác nhận thông tin",
@@ -133,4 +136,5 @@ export const stepForm = [
         ]
     }
 ]
+
 
