@@ -8,28 +8,28 @@
       />
     </div>
     <div class="form-body">
-      <DynamicForm :data="dataForm.layout" />
+      <DynamicForm :data="dataForm.layout" :today="today" />
     </div>
     <div class="btn-add" v-show="currentStep === 2">
       <img src="@/assets/icons/Plus.png" alt="" />
-      <button class="btn-add-item">Thêm Công Ty</button>
+      <button class="btn-add-item" @click="handleAddItem">Thêm Công Ty</button>
     </div>
     <button
       class="btn-next"
       v-show="currentStep >= 1 && currentStep < 3"
       @click="handleNext"
     >
-      Next
+      Tiếp
     </button>
     <button
       class="btn-back"
       @click="handleBack"
       v-show="currentStep > 1 && currentStep < 3"
     >
-      Back
+      Quay Lại
     </button>
     <button class="btn-submit" @click="handleSubmit" v-show="currentStep === 3">
-      Submit
+      Hoàn Thành
     </button>
   </div>
 </template>
@@ -43,6 +43,7 @@ export default {
     return {
       stepForm,
       currentStep: 1,
+      today: new Date().toISOString().split("T")[0],
     };
   },
   components: { StepProgress, DynamicForm },
@@ -60,6 +61,12 @@ export default {
           item.err = `${item.label} phải nhỏ hơn ${item.maxLength} kí tự`;
           isValid = true;
         }
+        if (item.key === "company") {
+          if (!item.value) {
+            item.err = "Chọn tên công ty";
+            isValid = true;
+          }
+        }
         if (item.required) {
           if (!item.value) {
             item.err = `${item.label} không được để trống`;
@@ -74,7 +81,7 @@ export default {
             item.err = "thời gian bắt đàu phải nhỏ hơn thời gian kết thúc";
             isValid = true;
           }
-          if (item.value.from === "" && item.value.to === "") {
+          if (item.value.from === "" || item.value.to === "") {
             item.err = `${item.label} không được để trống`;
             isValid = true;
           }
@@ -103,6 +110,9 @@ export default {
         this.currentStep = step;
         this.stepForm[this.currentStep - 1].isActive = true;
       }
+    },
+    handleAddItem() {
+      console.log("hey");
     },
     scrollToElement() {
       setTimeout(() => {
@@ -157,7 +167,7 @@ export default {
   }
   .btn-submit {
     cursor: pointer;
-    width: 102px;
+    width: 142px;
     height: 40px;
     margin-right: 10px;
     background-color: #617d98;

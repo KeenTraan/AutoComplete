@@ -69,8 +69,9 @@ export const stepForm = [
             {
                 id: uuidv4(),
                 type: 'chosen',
-                key: 'positions',
+                key: "company",
                 required: false,
+                err: "",
                 value: ''
             },
             {

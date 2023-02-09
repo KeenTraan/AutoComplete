@@ -58,6 +58,7 @@
         :data="company"
         :inputValue="form.value"
         :id="form.id"
+        :err="form.err"
         :required="form.required"
         @handleChosen="onchangeInput"
       />
@@ -67,7 +68,6 @@
         :inputValue="form.value"
         :required="form.required"
         :err="form.err"
-        :today="today"
         @handleInput="onchangeInput"
       />
       <InputSalary
@@ -108,7 +108,7 @@ export default {
       currency: CURRENCY.VND,
       keyWord: "",
       placeholder: PLACEHOLDER.JOB_POSITION,
-      today: new Date().toISOString().split("T")[0],
+      select: [],
     };
   },
   components: {
@@ -128,6 +128,10 @@ export default {
       type: Array,
       required: true,
     },
+    today: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     ...mapGetters("form", {
@@ -142,6 +146,13 @@ export default {
       });
     },
   },
+  watch: {
+    selected: {
+      handler(value) {
+        this.select = value;
+      },
+    },
+  },
   methods: {
     ...mapActions("form", {
       fetchCities: "fetchCities",
@@ -151,7 +162,7 @@ export default {
     onchangeInput({ value, id }) {
       const data = this.data.find((item) => item.id === id);
       if (data.type === "search") {
-        data.value = this.selected;
+        data.value = this.select;
       } else {
         data.value = value;
         data.err = "";

@@ -38,7 +38,7 @@ export default {
     },
     err: {
       type: String,
-      required: true,
+      default: "",
     },
   },
   methods: {
@@ -71,9 +71,9 @@ export default {
     height: 40px;
     .input-date {
       padding: 4px;
-      width: 118px;
       height: 40px;
       border: 1px solid #dcdcdc;
+      text-align: center;
       border-radius: 2px;
       font-weight: 400;
       font-size: 14px;

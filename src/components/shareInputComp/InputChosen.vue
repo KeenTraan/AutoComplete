@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="chosen-layout">
+    <div class="chosen-layout" :class="{ 'err-valid': err }">
       <select class="chosen-input" :value="inputValue" @input="onChange">
         <option
           v-for="item in data"
@@ -17,6 +17,7 @@
         @click="deletedItem"
       />
     </div>
+    <P :class="{ 'err-msg': err }">{{ err }}</P>
   </div>
 </template>
 
@@ -38,6 +39,10 @@ export default {
     required: {
       type: Boolean,
       required: false,
+    },
+    err: {
+      type: String,
+      default: "",
     },
   },
   methods: {
@@ -71,11 +76,20 @@ export default {
     padding: 8px 10px;
     outline: none;
   }
-  .icons {
+  .icon {
     width: 32px;
     height: 32px;
-    margin: 14px 0 14px 16px;
+    margin: 14px 16px;
     cursor: pointer;
   }
+}
+.err-msg {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: red;
+}
+.err-valid {
+  border: 1px solid red;
 }
 </style>
