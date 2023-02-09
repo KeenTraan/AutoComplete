@@ -1,6 +1,6 @@
 <template>
   <div class="form-layout">
-    <div v-for="form in data" :key="form.id">
+    <div v-for="form in data" :key="form.id" class="input-block">
       <div class="form-header">
         <CheckRequireComp v-show="form.required" />
         <div class="form-title">{{ form.label }}</div>
@@ -68,6 +68,7 @@
         :inputValue="form.value"
         :required="form.required"
         :err="form.err"
+        :today="today"
         @handleInput="onchangeInput"
       />
       <InputSalary

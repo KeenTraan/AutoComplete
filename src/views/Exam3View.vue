@@ -71,7 +71,6 @@ export default {
           if (!item.value) {
             item.err = `${item.label} không được để trống`;
             isValid = true;
-            this.scrollToElement();
           }
           if (item.value.length > item.maxLength) {
             item.err = `${item.label} phải nhỏ hơn ${item.maxLength} kí tự`;
@@ -87,6 +86,9 @@ export default {
           }
         }
       });
+      this.$nextTick(() => {
+        this.scrollToElement();
+      });
       return isValid;
     },
     handleNext() {
@@ -98,7 +100,6 @@ export default {
     handleBack() {
       this.currentStep--;
       this.stepForm[this.currentStep].isActive = false;
-      this.validate();
     },
     handleSubmit() {
       if (!this.validate()) {
@@ -115,13 +116,14 @@ export default {
       console.log("hey");
     },
     scrollToElement() {
-      setTimeout(() => {
-        let element = document.querySelectorAll(".err-msg");
-        window.scrollTo({
-          top: element - 300,
+      let errorMsgElement = document.querySelector(".err-msg");
+      if (errorMsgElement) {
+        const inputWrapElement = errorMsgElement.closest(".input-block");
+        inputWrapElement.scrollIntoView({
           behavior: "smooth",
+          block: "center",
         });
-      });
+      }
     },
   },
 };

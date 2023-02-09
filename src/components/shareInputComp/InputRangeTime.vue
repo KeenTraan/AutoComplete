@@ -5,6 +5,7 @@
         class="input-date"
         type="date"
         :class="{ 'err-valid': err }"
+        :max="today"
         :value="inputValue.from"
         @input="handleInputStart"
       />
@@ -13,6 +14,7 @@
         class="input-date"
         type="date"
         :class="{ 'err-valid': err }"
+        :max="today"
         :value="inputValue.to"
         @input="handleInputEnd"
       />
@@ -39,6 +41,10 @@ export default {
     err: {
       type: String,
       default: "",
+    },
+    today: {
+      type: String,
+      required: false,
     },
   },
   methods: {
