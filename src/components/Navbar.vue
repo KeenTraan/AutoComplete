@@ -29,7 +29,8 @@ export default {
 .nav-bar {
   background-color: rgb(211, 211, 211);
   width: calc(300px - 50px);
-  height: 1200px;
+  height: 100vh;
+  position: fixed;
   margin-right: 20px;
   .text {
     padding: 0 10px;

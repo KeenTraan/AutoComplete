@@ -2,23 +2,24 @@
   <div id="app">
     <Navbar />
     <div class="main">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
 <script>
-import Navbar from './components/Navbar.vue';
+import Navbar from "./components/Navbar.vue";
 export default {
-components: {
+  components: {
     Navbar,
-}
-}
+  },
+};
 </script>
 <style scoped lang="scss">
 #app {
   display: flex;
 }
-.main{
-  width: calc(100% - 270px)
+.main {
+  width: calc(100% - 270px);
+  margin-left: auto;
 }
 </style>

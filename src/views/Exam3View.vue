@@ -38,6 +38,7 @@
 import { layoutDefault, stepForm } from "@/components/ex3-multiform/form";
 import StepProgress from "@/components/ex3-multiform/StepProgress.vue";
 import DynamicForm from "@/components/ex3-multiform/DynamicForm.vue";
+import { uuidv4 } from "@firebase/util";
 export default {
   data() {
     return {
@@ -115,9 +116,11 @@ export default {
     },
     handleAddItem() {
       let formSecond = this.stepForm.find((item) => item.step === 2);
-      // let item = this.layoutDefault.forEach((item) => item)
-      formSecond.layout.push(...JSON.parse(JSON.stringify(layoutDefault)));
-      console.log(formSecond)
+      const formLayout = JSON.parse(JSON.stringify(layoutDefault));
+      formLayout.forEach((item) => {
+        item.id = uuidv4();
+        formSecond.layout.push(item);
+      });
     },
     scrollToElement() {
       let errorMsgElement = document.querySelector(".err-msg");
