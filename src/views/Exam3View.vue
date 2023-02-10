@@ -58,6 +58,26 @@ export default {
     validate() {
       let isValid = false;
       const data = this.dataForm.layout;
+      let filterDate = data.filter((item) => item.key === "input_range_time");
+      for (let i = 0; i < filterDate.length; i++) {
+        for (let j = 1; j < filterDate.length; j++) {
+          let itemI = filterDate[i];
+          let itemJ = filterDate[j];
+          if (itemI.value.from && itemJ.value.from !== "" && i < j) {
+            if (
+              new Date(itemI.value.from) <= new Date(itemJ.value.to) &&
+              new Date(itemJ.value.from) <= new Date(itemI.value.to)
+            ) {
+              itemI.err = "Khoảng thời gian bị trùng nhau vui lòng chọn lại";
+              itemJ.err = "Khoảng thời gian bị trùng nhau vui lòng chọn lại";
+              isValid = true;
+            } else {
+              itemI.err = "";
+              itemJ.err = "";
+            }
+          }
+        }
+      }
       data.forEach((item) => {
         if (item.value.length > item.maxLength) {
           item.err = `${item.label} phải nhỏ hơn ${item.maxLength} kí tự`;
@@ -65,11 +85,13 @@ export default {
         }
         if (item.key === "company") {
           if (!item.value) {
-            item.err = "Chọn tên công ty";
+            item.err = "Nhấp chọn tên công ty";
             isValid = true;
           }
         }
         if (item.required) {
+          const from = item.value.from;
+          const to = item.value.to;
           if (!item.value) {
             item.err = `${item.label} không được để trống`;
             isValid = true;
@@ -78,11 +100,11 @@ export default {
             item.err = `${item.label} phải nhỏ hơn ${item.maxLength} kí tự`;
             isValid = true;
           }
-          if (item.value.from >= item.value.to) {
+          if (from >= to) {
             item.err = "thời gian bắt đàu phải nhỏ hơn thời gian kết thúc";
             isValid = true;
           }
-          if (item.value.from === "" || item.value.to === "") {
+          if (from === "" || to === "") {
             item.err = `${item.label} không được để trống`;
             isValid = true;
           }
@@ -105,7 +127,7 @@ export default {
     },
     handleSubmit() {
       if (!this.validate()) {
-        alert("done");
+        console.log(this.stepForm);
       }
     },
     handleStep(step) {

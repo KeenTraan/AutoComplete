@@ -35,9 +35,6 @@ export default {
         uploadBytes(storageRef, file);
       }
     },
-    dropFiles(newDataFile) {
-      console.log(newDataFile);
-    },
   },
 };
 </script>
