@@ -127,7 +127,14 @@ export default {
     },
     handleSubmit() {
       if (!this.validate()) {
-        console.log(this.stepForm);
+        const exportdata = {};
+        this.stepForm.forEach((item) => {
+          // console.log(item);
+          item.layout.forEach((elements) => {
+            exportdata[elements.key] = elements.value;
+          });
+        });
+        console.log(exportdata);
       }
     },
     handleStep(step) {
