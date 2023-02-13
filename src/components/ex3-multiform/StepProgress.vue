@@ -40,7 +40,6 @@ export default {
   },
   methods: {
     onClick(step) {
-      // console.log(index);
       this.$emit("handleStep", step);
     },
   },
