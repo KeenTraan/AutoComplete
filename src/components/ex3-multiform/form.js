@@ -97,7 +97,7 @@ export const stepForm = [
                 label: "Ảnh cá nhân",
                 required: false,
                 type: "input_multi_file",
-                key: 'avatar',
+                key: 'files',
                 value: [],
             },
         ],
@@ -106,7 +106,6 @@ export const stepForm = [
         label: "Kinh nghiệm làm việc",
         isActive: false,
         step: 2,
-        // layout: layoutDefault,
         layout: [
             {
                 id: uuidv4(),

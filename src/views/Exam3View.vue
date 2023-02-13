@@ -136,7 +136,6 @@ export default {
       if (!this.validate()) {
         const exportdata = {};
         this.stepForm.forEach((item) => {
-          // console.log(item);
           item.layout.forEach((elements) => {
             exportdata[elements.key] = elements.value;
           });
