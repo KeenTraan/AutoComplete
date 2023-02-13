@@ -62,7 +62,7 @@ export default {
     validate() {
       let isValid = false;
       const data = this.dataForm.layout;
-      let filterDate = data.filter((item) => item.key === "input_range_time");
+      let filterDate = data.filter((item) => item.key === "range_time");
       for (let i = 0; i < filterDate.length; i++) {
         for (let j = 1; j < filterDate.length; j++) {
           let itemI = filterDate[i];

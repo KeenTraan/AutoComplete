@@ -6,7 +6,7 @@
         <div class="form-title">{{ form.label }}</div>
       </div>
       <InputText
-        v-if="form.type === 'text'"
+        v-if="form.type === TYPE_INPUT.TEXT"
         :id="form.id"
         :inputValue="form.value"
         :required="form.required"
@@ -15,7 +15,7 @@
         @handleInputText="onchangeInput"
       />
       <InputDate
-        v-if="form.type === 'datetime'"
+        v-if="form.type === TYPE_INPUT.DATE"
         :id="form.id"
         :inputValue="form.value"
         :required="form.required"
@@ -24,7 +24,7 @@
         @onChangeInputDate="onchangeInput"
       />
       <InputSelected
-        v-if="form.type === 'select'"
+        v-if="form.type === TYPE_INPUT.SELECT"
         :inputValue="form.value"
         :id="form.id"
         :required="form.required"
@@ -32,7 +32,7 @@
         @onChangeInputSelected="onchangeInput"
       />
       <InputSearch
-        v-if="form.type === 'search'"
+        v-if="form.type === TYPE_INPUT.SEARCH"
         :description="form.description"
         :inputValue="form.value"
         :required="form.required"
@@ -45,7 +45,7 @@
         @onChangeInput="onchangeInput({ id: form.id })"
       />
       <InputTextarea
-        v-if="form.type === 'textarea'"
+        v-if="form.type === TYPE_INPUT.TEXTAREA"
         :inputValue="form.value"
         :id="form.id"
         :reruired="form.required"
@@ -54,7 +54,7 @@
         @handleInputTextarea="onchangeInput"
       />
       <InputChosen
-        v-if="form.type === 'chosen'"
+        v-if="form.type === TYPE_INPUT.CHOSEN"
         :data="company"
         :inputValue="form.value"
         :id="form.id"
@@ -64,7 +64,7 @@
         @handleDeleted="removeForm(index)"
       />
       <InputRangeTime
-        v-if="form.type === 'input_range_time'"
+        v-if="form.type === TYPE_INPUT.RANGE_TIME"
         :id="form.id"
         :inputValue="form.value"
         :required="form.required"
@@ -73,7 +73,7 @@
         @handleInput="onchangeInput"
       />
       <InputSalary
-        v-if="form.type === 'salary'"
+        v-if="form.type === TYPE_INPUT.SALARY"
         :inputValue="form.value"
         :id="form.id"
         :currency="currency"
@@ -82,7 +82,7 @@
         @handleInputSalary="onchangeInput"
       />
       <InputFiles
-        v-if="form.type === 'input_multi_file'"
+        v-if="form.type === TYPE_INPUT.FILES"
         :required="form.required"
         :id="form.id"
         @dropFiles="onchangeInput"
@@ -103,7 +103,7 @@ import InputRangeTime from "@/components/shareInputComp/InputRangeTime.vue";
 import InputSalary from "@/components/shareInputComp/InputSalary.vue";
 import CheckRequireComp from "@/components/shareInputComp/CheckRequireComp.vue";
 import { mapActions, mapGetters } from "vuex";
-import { CURRENCY, PLACEHOLDER } from "@/constant/Form";
+import { CURRENCY, PLACEHOLDER, TYPE_INPUT } from "@/constant/Form";
 export default {
   data() {
     return {
@@ -111,6 +111,7 @@ export default {
       keyWord: "",
       placeholder: PLACEHOLDER.JOB_POSITION,
       select: [],
+      TYPE_INPUT: TYPE_INPUT,
     };
   },
   components: {
