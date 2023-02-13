@@ -1,6 +1,6 @@
 <template>
   <div class="form-layout">
-    <div v-for="form in data" :key="form.id" class="input-block">
+    <div v-for="(form, index) in data" :key="form.id" class="input-block">
       <div class="form-header">
         <CheckRequireComp v-show="form.required" />
         <div class="form-title">{{ form.label }}</div>
@@ -61,6 +61,7 @@
         :err="form.err"
         :required="form.required"
         @handleChosen="onchangeInput"
+        @handleDeleted="removeForm(index)"
       />
       <InputRangeTime
         v-if="form.type === 'input_range_time'"
@@ -178,6 +179,9 @@ export default {
     },
     deleteItem(item) {
       this.deletedItem(item);
+    },
+    removeForm(index) {
+      this.$emit("removeForm", index);
     },
   },
   created() {

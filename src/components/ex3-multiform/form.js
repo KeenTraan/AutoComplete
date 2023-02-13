@@ -106,7 +106,7 @@ export const stepForm = [
         label: "Kinh nghiệm làm việc",
         isActive: false,
         step: 2,
-        layoutFormSecond: layoutDefault,
+        // layout: layoutDefault,
         layout: [
             {
                 id: uuidv4(),

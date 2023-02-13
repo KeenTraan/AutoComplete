@@ -51,7 +51,7 @@ export default {
       this.$emit("handleChosen", { id: this.id, value: value });
     },
     deletedItem() {
-      console.log("Deleted");
+      this.$emit("handleDeleted");
     },
   },
 };

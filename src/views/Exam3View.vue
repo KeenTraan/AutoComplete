@@ -8,11 +8,15 @@
       />
     </div>
     <div class="form-body">
-      <DynamicForm :data="dataForm.layout" :today="today" />
+      <DynamicForm
+        :data="dataForm.layout"
+        :today="today"
+        @removeForm="handleRemove"
+      />
     </div>
-    <div class="btn-add" v-show="currentStep === 2">
+    <div class="btn-add" v-show="currentStep === 2" @click="handleAddItem">
       <img src="@/assets/icons/Plus.png" alt="" />
-      <button class="btn-add-item" @click="handleAddItem">Thêm Công Ty</button>
+      <button class="btn-add-item">Thêm Công Ty</button>
     </div>
     <button
       class="btn-next"
@@ -114,6 +118,9 @@ export default {
         this.scrollToElement();
       });
       return isValid;
+    },
+    handleRemove(index) {
+      this.dataForm.layout.splice(index, 4);
     },
     handleNext() {
       if (!this.validate()) {
