@@ -5,7 +5,6 @@
       :maxSize="maxSize"
       :show="show"
       @uploadFile="uploadFile"
-      @dropFiles="dropFiles"
     />
   </div>
 </template>

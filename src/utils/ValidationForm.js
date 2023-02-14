@@ -29,8 +29,8 @@ export const checkDuplicateValue = (item) => {
                     new Date(itemI.value.from) <= new Date(itemJ.value.to) &&
                     new Date(itemJ.value.from) <= new Date(itemI.value.to)
                 ) {
-                    itemI.err = "Khoảng thời gian bị trùng nhau vui lòng chọn lại";
-                    itemJ.err = "Khoảng thời gian bị trùng nhau vui lòng chọn lại";
+                    itemI.err = "Duplicate date time";
+                    itemJ.err = "Duplicate date time";
                 } else {
                     itemI.err = "";
                     itemJ.err = "";

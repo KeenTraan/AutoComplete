@@ -119,7 +119,7 @@ export default {
             exportdata[el.key] = el.value;
           });
         });
-        console.log("export", this.stepForm);
+        console.log("export", exportdata);
       }
     },
     handleStep(step) {
