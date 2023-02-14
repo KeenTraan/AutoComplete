@@ -76,7 +76,7 @@ export default {
     width: 284px;
     height: 40px;
     .input-date {
-      padding: 4px;
+      padding: 6px;
       height: 40px;
       border: 1px solid #dcdcdc;
       text-align: center;

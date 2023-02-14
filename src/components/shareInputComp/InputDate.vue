@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.input {
+input {
   width: 118px;
   height: 66px;
   padding: 6px;

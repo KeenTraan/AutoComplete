@@ -3,7 +3,7 @@
     <div class="form-header">
       <StepProgress
         :data="stepForm"
-        :currenStep="currentStep"
+        :currentStep="currentStep"
         @handleStep="handleStep"
       />
     </div>
@@ -42,8 +42,16 @@
 import { layoutDefault, stepForm } from "@/components/ex3-multiform/form";
 import StepProgress from "@/components/ex3-multiform/StepProgress.vue";
 import DynamicForm from "@/components/ex3-multiform/DynamicForm.vue";
-import { uuidv4 } from "@firebase/util";
+import { TYPE_INPUT } from "@/constant/Form";
+import { v4 as uuidv4 } from "uuid";
+import {
+  checkDateTime,
+  checkDuplicateValue,
+  checkEmptyValue,
+  checkLength,
+} from "@/utils/ValidationForm";
 export default {
+  name: "HomePage",
   data() {
     return {
       stepForm,
@@ -60,70 +68,40 @@ export default {
   },
   methods: {
     validate() {
-      let isValid = false;
       const data = this.dataForm.layout;
-      let filterDate = data.filter((item) => item.key === "range_time");
-      for (let i = 0; i < filterDate.length; i++) {
-        for (let j = 1; j < filterDate.length; j++) {
-          let itemI = filterDate[i];
-          let itemJ = filterDate[j];
-          if (itemI.value.from && itemJ.value.from !== "" && i < j) {
-            if (
-              new Date(itemI.value.from) <= new Date(itemJ.value.to) &&
-              new Date(itemJ.value.from) <= new Date(itemI.value.to)
-            ) {
-              itemI.err = "Khoảng thời gian bị trùng nhau vui lòng chọn lại";
-              itemJ.err = "Khoảng thời gian bị trùng nhau vui lòng chọn lại";
-              isValid = true;
-            } else {
-              itemI.err = "";
-              itemJ.err = "";
-            }
-          }
-        }
-      }
+      let filterDate = data.filter(
+        (item) => item.key === TYPE_INPUT.RANGE_TIME
+      );
+      checkDuplicateValue(filterDate);
+
       data.forEach((item) => {
-        if (item.value.length > item.maxLength) {
-          item.err = `${item.label} phải nhỏ hơn ${item.maxLength} kí tự`;
-          isValid = true;
-        }
-        if (item.key === "company") {
-          if (!item.value) {
-            item.err = "Nhấp chọn tên công ty";
-            isValid = true;
-          }
+        if (item.maxLength) {
+          checkLength(item);
         }
         if (item.required) {
-          const from = item.value.from;
-          const to = item.value.to;
-          if (!item.value) {
-            item.err = `${item.label} không được để trống`;
-            isValid = true;
-          }
-          if (item.value.length > item.maxLength) {
-            item.err = `${item.label} phải nhỏ hơn ${item.maxLength} kí tự`;
-            isValid = true;
-          }
-          if (from >= to) {
-            item.err = "thời gian bắt đàu phải nhỏ hơn thời gian kết thúc";
-            isValid = true;
-          }
-          if (from === "" || to === "") {
-            item.err = `${item.label} không được để trống`;
-            isValid = true;
-          }
+          checkEmptyValue(item);
+          checkDateTime(item);
+        }
+        if (item.key === "company") {
+          checkEmptyValue(item);
         }
       });
       this.$nextTick(() => {
         this.scrollToElement();
       });
-      return isValid;
     },
     handleRemove(index) {
       this.dataForm.layout.splice(index, 4);
     },
     handleNext() {
-      if (!this.validate()) {
+      this.validate();
+      let checked = false;
+      this.dataForm.layout.forEach((item) => {
+        if (item.err) {
+          checked = true;
+        }
+      });
+      if (!checked) {
         this.currentStep++;
         this.stepForm[this.currentStep - 1].isActive = true;
       }
@@ -134,20 +112,28 @@ export default {
     },
     handleSubmit() {
       if (!this.validate()) {
-        const exportdata = {};
+        let exportdata = {};
         this.stepForm.forEach((item) => {
-          item.layout.forEach((elements) => {
-            exportdata[elements.key] = elements.value;
+          item.layout.forEach((el) => {
+            console.log(el.key, el.value);
+            exportdata[el.key] = el.value;
           });
         });
-        console.log(exportdata);
+        console.log("export", this.stepForm);
       }
     },
     handleStep(step) {
-      if (!this.validate()) {
-        this.currentStep = step;
-        this.stepForm[this.currentStep - 1].isActive = true;
-      }
+      let checked = false;
+      this.validate();
+      this.dataForm.layout.forEach((item) => {
+        if (item.err) {
+          checked = true;
+        }
+        if (!checked) {
+          this.currentStep = step;
+          this.stepForm[this.currentStep - 1].isActive = true;
+        }
+      });
     },
     handleAddItem() {
       let formSecond = this.stepForm.find((item) => item.step === 2);
