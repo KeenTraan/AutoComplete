@@ -11,13 +11,7 @@
       <h3>Drag and drop files</h3>
       <p class="input-add-file">Browser files</p>
     </label>
-    <input
-      type="file"
-      id="input-file"
-      @change="onChange"
-      ref="file"
-      multiple
-    />
+    <input type="file" id="input-file" @change="onChange" ref="file" multiple />
   </div>
 </template>
 
@@ -63,8 +57,7 @@ export default {
   font-style: normal;
   font-size: 18px;
   line-height: 22px;
-  // width: 842px;
-  height: 232px;
+  height: 192px;
   background: #f8f8f8;
   border: 1px solid #dcdcdc;
   border-radius: 7px;

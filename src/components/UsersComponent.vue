@@ -10,7 +10,7 @@
         @addChosen="addChosen"
         @deleteItem="deleteItem"
       />
-      <DropzoneComponent :limitedFile="3" :maxSize="10000000"/>
+      <DropzoneComponent :limitedFile="3" :maxSize="10000000" />
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@
 import AutoComplete from "@/components/Autocomplete/AutoComplete";
 import { mapActions, mapGetters } from "vuex";
 import { PLACEHOLDER } from "@/constant/Autocomplete";
-import DropzoneComponent from '@/components/Dropzone/DropzoneComponent.vue';
+import DropzoneComponent from "@/components/Dropzone/DropzoneComponent.vue";
 export default {
   name: "UserView",
   components: {
@@ -38,12 +38,12 @@ export default {
       addChosenUser: "selectUsers",
       deleteUsers: "deleteUsers",
     }),
-
     searchOptions(keyword) {
-      this.keyWord = keyword;
+      this.keyWord = keyword.trim();
     },
     addChosen(item) {
       this.addChosenUser(item);
+      this.keyWord = "";
     },
     deleteItem(item) {
       this.deleteUsers(item);

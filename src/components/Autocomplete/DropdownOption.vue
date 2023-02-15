@@ -1,14 +1,14 @@
 <template>
   <div class="list-item">
     <div v-for="item in listOptions" :key="item.code">
-        <div class="item" @click="selectItem(item)">
-          {{ item.name }}
-        </div>
+      <div class="item" @click="selectItem(item)">
+        {{ item.name }}
+      </div>
     </div>
     <div v-if="!listOptions.length && keyword" class="item-massage">
-        <div>
-          {{ message }}
-        </div>
+      <div>
+        {{ message }}
+      </div>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
     keyword: {
       type: String,
       required: true,
-    }
+    },
   },
   methods: {
     selectItem(item) {
@@ -39,6 +39,8 @@ export default {
 
 <style scoped lang="scss">
 .list-item {
+  position: absolute;
+  z-index: 1;
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -64,7 +66,7 @@ export default {
 .item-massage {
   background-color: #f1f5f8;
   padding: 10px;
-  width: 400px;
+  width: 528px;
   height: 40px;
   display: flex;
   flex-direction: row;

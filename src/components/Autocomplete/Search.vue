@@ -16,6 +16,7 @@
           :placeholder="placeholder"
           :value="valueInput"
           @input="handleSearch"
+          multiple
         />
       </div>
     </div>
@@ -53,6 +54,7 @@ export default {
     handleSearch(e) {
       this.valueInput = e.target.value;
       this.$emit("searchItem", this.valueInput);
+      this.$emit("onChangeInput", this.valueInput);
     },
     handleDelete(item) {
       this.$emit("deleteOptions", item);
@@ -63,21 +65,14 @@ export default {
 
 <style scoped lang="scss">
 .input-layout {
-  margin: 10px 0 2px 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   width: 528px;
-  min-height: 49px;
   padding: 8px 10px;
   gap: 4px;
-  // background-color: rgba(230, 249, 255, 0.2);
   border: 1px solid #dbdbdb;
   border-radius: 4px;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
 }
 input {
   width: max-content;
@@ -127,6 +122,6 @@ input {
   }
 }
 .input-layout:focus-within {
-  border: 2px solid black;
+  border: 1px solid skyblue;
 }
 </style>

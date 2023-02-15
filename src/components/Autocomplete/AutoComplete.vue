@@ -1,19 +1,22 @@
 <template>
   <div class="auto-layout">
+    <div class="auto-completed">
       <Search
         :getSelect="getSelect"
         :placeholder="placeholder"
         :keyword="keyword"
         @searchItem="searchItem"
         @deleteOptions="deleteOptions"
+        @onChangeInput="onChangeInput"
       />
       <DropdownOption
-        v-if="isHiden"
+        v-if="!showDropdown"
         :listOptions="filtersItem"
         :message="message"
         :keyword="keyword"
         @selectItem="selectItem"
       />
+    </div>
   </div>
 </template>
 
@@ -24,7 +27,6 @@ export default {
   name: "AutoComplete",
   data() {
     return {
-      isHiden: false,
       keyword: "",
       message: "Not Found",
     };
@@ -36,17 +38,23 @@ export default {
   methods: {
     searchItem(valueInput) {
       this.keyword = valueInput;
-      this.isHiden = true;
       this.$emit("searchOptions", this.keyword);
     },
     selectItem(item) {
-        this.$emit("addChosen", item)
-        this.keyword = "";
-        this.isHiden = false;
+      this.$emit("addChosen", item);
+      this.keyword = "";
     },
     deleteOptions(item) {
-      this.$emit("deleteItem", item)
-    }
+      this.$emit("deleteItem", item);
+    },
+    onChangeInput() {
+      this.$emit("onChangeInput");
+    },
+  },
+  computed: {
+    showDropdown() {
+      return this.keyword.length === 0;
+    },
   },
   props: {
     placeholder: {
@@ -62,8 +70,8 @@ export default {
     },
     limited: {
       type: Number,
-      require: true
-    }
+      require: true,
+    },
   },
 };
 </script>
@@ -72,5 +80,8 @@ export default {
 .auto-layout {
   display: flex;
   flex-direction: column;
+  .auto-completed {
+    position: relative;
+  }
 }
 </style>

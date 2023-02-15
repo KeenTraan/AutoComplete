@@ -1,0 +1,210 @@
+<template>
+  <div class="form-layout">
+    <div v-for="(form, index) in data" :key="form.id" class="input-block">
+      <div class="form-header">
+        <CheckRequireComp v-show="form.required" />
+        <div class="form-title">{{ form.label }}</div>
+      </div>
+      <InputText
+        v-if="form.type === TYPE_INPUT.TEXT"
+        :id="form.id"
+        :inputValue="form.value"
+        :required="form.required"
+        :maxlength="form.maxLength"
+        :err="form.err"
+        @handleInputText="onchangeInput"
+      />
+      <InputDate
+        v-if="form.type === TYPE_INPUT.DATE"
+        :id="form.id"
+        :inputValue="form.value"
+        :required="form.required"
+        :err="form.err"
+        :today="today"
+        @onChangeInputDate="onchangeInput"
+      />
+      <InputSelected
+        v-if="form.type === TYPE_INPUT.SELECT"
+        :inputValue="form.value"
+        :id="form.id"
+        :required="form.required"
+        :inputData="cities"
+        @onChangeInputSelected="onchangeInput"
+      />
+      <InputSearch
+        v-if="form.type === TYPE_INPUT.SEARCH"
+        :description="form.description"
+        :inputValue="form.value"
+        :required="form.required"
+        :placeholder="placeholder"
+        :data="filtersItem"
+        :selected="selected"
+        @handleSearch="search"
+        @handelAddItem="addItem"
+        @handelDeleteItem="deleteItem"
+        @onChangeInput="onchangeInput({ id: form.id })"
+      />
+      <InputTextarea
+        v-if="form.type === TYPE_INPUT.TEXTAREA"
+        :inputValue="form.value"
+        :id="form.id"
+        :reruired="form.required"
+        :character="form.maxLength"
+        :err="form.err"
+        @handleInputTextarea="onchangeInput"
+      />
+      <InputChosen
+        v-if="form.type === TYPE_INPUT.CHOSEN"
+        :data="company"
+        :inputValue="form.value"
+        :id="form.id"
+        :err="form.err"
+        :required="form.required"
+        @handleChosen="onchangeInput"
+        @handleDeleted="removeForm(index)"
+      />
+      <InputRangeTime
+        v-if="form.type === TYPE_INPUT.RANGE_TIME"
+        :id="form.id"
+        :inputValue="form.value"
+        :required="form.required"
+        :err="form.err"
+        :today="today"
+        @handleInput="onchangeInput"
+      />
+      <InputSalary
+        v-if="form.type === TYPE_INPUT.SALARY"
+        :inputValue="form.value"
+        :id="form.id"
+        :currency="currency"
+        :required="form.required"
+        :err="form.err"
+        @handleInputSalary="onchangeInput"
+      />
+      <InputFiles
+        v-if="form.type === TYPE_INPUT.FILES"
+        :required="form.required"
+        :id="form.id"
+        @dropFiles="onchangeInput"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import InputText from "@/components/shareInputComp/InputText.vue";
+import InputDate from "@/components/shareInputComp/InputDate.vue";
+import InputSelected from "@/components/shareInputComp/InputSelected.vue";
+import InputSearch from "@/components/shareInputComp/InputSearch.vue";
+import InputTextarea from "@/components/shareInputComp/InputTextarea.vue";
+import InputFiles from "@/components/shareInputComp/InputFiles.vue";
+import InputChosen from "@/components/shareInputComp/InputChosen.vue";
+import InputRangeTime from "@/components/shareInputComp/InputRangeTime.vue";
+import InputSalary from "@/components/shareInputComp/InputSalary.vue";
+import CheckRequireComp from "@/components/shareInputComp/CheckRequireComp.vue";
+import { mapActions, mapGetters } from "vuex";
+import { CURRENCY, PLACEHOLDER, TYPE_INPUT } from "@/constant/Form";
+export default {
+  data() {
+    return {
+      currency: CURRENCY.VND,
+      keyWord: "",
+      placeholder: PLACEHOLDER.JOB_POSITION,
+      select: [],
+      TYPE_INPUT: TYPE_INPUT,
+    };
+  },
+  components: {
+    InputText,
+    InputDate,
+    InputSelected,
+    InputSearch,
+    InputTextarea,
+    InputFiles,
+    InputChosen,
+    InputRangeTime,
+    InputSalary,
+    CheckRequireComp,
+  },
+  props: {
+    data: {
+      type: Array,
+      required: true,
+    },
+    today: {
+      type: String,
+      required: true,
+    },
+  },
+  computed: {
+    ...mapGetters("form", {
+      cities: "getCities",
+      company: "getNameCompany",
+      position: "getPosition",
+      selected: "getSelected",
+    }),
+    filtersItem() {
+      return this.position.filter((item) => {
+        return item.name.toLowerCase().includes(this.keyWord.toLowerCase());
+      });
+    },
+  },
+  watch: {
+    selected: {
+      handler(value) {
+        this.select = value;
+      },
+    },
+  },
+  methods: {
+    ...mapActions("form", {
+      fetchCities: "fetchCities",
+      selectedItem: "selected",
+      deletedItem: "deleted",
+    }),
+    onchangeInput({ value, id }) {
+      const data = this.data.find((item) => item.id === id);
+      if (data.type === "search") {
+        data.value = this.select;
+      } else {
+        data.value = value;
+        data.err = "";
+      }
+    },
+    search(keyword) {
+      this.keyWord = keyword.trim();
+    },
+    addItem(item) {
+      this.selectedItem(item);
+      this.keyWord = "";
+    },
+    deleteItem(item) {
+      this.deletedItem(item);
+    },
+    removeForm(index) {
+      this.$emit("removeForm", index);
+    },
+  },
+  created() {
+    this.fetchCities();
+  },
+};
+</script>
+
+<style scoped lang="scss">
+.form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .form-header {
+    display: flex;
+    margin-bottom: 6px;
+    .form-title {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      color: #333333;
+    }
+  }
+}
+</style>
